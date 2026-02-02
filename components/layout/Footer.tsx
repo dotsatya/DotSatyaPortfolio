@@ -1,6 +1,6 @@
-import React from "react";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import { FaXTwitter } from "react-icons/fa6";
+import { Portfolio } from "@/lib/Portfolio";
 
 const Footer = () => {
   return (
@@ -11,18 +11,18 @@ const Footer = () => {
       <div className="w-[98%] mx-auto flex  items-center flex-row justify-between px-2">
         {/* Logo / Title */}
         <h1 className="text-lg font-bold hover:text-gray-600 transition-colors hidden sm:block">
-          XXYYZZ
+          dotsatya
         </h1>
 
         {/* Copyright */}
         <span className="text-xs font-light text-gray-400text text-center">
-          &copy; 2026 XXYYZZ, All rights reserved.
+          &copy; 2026 dotsatya, All rights reserved.
         </span>
 
         {/* Social Links */}
         <div className="flex items-center justify-center gap-4 ">
           <a
-            href="https://www.twitter.com/satya_sundar_dey"
+            href={Portfolio.socialLinks.twitter}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xl  hover:text-gray-400 transition-colors hidden sm:block"
@@ -31,7 +31,7 @@ const Footer = () => {
             <FaXTwitter size={18}/>
           </a>
           <a
-            href="https://github.com/dotsatya"
+            href={Portfolio.socialLinks.github}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xl hover:text-gray-400 transition-colors"
@@ -40,7 +40,7 @@ const Footer = () => {
             <BsGithub size={18}/>
           </a>
           <a
-            href="https://www.linkedin.com/in/satya-sundar-dey/"
+            href={Portfolio.socialLinks.linkedin}
             target="_blank"
             rel="noopener noreferrer"
             className="text-xl hover:text-gray-400 transition-colors"

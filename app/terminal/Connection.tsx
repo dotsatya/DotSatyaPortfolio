@@ -5,7 +5,7 @@ import emailjs from "emailjs-com";
 
 type Step = "name" | "email" | "idea" | "sending";
 
-export default function TerminalContact() {
+export default function Connection() {
   const [step, setStep] = useState<Step>("name");
   const [input, setInput] = useState("");
   const [output, setOutput] = useState<string[]>([]);

@@ -1,18 +1,21 @@
-import React from 'react'
-
+import About from "@/components/minimal/About/About";
+import Experience from "@/components/minimal/Experience/Experience";
+import TechToolls from "@/components/minimal/TechToolls/TechToolls";
+import { FooterTitle } from "@/components/minimal/FooterTitle";
+import GitHubActivities from "@/components/minimal/GitHubActivities/GitHubActivities";
 
 const page = () => {
   return (
-    <div>Homee Page
-
-      <div className='font-mono tracking-tighter'>
-        Mono tight
+    <>
+      <div className="p-10 font-[poppins]">
+        <About />
+        {/* <TechToolls /> */}
+        {/* <GitHubActivities /> */}
+        {/* <Experience /> */}
       </div>
-      <div className='font-mono tracking-wider  '>
-        Mono wide
-      </div>
-    </div>
-  )
-}
+      {/* <FooterTitle text="DOT SATYA" /> */}
+    </>
+  );
+};
 
-export default page
+export default page;

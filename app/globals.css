@@ -31,6 +31,24 @@
   font-family: 'IBM Plex Mono', monospace;
 }
 
+/* //////fot techtools//////// */
+:root {
+  --marquee-fade: #F5F5F5;
+}
+.dark {
+  --marquee-fade: #080808;
+}
+
+/* globals.css */
+.rfm-marquee {
+  transition: transform 0.5s ease-out; /* Nudges the browser to ease the stop */
+}
+
+/* Optional: Subtle scale effect on hover to emphasize the pause */
+.rfm-container:hover .rfm-marquee {
+  filter: grayscale(0.2);
+  transition: all 0.5s ease;
+}
 
 @theme inline {
   --color-background: var(--background);

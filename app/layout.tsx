@@ -39,7 +39,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dot Satya // Porifolio",
+  title: "Dot Satya // Portfolio",
   description:
     "A developer and designer from India working with web development and UI/UX design.",
 };
@@ -66,7 +66,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <div className="min-h-screen flex flex-col bg-[#F5F5F5] dark:bg-[#080808]">
             <Header />
-            <main className=" flex-1 p-6">{children}</main>
+            <main className=" flex-1 ">{children}</main>
             <Footer />
           </div>
         </ThemeProvider>
