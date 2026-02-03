@@ -6,7 +6,7 @@ import { BsBehance } from "react-icons/bs";
 
 const Social = () => {
   return (
-    <div className="flex flex-col gap-4 top-1/2 -translate-y-1/2">
+    <div className="flex flex-col gap-6 top-1/2 justify-center items-center">
       <a
         href={Portfolio.socialLinks.behance}
         target="_blank"

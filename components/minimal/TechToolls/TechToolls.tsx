@@ -88,7 +88,7 @@ const TechToolls = () => {
   return (
     <>
       {Portfolio.skills.length > 0 && (
-        <section className="py-20  overflow-hidden">
+        <section id="skills" className="py-20  overflow-hidden">
           <div className="mx-auto max-w-6xl w-full px-6 md:px-10 mb-12">
             <h3 className="hidden lg:block  mb-8 text-center text-4xl font-semibold font-sans  text-neutral-900 dark:text-white">
               Technologies & Tools

@@ -11,6 +11,7 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Toaster } from "sonner";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
@@ -49,7 +50,6 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   /*
   npm install next-themes
   npm install react-icons lucide-react
@@ -62,8 +62,11 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${poppins.className} ${mono.className} ${inter.variable} font-sans antialiased`}>
+      <body
+        className={`${poppins.className} ${mono.className} ${inter.variable} font-sans antialiased`}
+      >
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
+          <Toaster position="top-center" richColors />
           <div className="min-h-screen flex flex-col bg-[#F5F5F5] dark:bg-[#080808]">
             <Header />
             <main className=" flex-1 ">{children}</main>

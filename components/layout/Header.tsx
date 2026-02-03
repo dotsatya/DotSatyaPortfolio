@@ -6,13 +6,13 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 
-type Mode = "normal" | "terminal";
+type Mode = "minimal" | "terminal";
 
-const NORMAL_ITEMS = [
+const MINIMAL_ITEMS = [
   { label: "About", href: "#about" },
   { label: "Skills", href: "#skills" },
-  { label: "Services", href: "#services" },
-  { label: "Portfolio", href: "#portfolio" },
+  // { label: "Services", href: "#services" },
+  { label: "Projects", href: "#porjects" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -29,7 +29,7 @@ const Header: React.FC = () => {
     exit: { height: 0, opacity: 0 },
   };
 
-  const mode: Mode = pathname === "/terminal" ? "terminal" : "normal";
+  const mode: Mode = pathname === "/terminal" ? "terminal" : "minimal";
   const [open, setOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -49,15 +49,15 @@ const Header: React.FC = () => {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-const handleModeChange = (newMode: Mode) => {
-  setOpen(false); // Closes desktop dropdown
-  setMobileOpen(false); // Optional: Uncomment this if you want the sidebar to close immediately on "Normal" click too
-  if (newMode === "terminal") {
-    router.push("/terminal");
-  } else {
-    router.push("/");
-  }
-};
+  const handleModeChange = (newMode: Mode) => {
+    setOpen(false); // Closes desktop dropdown
+    setMobileOpen(false); // Optional: Uncomment this if you want the sidebar to close immediately on "minimal" click too
+    if (newMode === "terminal") {
+      router.push("/terminal");
+    } else {
+      router.push("/");
+    }
+  };
 
   return (
     <>
@@ -88,7 +88,7 @@ const handleModeChange = (newMode: Mode) => {
                 </motion.div>
               ) : (
                 <motion.div
-                  key="normal"
+                  key="minimal"
                   variants={textVariants}
                   initial="initial"
                   animate="animate"
@@ -127,7 +127,7 @@ const handleModeChange = (newMode: Mode) => {
                   exit={{ opacity: 0, y: -8 }}
                   className="absolute top-11 left-0 w-full rounded-md bg-white/90 dark:bg-stone-900/90 backdrop-blur-xl border border-black/10 dark:border-white/10 overflow-hidden shadow-xl"
                 >
-                  {(["normal", "terminal"] as Mode[]).map((item) => (
+                  {(["minimal", "terminal"] as Mode[]).map((item) => (
                     <button
                       key={item}
                       onClick={() => handleModeChange(item)}
@@ -148,7 +148,7 @@ const handleModeChange = (newMode: Mode) => {
           {/* RIGHT: Navigation & Theme */}
           <div className="flex items-center gap-5 justify-end">
             <AnimatePresence mode="wait">
-              {mode === "normal" ? (
+              {mode === "minimal" ? (
                 <motion.nav
                   key="nav"
                   variants={textVariants}
@@ -157,7 +157,7 @@ const handleModeChange = (newMode: Mode) => {
                   exit="exit"
                   className="hidden md:flex items-center gap-4"
                 >
-                  {NORMAL_ITEMS.map((item) => (
+                  {MINIMAL_ITEMS.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
@@ -213,7 +213,7 @@ const handleModeChange = (newMode: Mode) => {
         <div className="px-5 py-4">
           <p className="text-xs text-gray-500 mb-3">Mode</p>
 
-          {(["normal", "terminal"] as Mode[]).map((item) => {
+          {(["minimal", "terminal"] as Mode[]).map((item) => {
             const isOpen = expandedMode === item;
 
             return (
@@ -224,8 +224,8 @@ const handleModeChange = (newMode: Mode) => {
                     // 1. Trigger navigation for both modes
                     handleModeChange(item);
 
-                    if (item === "normal") {
-                      // 2. For normal, toggle the accordion to show sub-links
+                    if (item === "minimal") {
+                      // 2. For minimal, toggle the accordion to show sub-links
                       setExpandedMode(isOpen ? null : item);
                     } else {
                       // 3. For terminal, since there are no sub-links, just close the sidebar
@@ -239,8 +239,8 @@ const handleModeChange = (newMode: Mode) => {
                   }`}
                 >
                   <span className="capitalize">{item}</span>
-                  {/* Arrow ONLY for normal mode */}
-                  {item === "normal" && (
+                  {/* Arrow ONLY for minimal mode */}
+                  {item === "minimal" && (
                     <span
                       className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
                     >
@@ -248,9 +248,9 @@ const handleModeChange = (newMode: Mode) => {
                     </span>
                   )}
                 </button>
-                {/* SUB CONTENT - Only renders for Normal */}
+                {/* SUB CONTENT - Only renders for minimal */}
                 <AnimatePresence mode="wait">
-                  {isOpen && item === "normal" && (
+                  {isOpen && item === "minimal" && (
                     <motion.div
                       variants={accordionVariants}
                       initial="initial"
@@ -260,7 +260,7 @@ const handleModeChange = (newMode: Mode) => {
                       className="overflow-hidden pl-3 ml-1 mt-2 border-l border-black/10 dark:border-white/20"
                     >
                       <nav className="space-y-3">
-                        {NORMAL_ITEMS.map((nav) => (
+                        {MINIMAL_ITEMS.map((nav) => (
                           <Link
                             key={nav.href}
                             href={nav.href}
