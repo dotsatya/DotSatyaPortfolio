@@ -40,7 +40,7 @@ const mono = IBM_Plex_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dot Satya // Portfolio",
+  title: "Satya // Portfolio",
   description:
     "A developer and designer from India working with web development and UI/UX design.",
 };

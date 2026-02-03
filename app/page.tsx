@@ -14,12 +14,12 @@ const page = () => {
         <About />
         {/* <TechToolls /> */}
         {/* <GitHubActivities /> */}
-        {/* <Experience /> */}
-        {/* <Projects /> */}
-        {/* <Photography /> */}
+        <Experience />
+        <Projects />
+        <Photography />
         <ContactMe />
       </div>
-      {/* <FooterTitle text="DOT SATYA" /> */}
+      <FooterTitle text="DOT SATYA" />
     </>
   );
 };

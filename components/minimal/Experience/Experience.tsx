@@ -56,6 +56,26 @@ const Experience = () => {
     <>
       {experience.length > 0 && (
         <section id="experience" className="py-24 relative overflow-hidden">
+                <motion.div
+        initial={{
+          opacity: 0,
+          x: -60,
+          scale: 0.96,
+          filter: "blur(6px)",
+        }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          filter: "blur(0px)",
+        }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+          delay: 0.12,
+        }}
+      >
           <div className="mx-auto max-w-6xl w-full px-6 md:px-10 relative">
             <span className="mb-16 block text-center font-mono text-3xl font-light uppercase tracking-[0.2em] text-white">
               Experience
@@ -148,6 +168,7 @@ const Experience = () => {
               </div>
             </div>
           </div>
+          </motion.div>
         </section>
       )}
     </>

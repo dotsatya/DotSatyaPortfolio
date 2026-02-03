@@ -1,4 +1,5 @@
 "use client";
+import { motion } from "framer-motion";
 import { Portfolio } from "@/lib/Portfolio";
 import dynamic from "next/dynamic";
 import React, { ComponentType } from "react";
@@ -88,7 +89,26 @@ const TechToolls = () => {
   return (
     <>
       {Portfolio.skills.length > 0 && (
-        <section id="skills" className="py-20  overflow-hidden">
+        <section id="skills" className="py-20  overflow-hidden">      <motion.div
+        initial={{
+          opacity: 0,
+          x: -60,
+          scale: 0.96,
+          filter: "blur(6px)",
+        }}
+        whileInView={{
+          opacity: 1,
+          x: 0,
+          scale: 1,
+          filter: "blur(0px)",
+        }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{
+          duration: 0.7,
+          ease: [0.22, 1, 0.36, 1],
+          delay: 0.12,
+        }}
+      >
           <div className="mx-auto max-w-6xl w-full px-6 md:px-10 mb-12">
             <h3 className="hidden lg:block  mb-8 text-center text-4xl font-semibold font-sans  text-neutral-900 dark:text-white">
               Technologies & Tools
@@ -152,6 +172,7 @@ const TechToolls = () => {
               </Marquee>
             </div>
           </div>
+        </motion.div>
         </section>
       )}
     </>

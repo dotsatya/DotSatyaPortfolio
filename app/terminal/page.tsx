@@ -278,7 +278,7 @@ const TerminalTemplate = () => {
     if (el) el.scrollIntoView({ behavior: "smooth" });
   };
 
-  const navItems = ["about", "projects", "skills", "experience", "contact"];
+  const navItems = ["about", "projects", "skills", "experience", "contact","feedback"];
 
   const [loading, setLoading] = useState(true);
   const [showAllSkills, setShowAllSkills] = useState(false);
@@ -312,8 +312,6 @@ const TerminalTemplate = () => {
                   "Web Developer",
                   1000,
                   "Software Developer",
-                  1000,
-                  "AIML Enthusiast",
                   1000,
                   "UI/UX Designer",
                   1000,

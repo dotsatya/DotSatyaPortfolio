@@ -86,12 +86,11 @@ export default function Connection() {
     setStep("name");
   }
 }
-
     setInput("");
   };
 
 return (
-  <div
+  <div id="feedback"
     className="  rounded-lg p-4 font-mono text-sm bg-white dark:bg-[#0d1117] shadow-md border border-slate-300 dark:border-[#30363d]  text-slate-800 dark:text-[#c9d1d9]"
   >
     <div className="space-y-1 mb-3">
@@ -120,7 +119,6 @@ return (
           onKeyDown={(e) => e.key === "Enter" && handleEnter()}
           placeholder="..."
           className=" flex-1 bg-transparent outline-none  text-slate-800 dark:text-[#c9d1d9]  placeholder:text-slate-400 dark:placeholder:text-[#8b949e] "
-          autoFocus
         />
       </div>
     )}
