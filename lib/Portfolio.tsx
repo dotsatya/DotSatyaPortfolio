@@ -1,11 +1,11 @@
 import Image1 from "@/public/projectImages/sunMoon.png";
 import Image2 from "@/public/projectImages/dotMusic.png";
-import Image3 from "@/public/projectImages/ecomarse.png";
-import Image4 from "@/public/projectImages/portfolio.png";
+import Image3 from "@/public/projectImages/ems.png";
+import Image4 from "@/public/projectImages/dotNotes.png";
 import Image5 from "@/public/projectImages/weather.png";
 import Image6 from "@/public/projectImages/cryptoChecker.png";
-import Image7 from "@/public/projectImages/dotNotes.png";
-import Image8 from "@/public/projectImages/ems.png";
+import Image7 from "@/public/projectImages/portfolio.png";
+import Image8 from "@/public/projectImages/ecomarse.png";
 
 import photo1 from "@/public/photoImages/image1.png";
 import photo2 from "@/public/photoImages/image2.png";
@@ -176,7 +176,7 @@ export const Portfolio = {
         "A responsive web-based music player with playlist support and smooth UI interactions.",
       tags: ["HTML", "JavaScript", "CSS"],
       featured: true,
-      imageUrl: Image4,
+      imageUrl: Image2,
       githubUrl: "https://github.com/dotsatya/Music-Website",
       liveUrl: "https://dotsatya.github.io/Music-Website/",
     },
@@ -207,7 +207,7 @@ export const Portfolio = {
         "A secure note-taking application with login, edit, and real-time update support.",
       tags: ["React", "JavaScript", "Express.js", "Tailwind CSS"],
       featured: true,
-      imageUrl: Image5,
+      imageUrl: Image4,
       githubUrl: "https://github.com/dotsatya/DotNotesNow/",
       linkedInUrl:
         "https://www.linkedin.com/posts/satya-sundar-dey_webdevelopment-fullstackdeveloper-reactjs-activity-7422524332570034179-iK0Y/",
@@ -226,7 +226,7 @@ export const Portfolio = {
         "Tailwind CSS",
       ],
       featured: true,
-      imageUrl: Image2,
+      imageUrl: Image5,
       githubUrl: "https://github.com/dotsatya/DotSkyNow",
       liveUrl: "https://dotskynow.vercel.app/",
     },
@@ -248,7 +248,7 @@ export const Portfolio = {
       title: "Satya // Portfolio",
       description:
         "My personal portfolio showcasing projects, skills, and contact functionality.",
-      tags: ["React", "JavaScript", "EmailJS", "Tailwind CSS"],
+      tags: ["React", "JavaScript", "EmailJS", "CSS Modules"],
       featured: true,
       imageUrl: Image7,
       githubUrl: "https://github.com/dotsatya/Formal-Portfolio",
