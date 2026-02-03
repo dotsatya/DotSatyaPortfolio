@@ -1,8 +1,7 @@
 "use client";
 import { toast } from "sonner";
 import React, { useEffect, useRef, useState } from "react";
-import emailjs from "emailjs-com";
-import { motion, AnimatePresence } from "framer-motion";
+import emailjs from "@emailjs/browser";
 import { FiSend } from "react-icons/fi";
 
 // ENV VARIABLES

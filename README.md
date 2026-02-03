@@ -31,7 +31,7 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 
 ## Live Portfolio
 
-Visit the live portfolio at: **[DotSatyaPortfolio.vercel.app](https://dotsatyaportfolio.vercel.app/)**
+Visit the live portfolio at: **[DotSatyaPortfolio.vercel.app](https://dotsatya.vercel.app/)**
 
 ## Deploy on Vercel
 
