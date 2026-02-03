@@ -9,7 +9,7 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { Button } from "../ui/button";
 
 // 1. Centralized Configuration
-type Mode = "minimal" | "terminal" | "normal";
+type Mode = "minimal" | "terminal" ; //| "normal";
 
 interface NavItem {
   label: string;
@@ -26,13 +26,13 @@ const NAVIGATION_CONFIG: Record<Mode, { route: string; items: NavItem[] }> = {
       { label: "Contact", href: "#contact" },
     ],
   },
-  normal: {
-    route: "/normal",
-    items: [
-      { label: "Details", href: "/details" },
-      { label: "Website", href: "/website" },
-    ],
-  },
+  // normal: {
+  //   route: "/normal",
+  //   items: [
+  //     { label: "Details", href: "/details" },
+  //     { label: "Website", href: "/website" },
+  //   ],
+  // },
   terminal: {
     route: "/terminal",
     items: [], // No sub-parts
@@ -52,8 +52,6 @@ const Header: React.FC = () => {
   const currentMode: Mode =
     pathname === "/terminal"
       ? "terminal"
-      : pathname === "/normal"
-        ? "normal"
         : "minimal";
 
   const accordionVariants = {
