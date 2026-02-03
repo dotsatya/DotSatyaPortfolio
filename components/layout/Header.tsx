@@ -5,16 +5,39 @@ import { usePathname, useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
+import { RiArrowDownSLine } from "react-icons/ri";
+import { Button } from "../ui/button";
 
-type Mode = "minimal" | "terminal";
+// 1. Centralized Configuration
+type Mode = "minimal" | "terminal" | "normal";
 
-const MINIMAL_ITEMS = [
-  { label: "About", href: "#about" },
-  { label: "Skills", href: "#skills" },
-  // { label: "Services", href: "#services" },
-  { label: "Projects", href: "#porjects" },
-  { label: "Contact", href: "#contact" },
-];
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+const NAVIGATION_CONFIG: Record<Mode, { route: string; items: NavItem[] }> = {
+  minimal: {
+    route: "/",
+    items: [
+      { label: "About", href: "#about" },
+      { label: "Skills", href: "#skills" },
+      { label: "Projects", href: "#porjects" },
+      { label: "Contact", href: "#contact" },
+    ],
+  },
+  normal: {
+    route: "/normal",
+    items: [
+      { label: "Details", href: "/details" },
+      { label: "Website", href: "/website" },
+    ],
+  },
+  terminal: {
+    route: "/terminal",
+    items: [], // No sub-parts
+  },
+};
 
 const Header: React.FC = () => {
   const pathname = usePathname();
@@ -22,16 +45,22 @@ const Header: React.FC = () => {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedMode, setExpandedMode] = useState<Mode | null>(null);
+  const [open, setOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Determine current mode based on route
+  const currentMode: Mode =
+    pathname === "/terminal"
+      ? "terminal"
+      : pathname === "/normal"
+        ? "normal"
+        : "minimal";
 
   const accordionVariants = {
     initial: { height: 0, opacity: 0 },
     animate: { height: "auto", opacity: 1 },
     exit: { height: 0, opacity: 0 },
   };
-
-  const mode: Mode = pathname === "/terminal" ? "terminal" : "minimal";
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   const textVariants = {
     initial: { opacity: 0, y: -8, filter: "blur(6px)" },
@@ -41,22 +70,15 @@ const Header: React.FC = () => {
 
   useEffect(() => {
     const handler = (e: MouseEvent) => {
-      if (!dropdownRef.current?.contains(e.target as Node)) {
-        setOpen(false);
-      }
+      if (!dropdownRef.current?.contains(e.target as Node)) setOpen(false);
     };
     document.addEventListener("mousedown", handler);
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
   const handleModeChange = (newMode: Mode) => {
-    setOpen(false); // Closes desktop dropdown
-    setMobileOpen(false); // Optional: Uncomment this if you want the sidebar to close immediately on "minimal" click too
-    if (newMode === "terminal") {
-      router.push("/terminal");
-    } else {
-      router.push("/");
-    }
+    setOpen(false);
+    router.push(NAVIGATION_CONFIG[newMode].route);
   };
 
   return (
@@ -73,32 +95,28 @@ const Header: React.FC = () => {
             </button>
 
             <AnimatePresence mode="wait">
-              {mode === "terminal" ? (
-                <motion.div
-                  key="terminal"
-                  variants={textVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="text-gray-400 dark:text-gray-500 flex gap-2 font-mono"
-                >
-                  <span>{">_"}</span>
-                  <span>bash — dotsatya</span>
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="minimal"
-                  variants={textVariants}
-                  initial="initial"
-                  animate="animate"
-                  exit="exit"
-                  transition={{ duration: 0.35, ease: "easeOut" }}
-                  className="flex items-center gap-2 text-2xl text-black dark:text-white font-semibold"
-                >
-                  Dot Satya
-                </motion.div>
-              )}
+              <motion.div
+                key={currentMode}
+                variants={textVariants}
+                initial="initial"
+                animate="animate"
+                exit="exit"
+                transition={{ duration: 0.35, ease: "easeOut" }}
+                className={
+                  currentMode === "terminal"
+                    ? "text-gray-400 dark:text-gray-500 flex gap-2 font-mono"
+                    : "flex items-center gap-2 text-2xl text-black dark:text-white font-semibold"
+                }
+              >
+                {currentMode === "terminal" ? (
+                  <>
+                    <span>{">_"}</span>
+                    <span>bash — dotsatya</span>
+                  </>
+                ) : (
+                  "Dot Satya"
+                )}
+              </motion.div>
             </AnimatePresence>
           </div>
 
@@ -111,11 +129,11 @@ const Header: React.FC = () => {
               onClick={() => setOpen(!open)}
               className="w-32 flex items-center justify-center gap-2 px-3 py-1.5 rounded-md border border-black/10 dark:border-white/10 bg-white/5 dark:bg-white/5 hover:bg-black/5 hover:dark:bg-white/10 transition font-medium capitalize"
             >
-              {mode}
+              {currentMode}
               <span
                 className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
               >
-                ▾
+                <RiArrowDownSLine />
               </span>
             </button>
 
@@ -127,17 +145,13 @@ const Header: React.FC = () => {
                   exit={{ opacity: 0, y: -8 }}
                   className="absolute top-11 left-0 w-full rounded-md bg-white/90 dark:bg-stone-900/90 backdrop-blur-xl border border-black/10 dark:border-white/10 overflow-hidden shadow-xl"
                 >
-                  {(["minimal", "terminal"] as Mode[]).map((item) => (
+                  {(Object.keys(NAVIGATION_CONFIG) as Mode[]).map((m) => (
                     <button
-                      key={item}
-                      onClick={() => handleModeChange(item)}
-                      className={`w-full text-left px-3 py-2 text-sm transition hover:bg-black/5 dark:hover:bg-white/10 ${
-                        mode === item
-                          ? "text-blue-500 font-bold"
-                          : "text-gray-600 dark:text-gray-300"
-                      }`}
+                      key={m}
+                      onClick={() => handleModeChange(m)}
+                      className={`w-full text-left px-3 py-2 text-sm transition hover:bg-black/5 dark:hover:bg-white/10 ${currentMode === m ? "text-blue-500 font-bold" : "text-gray-600 dark:text-gray-300"}`}
                     >
-                      {item.charAt(0).toUpperCase() + item.slice(1)}
+                      {m.charAt(0).toUpperCase() + m.slice(1)}
                     </button>
                   ))}
                 </motion.div>
@@ -148,16 +162,16 @@ const Header: React.FC = () => {
           {/* RIGHT: Navigation & Theme */}
           <div className="flex items-center gap-5 justify-end">
             <AnimatePresence mode="wait">
-              {mode === "minimal" ? (
+              {NAVIGATION_CONFIG[currentMode].items.length > 0 ? (
                 <motion.nav
-                  key="nav"
+                  key={`nav-${currentMode}`}
                   variants={textVariants}
                   initial="initial"
                   animate="animate"
                   exit="exit"
                   className="hidden md:flex items-center gap-4"
                 >
-                  {MINIMAL_ITEMS.map((item) => (
+                  {NAVIGATION_CONFIG[currentMode].items.map((item) => (
                     <Link
                       key={item.href}
                       href={item.href}
@@ -169,7 +183,7 @@ const Header: React.FC = () => {
                 </motion.nav>
               ) : (
                 <motion.div
-                  key="terminal-controls"
+                  key="terminal-dots"
                   variants={textVariants}
                   initial="initial"
                   animate="animate"
@@ -199,9 +213,7 @@ const Header: React.FC = () => {
 
       {/* MOBILE SIDEBAR */}
       <aside
-        className={`fixed top-0 left-0 z-50 h-full w-72 bg-white dark:bg-black border-r border-black/10 dark:border-white/10 transform transition-transform duration-300 lg:hidden ${
-          mobileOpen ? "translate-x-0" : "-translate-x-full"
-        }`}
+        className={`fixed top-0 left-0 z-50 h-full w-72 bg-white dark:bg-black border-r border-black/10 dark:border-white/10 transform transition-transform duration-300 lg:hidden ${mobileOpen ? "translate-x-0" : "-translate-x-full"}`}
       >
         <div className="flex items-center justify-between px-5 py-4 border-b border-black/10 dark:border-white/10">
           <span className="font-bold text-lg">Menu</span>
@@ -213,64 +225,62 @@ const Header: React.FC = () => {
         <div className="px-5 py-4">
           <p className="text-xs text-gray-500 mb-3">Mode</p>
 
-          {(["minimal", "terminal"] as Mode[]).map((item) => {
-            const isOpen = expandedMode === item;
+          {(Object.keys(NAVIGATION_CONFIG) as Mode[]).map((modeKey) => {
+            const hasSubItems = NAVIGATION_CONFIG[modeKey].items.length > 0;
+            const isExpanded = expandedMode === modeKey;
 
             return (
-              <div key={item} className="mb-2">
-                {/* MODE BUTTON */}
-                <button
-                  onClick={() => {
-                    // 1. Trigger navigation for both modes
-                    handleModeChange(item);
-
-                    if (item === "minimal") {
-                      // 2. For minimal, toggle the accordion to show sub-links
-                      setExpandedMode(isOpen ? null : item);
-                    } else {
-                      // 3. For terminal, since there are no sub-links, just close the sidebar
-                      setMobileOpen(false);
-                    }
-                  }}
-                  className={`w-full flex items-center justify-between px-3 py-2 rounded-md transition ${
-                    mode === item
-                      ? "bg-blue-500/10 text-blue-500 font-semibold"
-                      : "hover:bg-black/5 dark:hover:bg-white/10"
-                  }`}
+              <div key={modeKey} className="mb-2">
+                <div
+                  className={`flex items-center rounded-md transition ${currentMode === modeKey ? "bg-blue-500/10 text-blue-500" : "hover:bg-black/5 dark:hover:bg-white/10"}`}
                 >
-                  <span className="capitalize">{item}</span>
-                  {/* Arrow ONLY for minimal mode */}
-                  {item === "minimal" && (
-                    <span
-                      className={`transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+                  {/* Click Label to Navigate */}
+                  <button
+                    onClick={() => {
+                      handleModeChange(modeKey);
+                      if (!hasSubItems) setMobileOpen(false);
+                    }}
+                    className="flex-1 text-left px-3 py-2 capitalize font-semibold"
+                  >
+                    {modeKey}
+                  </button>
+
+                  {/* Click Arrow to Expand */}
+                  {hasSubItems && (
+                    <Button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        setExpandedMode(isExpanded ? null : modeKey);
+                      }}
+                      className="px-4 py-2 border-l bg-transparent border-black/10 dark:border-white/10 transition-transform duration-200"
                     >
-                      ▾
-                    </span>
+                      <span
+                        className={`block text-black dark:text-white hover:text-blue-500 transition-transform ${isExpanded ? "rotate-180 text-blue-500 " : ""}`}
+                      >
+                        <RiArrowDownSLine />
+                      </span>
+                    </Button>
                   )}
-                </button>
-                {/* SUB CONTENT - Only renders for minimal */}
-                <AnimatePresence mode="wait">
-                  {isOpen && item === "minimal" && (
+                </div>
+
+                <AnimatePresence>
+                  {isExpanded && hasSubItems && (
                     <motion.div
                       variants={accordionVariants}
                       initial="initial"
                       animate="animate"
                       exit="exit"
-                      transition={{ duration: 0.25, ease: "easeOut" }}
-                      className="overflow-hidden pl-3 ml-1 mt-2 border-l border-black/10 dark:border-white/20"
+                      className="overflow-hidden pl-3 ml-4 mt-1 border-l border-black/10 dark:border-white/20"
                     >
-                      <nav className="space-y-3">
-                        {MINIMAL_ITEMS.map((nav) => (
+                      <nav className="flex flex-col py-2 gap-3">
+                        {NAVIGATION_CONFIG[modeKey].items.map((sub) => (
                           <Link
-                            key={nav.href}
-                            href={nav.href}
-                            onClick={() => {
-                              setMobileOpen(false);
-                              setExpandedMode(null);
-                            }}
-                            className="block text-2xl font-medium hover:text-blue-500"
+                            key={sub.href}
+                            href={sub.href}
+                            onClick={() => setMobileOpen(false)}
+                            className="text-xl font-medium hover:text-blue-500"
                           >
-                            {nav.label}
+                            {sub.label}
                           </Link>
                         ))}
                       </nav>
@@ -281,15 +291,9 @@ const Header: React.FC = () => {
             );
           })}
         </div>
-
-        {/* TERMINAL DOTS - Decorative bottom element */}
-        <div className="px-5 py-4 flex gap-2">
-          <span className="w-3 h-3 rounded-full bg-red-500/80" />
-          <span className="w-3 h-3 rounded-full bg-yellow-400/80" />
-          <span className="w-3 h-3 rounded-full bg-green-500/80" />
-        </div>
       </aside>
     </>
   );
 };
+
 export default Header;
