@@ -3,13 +3,7 @@ import { motion } from "framer-motion";
 import { Portfolio } from "@/lib/Portfolio";
 import dynamic from "next/dynamic";
 import React, { ComponentType } from "react";
-import {
-  Github,
-  Code2,
-  Database,
-  FileCode,
-  FileJson,
-} from "lucide-react";
+import { Github, Code2, Database, FileCode, FileJson } from "lucide-react";
 import { BiLogoTailwindCss } from "react-icons/bi";
 import {
   SiAdobeaftereffects,
@@ -21,17 +15,9 @@ import {
   SiSocketdotio,
 } from "react-icons/si";
 import { AiOutlineHtml5 } from "react-icons/ai";
-import {
-  FaCss3,
-  FaGitAlt,
-  FaJava,
-  FaNodeJs,
-  FaReact,
-} from "react-icons/fa";
+import { FaCss3, FaGitAlt, FaJava, FaNodeJs, FaReact } from "react-icons/fa";
 import { LuFigma } from "react-icons/lu";
 import { TbBrandCpp, TbBrandNextjs } from "react-icons/tb";
-// --- Icon & Color Mapping for Skills ---
-// const TechStackMap: Record<string, { icon: any; color: string }> = {
 
 const TechStackMap: Record<
   string,
@@ -89,90 +75,92 @@ const TechToolls = () => {
   return (
     <>
       {Portfolio.skills.length > 0 && (
-        <section id="skills" className="py-20  overflow-hidden">      <motion.div
-        initial={{
-          opacity: 0,
-          x: -60,
-          scale: 0.96,
-          filter: "blur(6px)",
-        }}
-        whileInView={{
-          opacity: 1,
-          x: 0,
-          scale: 1,
-          filter: "blur(0px)",
-        }}
-        viewport={{ once: true, margin: "-80px" }}
-        transition={{
-          duration: 0.7,
-          ease: [0.22, 1, 0.36, 1],
-          delay: 0.12,
-        }}
-      >
-          <div className="mx-auto max-w-6xl w-full px-6 md:px-10 mb-12">
-            <h3 className="hidden lg:block  mb-8 text-center text-4xl font-semibold font-sans  text-neutral-900 dark:text-white">
-              Technologies & Tools
-            </h3>
-          </div>
-
-          <div className="mx-auto max-w-6xl w-full">
-            <div className="mb-8">
-              <Marquee
-                autoFill
-                gradient
-                gradientColor="var(--marquee-fade)"
-                speed={30}
-                direction="left"
-                pauseOnHover={true}
-              >
-                {skills.map((skill, i) => {
-                  const { icon: Icon, color } = getSkillStyle(skill.name);
-
-                  return (
-                    <div
-                      key={`${skill.name}-${i}`}
-                      className=" mx-0 sm:mx-4 md:mx-3  flex h-20 w-20 md:h-24 md:w-28 lg:h-32 lg:w-40 flex-col items-center justify-center gap-3 rounded-xl md:rounded-xl sm:rounded-2xl sm:border transition-all sm:bg-[#e0e0e058] sm:dark:bg-[#0e0e0e]/80"
-                    >
-                      <Icon className="h-10 w-10" style={{ color }} />
-
-                      <span className=" hidden lg:block  text-sm font-light  capitalize  text-neutral-700 dark:text-neutral-400  ">
-                        {skill.name}
-                      </span>
-                    </div>
-                  );
-                })}
-              </Marquee>
+        <section id="skills" className="pt-20  overflow-hidden">
+          {" "}
+          <motion.div
+            initial={{
+              opacity: 0,
+              x: -60,
+              scale: 0.96,
+              filter: "blur(6px)",
+            }}
+            whileInView={{
+              opacity: 1,
+              x: 0,
+              scale: 1,
+              filter: "blur(0px)",
+            }}
+            viewport={{ once: true, margin: "-80px" }}
+            transition={{
+              duration: 0.7,
+              ease: [0.22, 1, 0.36, 1],
+              delay: 0.12,
+            }}
+          >
+            <div className="mx-auto max-w-6xl w-full px-6 md:px-10 mb-12">
+              <h3 className="hidden lg:block  mb-8 text-center text-4xl font-semibold font-mono text-neutral-900 dark:text-white">
+                Technologies & Tools
+              </h3>
             </div>
 
-            <div className="mb-8">
-              <Marquee
-                autoFill
-                gradient
-                gradientColor="var(--marquee-fade)"
-                speed={40}
-                direction="right"
-                pauseOnHover={true}
-              >
-                {skills.map((skill, i) => {
-                  const { icon: Icon, color } = getSkillStyle(skill.name);
+            <div className="mx-auto max-w-6xl w-full">
+              <div className="mb-8">
+                <Marquee
+                  autoFill
+                  gradient
+                  gradientColor="var(--marquee-fade)"
+                  speed={30}
+                  direction="left"
+                  pauseOnHover={true}
+                >
+                  {skills.map((skill, i) => {
+                    const { icon: Icon, color } = getSkillStyle(skill.name);
 
-                  return (
-                    <div
-                      key={`${skill.name}-${i}`}
-                      className=" mx-0 sm:mx-4 md:mx-3  flex h-20 w-20 md:h-24 md:w-28 lg:h-32 lg:w-40 flex-col items-center justify-center gap-3 rounded-xl md:rounded-xl sm:rounded-2xl sm:border transition-all sm:bg-[#e0e0e058] sm:dark:bg-[#0e0e0e]/80"
-                    >
-                      <Icon className="h-10 w-10" style={{ color }} />
+                    return (
+                      <div
+                        key={`${skill.name}-${i}`}
+                        className=" mx-0 sm:mx-4 md:mx-3  flex h-20 w-20 md:h-24 md:w-28 lg:h-32 lg:w-40 flex-col items-center justify-center gap-3 rounded-xl md:rounded-xl sm:rounded-2xl sm:border transition-all sm:bg-[#e0e0e058] sm:dark:bg-[#0e0e0e]/80"
+                      >
+                        <Icon className="h-10 w-10" style={{ color }} />
 
-                      <span className=" hidden lg:block  text-sm font-light  capitalize  text-neutral-700 dark:text-neutral-400  ">
-                        {skill.name}
-                      </span>
-                    </div>
-                  );
-                })}
-              </Marquee>
+                        <span className=" hidden lg:block  text-sm font-light  capitalize  text-neutral-700 dark:text-neutral-400  ">
+                          {skill.name}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </Marquee>
+              </div>
+
+              <div className="mb-8">
+                <Marquee
+                  autoFill
+                  gradient
+                  gradientColor="var(--marquee-fade)"
+                  speed={40}
+                  direction="right"
+                  pauseOnHover={true}
+                >
+                  {skills.map((skill, i) => {
+                    const { icon: Icon, color } = getSkillStyle(skill.name);
+
+                    return (
+                      <div
+                        key={`${skill.name}-${i}`}
+                        className=" mx-0 sm:mx-4 md:mx-3  flex h-20 w-20 md:h-24 md:w-28 lg:h-32 lg:w-40 flex-col items-center justify-center gap-3 rounded-xl md:rounded-xl sm:rounded-2xl sm:border transition-all sm:bg-[#e0e0e058] sm:dark:bg-[#0e0e0e]/80"
+                      >
+                        <Icon className="h-10 w-10" style={{ color }} />
+
+                        <span className=" hidden lg:block  text-sm font-light  capitalize  text-neutral-700 dark:text-neutral-400  ">
+                          {skill.name}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </Marquee>
+              </div>
             </div>
-          </div>
-        </motion.div>
+          </motion.div>
         </section>
       )}
     </>

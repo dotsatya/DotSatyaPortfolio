@@ -32,7 +32,7 @@ const cardVariants = {
 const Photography = () => {
   const photoData = Portfolio.photography;
   return (
-    <section id="portfolio" className="container section mx-auto px-4 py-12">
+    <section id="portfolio" className="container section mx-auto px-4 pt-20">
       {/* Section Title Bar */}
       <motion.div
         initial={{
@@ -55,7 +55,7 @@ const Photography = () => {
         }}
       >
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+          <h2 className="font-mono text-4xl font-semibold text-gray-900 dark:text-gray-100">
             My Passion Beyond Code
           </h2>
           <span className="block text-lg mt-2 text-gray-600 dark:text-gray-400">

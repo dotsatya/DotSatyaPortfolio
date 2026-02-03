@@ -33,7 +33,7 @@ export default function Projects() {
   const projects = Portfolio.projects;
 
   return (
-    <section id="porjects" className="container section mx-auto  py-12">
+    <section id="porjects" className="container section mx-auto  pt-20">
       {/* Section Title Bar */}
       <motion.div
         initial={{
@@ -56,7 +56,7 @@ export default function Projects() {
         }}
       >
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-gray-100">
+          <h2 className="font-mono text-4xl font-semibold text-gray-900 dark:text-gray-100">
             Project Portfolio
           </h2>
           <span className="block text-lg mt-2 text-gray-600 dark:text-gray-400">

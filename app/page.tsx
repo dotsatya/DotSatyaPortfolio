@@ -12,11 +12,11 @@ const page = () => {
     <>
       <div className="p-10 font-[poppins]">
         <About />
-        {/* <TechToolls /> */}
-        {/* <GitHubActivities /> */}
+        <TechToolls />
+        <GitHubActivities />
         <Experience />
         <Projects />
-        <Photography />
+        {/* <Photography /> */}
         <ContactMe />
       </div>
       <FooterTitle text="DOT SATYA" />

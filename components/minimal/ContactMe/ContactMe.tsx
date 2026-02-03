@@ -53,7 +53,7 @@ const ContactMe = () => {
     });
   };
   return (
-    <section className="section pt-16" id="contact">
+    <section className="section pt-20" id="contact">
       <motion.div
         initial={{
           opacity: 0,
@@ -76,7 +76,7 @@ const ContactMe = () => {
       >
         {/* Title */}
         <div className="text-center mb-8">
-          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white">
+          <h2 className="text-4xl font-semibold text-gray-900 dark:text-white">
             🛜 Let’s Connect...
           </h2>
         </div>

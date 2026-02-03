@@ -3,7 +3,7 @@
 import Data from "./Data";
 import Social from "./Social";
 import ScrollDown from "./ScrollDown";
-import profilePic from "@/public/pPic.png";
+import profilePic from "@/public/pPic.jpg";
 import { motion } from "framer-motion";
 import ProfileBlob from "./ProfileBlob";
 
@@ -32,7 +32,6 @@ const About = () => {
       >
         <div className="flex flex-col gap-4">
           <div className="grid grid-cols-[0.5fr-auto] gap-10 pt-12  items-center lg:grid-cols-[120px_1fr_1fr] lg:gap-5 md:gap-14">
-            
             <div className="order-1 -top-10">
               <Social />
             </div>

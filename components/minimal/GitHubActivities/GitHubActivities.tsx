@@ -6,7 +6,7 @@ import { Github } from "lucide-react";
 import { ActivityCalendar } from "react-activity-calendar";
 
 type GitHubContribution = {
-  date: string; 
+  date: string;
   count: number;
   level: number;
 };
@@ -106,27 +106,41 @@ const RealHeatmap = ({ username }: { username?: string }) => {
 const GitHubActivities = () => {
   return (
     <>
-      <section className="pb-10 pt-10">
-        <div className="mx-auto max-w-6xl w-full px-6 md:px-10 sm:mb-6">
-          <h2
-            className=" text-center font-semibold text-4xl uppercase text-neutral-900 dark:text-white"
-          >
-            GitHub Contributions
-          </h2>
-        </div>
-
-        <div className="mx-auto max-w-6xl w-full md:px-10 overflow-x-auto md:overflow-visible">
-          <div className="min-w-[700px] md:min-w-0 origin-left scale-75 md:scale-100 transform transition-transform">
-            <RealHeatmap username={Portfolio.socialLinks.github} />
+      <section className="pt-20">
+        <motion.div
+          initial={{
+            opacity: 0,
+            x: -60,
+            scale: 0.96,
+            filter: "blur(6px)",
+          }}
+          whileInView={{
+            opacity: 1,
+            x: 0,
+            scale: 1,
+            filter: "blur(0px)",
+          }}
+          viewport={{ once: true, margin: "-80px" }}
+          transition={{
+            duration: 0.7,
+            ease: [0.22, 1, 0.36, 1],
+            delay: 0.12,
+          }}
+        >
+          <div className="mx-auto max-w-6xl w-full px-6 md:px-10 sm:mb-6">
+            <h2 className="font-mono text-center font-semibold text-4xl uppercase text-neutral-900 dark:text-white">
+              GitHub Contributions
+            </h2>
           </div>
-        </div>
+
+          <div className="mx-auto max-w-6xl w-full md:px-10 overflow-x-auto md:overflow-visible">
+            <div className="min-w-[700px] md:min-w-0 origin-left scale-75 md:scale-100 transform transition-transform">
+              <RealHeatmap username={Portfolio.socialLinks.github} />
+            </div>
+          </div>
+        </motion.div>
       </section>
     </>
-
-
-
-
-
   );
 };
 
