@@ -130,7 +130,7 @@ const ContactMe = () => {
               </span>
 
               <a
-                href="mailto:satyasundardey4@gmail.com"
+                href="https://mail.google.com/mail/?view=cm&fs=1&to=satyasundardey4@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex items-center justify-center gap-1 text-sm cursor-pointer"
