@@ -27,8 +27,8 @@ const TimelineScrollAnimation = ({
       <motion.div
         style={{ height }}
         className="
-        absolute left-[39px] md:left-[52.6px] top-[5.2px] w-px z-0 opacity-50
-        bg-gradient-to-b
+        absolute left-9.75 md:left-[52.6px] top-[5.2px] w-px z-0 opacity-50
+        bg-linear-to-b
         from-blue-400 via-purple-400 to-orange-400
         dark:from-[#3b82f6] dark:via-[#a855f7] dark:to-[#f97316]
       "
@@ -38,7 +38,7 @@ const TimelineScrollAnimation = ({
       <motion.div
         style={{ top: height }}
         className="
-        absolute left-[39px] md:left-[53px]
+        absolute left-9.75 md:left-13.25
         h-2.5 w-2.5 rounded-full
         -translate-x-1/2 -translate-y-1/2
 
@@ -88,7 +88,7 @@ const Experience = () => {
                 {/* Static Line  */}
                 <div
                   className="
-    hidden md:block absolute left-[39px] md:left-[52.6px] top-2 bottom-0 w-px
+    hidden md:block absolute left-9.75 md:left-[52.6px] top-2 bottom-0 w-px
     bg-linear-to-b
     from-black/5 via-black/8 to-transparent
     dark:from-white/5 dark:via-white/10 dark:to-transparent
@@ -122,7 +122,7 @@ const Experience = () => {
                         className="relative grid grid-cols-[1fr] md:grid-cols-[200px_1fr] md:gap-x-12 group"
                       >
                         {/* Timeline Dot (Absolute to line) */}
-                        <div className="absolute left-[11px] md:left-[5px] -translate-x-1/2 top-[5.3px] hidden md:flex items-center justify-center">
+                        <div className="absolute left-2.75 md:left-1.25 -translate-x-1/2 top-[5.3px] hidden md:flex items-center justify-center">
                           <div
                             className={cn(
                               `
