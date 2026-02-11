@@ -91,14 +91,14 @@ export const Portfolio = {
     behance: "https://www.behance.net/satyasundardey",
     resume:
       "https://drive.google.com/uc?export=download&id=1rNsjd2KM8hv2P6rd1KE1Xy6lAWYyXmY1",
-    website: "https://dotsatyaportfolio.vercel.app/",
+    website: "https://dotsatya.vercel.app/",
   },
 
   experience: [
     {
       id: "1",
       company: "Kalyani Government Engineering College",
-      position: "Student (Academic Projects)",
+      position: "Student",
       duration: "June 2022 – July 2026",
       description:
         "Built the official Resonance Music Club website using Next.js and Tailwind CSS with responsive layouts and optimized media handling.",
@@ -155,22 +155,22 @@ export const Portfolio = {
   ],
 
   projects: [
-    {
-      id: 1,
-      title: "Sun–Earth–Moon Simulation",
-      description:
-        "An interactive visualization demonstrating the orbital motion of the Sun, Earth, and Moon using pure web technologies.",
-      tags: ["HTML", "JavaScript", "CSS"],
-      featured: false,
-      imageUrl: Image1,
-      // imageWidth: 400,
-      // imageHeight: 300,
-      githubUrl: "https://github.com/dotsatya/Sun-Earth-Moon",
-      liveUrl: "https://dotsatya.github.io/Sun-Earth-Moon/",
-    },
+    // {
+    //   id: 1,
+    //   title: "Sun–Earth–Moon Simulation",
+    //   description:
+    //     "An interactive visualization demonstrating the orbital motion of the Sun, Earth, and Moon using pure web technologies.",
+    //   tags: ["HTML", "JavaScript", "CSS"],
+    //   featured: false,
+    //   imageUrl: Image1,
+    //   // imageWidth: 400,
+    //   // imageHeight: 300,
+    //   githubUrl: "https://github.com/dotsatya/Sun-Earth-Moon",
+    //   liveUrl: "https://dotsatya.github.io/Sun-Earth-Moon/",
+    // },
 
     {
-      id: 2,
+      id: 1,
       title: "Web Music Player",
       description:
         "A responsive web-based music player with playlist support and smooth UI interactions.",
@@ -182,7 +182,7 @@ export const Portfolio = {
     },
 
     {
-      id: 3,
+      id: 2,
       title: "Employee Management System",
       description:
         "A full-stack employee management system with real-time updates and role-based data handling.",
@@ -201,7 +201,7 @@ export const Portfolio = {
     },
 
     {
-      id: 4,
+      id: 3,
       title: "DotNotesNow 📝",
       description:
         "A secure note-taking application with login, edit, and real-time update support.",
@@ -214,7 +214,7 @@ export const Portfolio = {
     },
 
     {
-      id: 5,
+      id: 4,
       title: "DotSkyNow 🌤️",
       description:
         "A modern weather app providing real-time forecasts, geolocation, and animated theme transitions.",
@@ -232,7 +232,7 @@ export const Portfolio = {
     },
 
     {
-      id: 6,
+      id: 5,
       title: "DotCryptoChecker 📈",
       description:
         "A Next.js cryptocurrency dashboard with live prices, market insights, and interactive coin analysis.",
@@ -244,7 +244,7 @@ export const Portfolio = {
     },
 
     {
-      id: 7,
+      id: 6,
       title: "Satya // Portfolio",
       description:
         "My personal portfolio showcasing projects, skills, and contact functionality.",
@@ -256,7 +256,7 @@ export const Portfolio = {
     },
 
     {
-      id: 8,
+      id: 7,
       title: "E-commerce Platform 🛒",
       description:
         "A scalable e-commerce web application built with Next.js and modern UI practices.",

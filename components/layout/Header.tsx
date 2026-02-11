@@ -9,7 +9,7 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { Button } from "../ui/button";
 
 // 1. Centralized Configuration
-type Mode = "minimal" | "terminal" ; //| "normal";
+type Mode = "minimal" | "terminal" ; //| "minimal";
 
 interface NavItem {
   label: string;
@@ -26,11 +26,13 @@ const NAVIGATION_CONFIG: Record<Mode, { route: string; items: NavItem[] }> = {
       { label: "Contact", href: "#contact" },
     ],
   },
-  // normal: {
-  //   route: "/normal",
+  // minimal: {
+  //   route: "/minimal",
   //   items: [
-  //     { label: "Details", href: "/details" },
-  //     { label: "Website", href: "/website" },
+      // { label: "About", href: "#about" },
+      // { label: "Skills", href: "#skills" },
+      // { label: "Projects", href: "#porjects" },
+      // { label: "Contact", href: "#contact" },
   //   ],
   // },
   terminal: {
