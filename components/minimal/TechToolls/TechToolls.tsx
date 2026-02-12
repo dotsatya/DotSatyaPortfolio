@@ -104,7 +104,7 @@ const TechToolls = () => {
             </div>
 
             <div className="mx-auto max-w-6xl w-full">
-              <div className="mb-8">
+              <div className="hidden md:block mb-8">
                 <Marquee
                   autoFill
                   gradient

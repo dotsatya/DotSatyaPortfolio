@@ -127,16 +127,14 @@ const GitHubActivities = () => {
             delay: 0.12,
           }}
         >
-          <div className="mx-auto max-w-6xl w-full px-6 md:px-10 sm:mb-6">
+          <div className="mx-auto max-w-6xl w-full px-6 md:px-10 mb-6">
             <h2 className="font-mono text-center font-semibold text-4xl uppercase text-neutral-900 dark:text-white">
               GitHub Contributions
             </h2>
           </div>
 
-          <div className="mx-auto max-w-6xl w-full md:px-10 overflow-x-auto md:overflow-visible">
-            <div className="min-w-[700px] md:min-w-0 origin-left scale-75 md:scale-100 transform transition-transform">
+          <div className="mx-auto max-w-6xl w-full md:px-10 overflow-x-auto md:overflow-visible ">
               <RealHeatmap username={Portfolio.socialLinks.github} />
-            </div>
           </div>
         </motion.div>
       </section>

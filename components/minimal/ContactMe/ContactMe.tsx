@@ -84,7 +84,7 @@ const ContactMe = () => {
 
       {/* Main Grid */}
       <div
-        className="container mx-auto grid grid-cols-2 gap-x-6 
+        className="container mx-auto grid grid-cols-2 gap-x-16 
                   max-[992px]:gap-x-6
                   max-[768px]:grid-cols-1 max-[768px]:gap-y-8"
       >
@@ -110,14 +110,23 @@ const ContactMe = () => {
           }}
         >
           <h3 className="text-lg font-medium text-center mb-4 text-gray-800 dark:text-gray-200">
-            Let’s talk! 🚀
+            Location
           </h3>
 
-          <div
+          <div className="rounded-xl overflow-hidden border mt-6 border-white/10 shadow-lg">
+            <iframe
+              title="My location on Google Maps"
+              src="https://www.google.com/maps/embed?pb=..."
+              className="w-full h-[450px]"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
+          </div>
+
+          {/* <div
             className="grid gap-4 w-[300px] mx-auto
                       max-[576px]:w-full"
           >
-            {/* Email */}
             <div
               className="bg-black/10 dark:bg-white/10
                         border border-gray-400/30 dark:border-white/20
@@ -128,7 +137,6 @@ const ContactMe = () => {
               <span className="block text-sm mb-3">
                 satyasundardey4@gmail.com
               </span>
-
               <a
                 href="https://mail.google.com/mail/?view=cm&fs=1&to=satyasundardey4@gmail.com"
                 target="_blank"
@@ -143,7 +151,6 @@ const ContactMe = () => {
               </a>
             </div>
 
-            {/* LinkedIn */}
             <div
               className="bg-black/10 dark:bg-white/10
                         border border-gray-400/30 dark:border-white/20
@@ -166,6 +173,7 @@ const ContactMe = () => {
                 <i className="bx bx-right-arrow-alt text-base opacity-40 transition"></i>
               </a>
             </div>
+
             <div
               className="bg-black/10 dark:bg-white/10
                         border border-gray-400/30 dark:border-white/20
@@ -192,9 +200,7 @@ const ContactMe = () => {
                 ></i>
               </a>
             </div>
-          </div>
-
-          {/* WhatsApp */}
+          </div> */}
         </motion.div>
 
         {/* Right Content */}
