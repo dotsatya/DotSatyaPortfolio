@@ -12,9 +12,14 @@ interface SnowfallWrapperProps {
   speed?: [number, number];
   wind?: [number, number];
   style?: React.CSSProperties;
+  snowflakeCount?: number;
 }
 
-export default function SnowfallWrapper({ color, ...props }: SnowfallWrapperProps) {
+export default function SnowfallWrapper({
+  color,
+  snowflakeCount = 200,
+  ...props
+}: SnowfallWrapperProps) {
   const { resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -26,7 +31,16 @@ export default function SnowfallWrapper({ color, ...props }: SnowfallWrapperProp
     return null;
   }
 
-  const snowfallColor = color || (resolvedTheme === "dark" ? "#ffffff60" : "#00000040");
+  const snowfallColor =
+    color || (resolvedTheme === "dark" ? "#ffffff60" : "#00000040");
 
-  return <Snowfall color={snowfallColor} {...props} />;
+  return (
+    <div className="hidden md:block">
+      <Snowfall
+        snowflakeCount={snowflakeCount}
+        color={snowfallColor}
+        {...props}
+      />
+    </div>
+  );
 }

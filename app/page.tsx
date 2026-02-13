@@ -13,9 +13,10 @@ const page = () => {
     <>
       <div className="p-10 font-[poppins]">
         <SnowfallWrapper
+          snowflakeCount={80}
           radius={[1, 2]}
           speed={[0.5, 1]}
-          wind={[-0.5, 0.5]}
+          wind={[0, 0.5]}
           style={{
             position: "fixed",
             top: 0,
