@@ -77,9 +77,9 @@ const Experience = () => {
             }}
           >
             <div className="mx-auto max-w-6xl w-full px-6 md:px-10 relative">
-              <span className="mb-16 block text-center font-mono text-4xl font-semibold  uppercase tracking-[0.2em] text-black dark:text-white">
+              <h2 className="mb-16 block text-center font-mono text-4xl font-semibold  uppercase tracking-[0.2em] text-black dark:text-white">
                 Experience
-              </span>
+              </h2>
 
               <div
                 className="relative pl-8 md:pl-12"

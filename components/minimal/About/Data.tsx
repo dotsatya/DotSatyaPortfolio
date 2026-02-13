@@ -65,7 +65,7 @@ const Data = () => {
       </h1>
 
       {/* Animated Subtitle */}
-      <h2 className="mt-4 text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300  relative pl-[5.4rem] mb-4 before:content-[''] before:absolute before:left-0 before:top-4 before:w-[70px] before:h-[2px] before:bg-gray-400">
+      <h3 className="mt-4 text-2xl md:text-3xl font-semibold text-gray-700 dark:text-gray-300  relative pl-[5.4rem] mb-4 before:content-[''] before:absolute before:left-0 before:top-4 before:w-[70px] before:h-[2px] before:bg-gray-400">
         <TypeAnimation
           sequence={[
             "Web Developer",
@@ -82,7 +82,7 @@ const Data = () => {
           speed={60}
           repeat={Infinity}
         />
-      </h2>
+      </h3>
 
       {/* Description */}
       <p className="mt-6 text-gray-600 dark:text-gray-400 leading-relaxed">

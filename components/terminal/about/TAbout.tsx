@@ -56,12 +56,12 @@ const TAbout = () => {
             delay: 0.12,
           }}
         >
-          <h1 className=" text-4xl font-bold mt-6 text-slate-900 dark:text-[#e6edf3] ">
+          <h2 className=" text-4xl font-bold mt-6 text-slate-900 dark:text-[#e6edf3] ">
             {"Hello, I'm "}
             <span className="text-emerald-600 dark:text-[#4ade80]">
               {fullName}
             </span>
-          </h1>
+          </h2>
 
           <p className="text-2xl my-4 text-slate-600 dark:text-[#8b949e]">
             {">"}{" "}

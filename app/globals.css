@@ -190,3 +190,46 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Cursor Styles */
+/* Override kursor styles */
+div[class*='kursor'].kursor--4 {
+  background-color: white !important; /* White filled body */
+  border: none !important;
+  mix-blend-mode: difference; /* Invert colors */
+  width: 40px !important;
+  height: 40px !important;
+  /* z-index: 9999 !important; */
+}
+
+div[class*='kursor'].kursor--4 + .kursorChild {
+  /* background-color: rgba(128, 128, 128, 1) !important; */
+  background-color: white !important; /* Gray center dot */
+  mix-blend-mode: difference !important; /* Keep dot normal color or maybe difference too if needed */
+  /* z-index: 10000 !important; */
+  opacity: 0.8;
+}
+
+/* Hover state for cursor */
+div[class*='kursor'].kursor--4.--hover {
+  width: 80px !important; /* Expand on hover */
+  height: 80px !important;
+  background-color: white !important;
+  mix-blend-mode: difference;
+}
+
+div[class*='kursor'].kursor--4.--hover + .kursorChild {
+  opacity: 0; /* Hide dot on hover if desired, or keep it */
+}
+
+/* Clicking effect */
+div[class*='kursor'].kursor--4.kursor--down {
+  width: 20px !important; /* Shrink on click */
+  height: 20px !important;
+}
+
+div[class*='kursor'].kursor--4.kursor--down + .kursorChild {
+  width: 10px !important;
+  height: 10px !important;
+  opacity: 0;
+}
