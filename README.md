@@ -32,6 +32,8 @@ Hi! I'm **Satya Sundar Dey**, a passionate **Software Engineer** specializing in
 - **Framer Motion** - Smooth animations & transitions
 - **React Icons** - Beautiful icon library
 - **Lucide React** - Modern icon set
+- **GSAP** - GreenSock Animation Platform
+- **Lenis** - Smooth scroll library
 
 ### Additional Libraries
 - **next-themes** - Dark/Light mode toggle
@@ -87,7 +89,7 @@ Interactive visualization of orbital motion using web technologies.
 ♿ **Accessible** - WCAG compliant components  
 📧 **Contact Form** - EmailJS integration  
 📊 **GitHub Stats** - Real-time activity calendar  
-🎬 **Smooth Scroll** - Framer Motion scroll effects  
+🎬 **Smooth Scroll** - Lenis and GSAP scroll effects  
 
 ---
 
@@ -100,22 +102,6 @@ Interactive visualization of orbital motion using web technologies.
 
 ### Terminal Mode
 - Unique terminal-style interface (Easter egg!)
-
----
-
-## ⚙️ Configuration
-
-### Key Files
-- **`next.config.ts`** - Next.js configuration
-- **`tailwind.config.js`** - Tailwind CSS customization
-- **`tsconfig.json`** - TypeScript configuration
-- **`components.json`** - Component configuration
-
-### Environment Variables
-Create `.env.local` for sensitive data:
-```env
-NEXT_PUBLIC_API_KEY=your_api_key_here
-```
 
 ---
 
@@ -154,7 +140,7 @@ Found a bug or have an idea? Feel free to open an issue or submit a pull request
 
 <div align="center">
 
-### Made with ❤️ by Satya Sundar Dey
+### Made with ❤️ by Satya Sundar Dey     
 
 **[⬆ back to top](#)**
 
