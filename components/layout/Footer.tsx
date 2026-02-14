@@ -1,57 +1,66 @@
 "use client";
-import { useRef } from "react";
-import { BsGithub, BsLinkedin } from "react-icons/bs";
-import { FaXTwitter } from "react-icons/fa6";
+import { useRef, useEffect } from "react";
 import { Portfolio } from "@/lib/Portfolio";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-
+import { FaXTwitter } from "react-icons/fa6";
+import { BsGithub, BsLinkedin } from "react-icons/bs";
 gsap.registerPlugin(ScrollTrigger);
 
 const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
   const footerPanelRef = useRef<HTMLDivElement>(null);
 
-  useGSAP(() => {
-    const footer = footerRef.current;
-    const footerPanel = footerPanelRef.current;
-    if (!footer || !footerPanel) return;
+  // 1. Handle Layout Refresh (Crucial for reloads)
+  useEffect(() => {
+    // Refresh ScrollTrigger after a short delay to ensure DOM is painted
+    const timer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 500);
+    return () => clearTimeout(timer);
+  }, []);
 
+  useGSAP(() => {
+    if (!footerRef.current || !footerPanelRef.current) return;
+
+    // The Animation Logic
     gsap.fromTo(
-      footerPanel,
-      { yPercent: 100 },
+      footerPanelRef.current,
+      { yPercent: 100 }, // Start fully hidden below the screen
       {
-        yPercent: 0,
+        yPercent: 0,      // Slide up to its natural position
         ease: "none",
         scrollTrigger: {
-          trigger: footer,
-          start: "top bottom",
-          end: "bottom bottom",
-          scrub: 0.35,
+          trigger: footerRef.current, // Use the footer 'spacer' as the trigger
+          start: "top bottom",       // Start when the spacer enters the screen
+          end: "bottom bottom",      // End when the spacer is fully in view
+          scrub: 0.5,                // Smooth follow-through
           snap: {
-            snapTo: [0, 1],
-            directional: true,
-            duration: { min: 0.2, max: 0.55 },
-            delay: 0.05,
-            ease: "power2.out",
+            snapTo: [0, 1],          // Magnetic snap: either 0% or 100% shown
+            duration: 0.6,
+            delay: 0.1,
+            ease: "power1.inOut"
           },
+          invalidateOnRefresh: true, // Recalculates if window resizes
         },
       }
     );
-  }, []);
+  }, { scope: footerRef });
 
   return (
-    <footer
-      ref={footerRef}
-      id="footer"
-      className="relative h-[220px] py-4 px-6"
-      style={{ clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" }}
-    >
-      <div
-        ref={footerPanelRef}
-        className="fixed bottom-0 left-0 w-full h-[220px] dark:bg-[#F5F5F5] bg-[#080808] rounded-t-3xl will-change-transform"
+    <>
+      <footer
+        ref={footerRef}
+        className="relative h-[250px] w-full bg-transparent"
       >
+        <div
+          ref={footerPanelRef}
+          className="fixed bottom-0 left-0 w-full h-[250px]  dark:bg-[#F5F5F5] bg-[#080808] rounded-t-3xl will-change-transform"
+          style={{ 
+            clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" 
+          }}
+        >
         {/* Top Border Line */}
         <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-gray-400 to-transparent opacity-50"></div>
 
@@ -119,6 +128,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
+    </>
   );
 };
 

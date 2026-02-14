@@ -11,10 +11,10 @@ import "kursor/dist/kursor.css";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
 import { Toaster } from "sonner";
 import Cursor from "@/components/ui/Cursor";
 import ReactLenis from "lenis/react";
+import Footer from "@/components/layout/Footer";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
