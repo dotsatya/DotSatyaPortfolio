@@ -11,6 +11,13 @@ const Cursor = () => {
     import("kursor").then((KursorModule) => {
       const Kursor = KursorModule.default;
 
+      // Check if device has a fine pointer (mouse/trackpad) and screen is wide enough
+      const isDesktop =
+        window.matchMedia("(pointer: fine)").matches &&
+        window.innerWidth >= 768;
+
+      if (!isDesktop) return;
+
       // Check if kursor is already initialized to avoid duplicates
       if (!document.querySelector(".kursor")) {
         new Kursor({

@@ -54,7 +54,7 @@ const ContactMe = () => {
     });
   };
   return (
-    <section className="section py-20" id="contact">
+    <section className="section pt-20 md:pb-10" id="contact">
       {/* <motion.div
         initial={{
           opacity: 0,
@@ -81,13 +81,13 @@ const ContactMe = () => {
           </h2>
         </div>
       </motion.div> */}
-        <AnimatedHeaderSection
-          subTitle={"You Dream It, I Code it"}
-          title={"Contact"}
-          text={`WE’D love to hear from you and discus further!`}
-          textColor={"text-black dark:text-white "}
-          withScrollTrigger={true}
-        />
+      <AnimatedHeaderSection
+        subTitle={"You Dream It, I Code it"}
+        title={"Contact"}
+        text={`WE’D love to hear from you and discus further!`}
+        textColor={"text-black dark:text-white "}
+        withScrollTrigger={true}
+      />
       {/* Main Grid */}
       <div
         className="container mx-auto grid grid-cols-2 gap-x-16 
@@ -254,6 +254,7 @@ const ContactMe = () => {
                 className="absolute inset-0 w-full h-full p-6 rounded-xl
                        border border-gray-400/20 bg-transparent
                        text-gray-900 dark:text-white outline-none"
+                required
               />
             </div>
 
@@ -272,6 +273,7 @@ const ContactMe = () => {
                 className="absolute inset-0 w-full h-full p-6 rounded-xl
                        border border-gray-400/20 bg-transparent
                        text-gray-900 dark:text-white outline-none"
+                required
               />
             </div>
 
@@ -291,6 +293,7 @@ const ContactMe = () => {
                        border border-gray-400/20 bg-transparent
                        text-gray-900 dark:text-white outline-none
                        resize-none overflow-y-auto scrollbar-none"
+                required
               ></textarea>
             </div>
 
