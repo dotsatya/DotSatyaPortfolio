@@ -2,6 +2,8 @@
 import { Portfolio } from "@/lib/Portfolio";
 import { motion, easeOut } from "framer-motion";
 import ProjectCard from "./ProjectCard";
+import Works from "./Works";
+import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";
 
 const containerVariants = {
   hidden: {},
@@ -33,7 +35,7 @@ export default function Projects() {
   const projects = Portfolio.projects;
 
   return (
-    <section id="porjects" className="container section mx-auto  pt-20">
+    <section id="porjects" className="container section mx-auto pt-20">
       {/* Section Title Bar */}
       <motion.div
         initial={{
@@ -55,19 +57,28 @@ export default function Projects() {
           delay: 0.12,
         }}
       >
-        <div className="text-center mb-8">
+        {/* <div className="text-center mb-8">
           <h2 className="font-mono text-4xl font-semibold text-gray-900 dark:text-gray-100">
             Project Portfolio
           </h2>
           <span className="block text-lg mt-2 text-gray-600 dark:text-gray-400">
             🧩 Showcase My Craft
           </span>
-        </div>
+        </div> */}
+        <AnimatedHeaderSection
+          subTitle={"Logic meets Aesthetics, Seamlessly"}
+          title={"Works"}
+          text={`Featured projects that have been meticulously
+            crafted with passion to drive
+            results and impact.`}
+          textColor={"text-black dark:text-white"}
+          withScrollTrigger={true}
+        />
 
-        {/* Page Wrapper */}
-        <div className="w-full font-sans">
+        <div className="w-full block lg:hidden  md:px-10">
+          {" "}
+          {/*lg:hidden for midium and small screen*/}
           <main className="max-w-[1200px] mx-auto ">
-            {/* Masonry Grid */}
             <motion.div
               className=" columns-1 gap-8 sm:columns-2 lg:columns-3 "
               variants={containerVariants}
@@ -99,6 +110,8 @@ export default function Projects() {
             </motion.div>
           </main>
         </div>
+
+        <Works />
       </motion.div>
     </section>
   );

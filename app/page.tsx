@@ -7,6 +7,7 @@ import Projects from "@/components/minimal/Projects/Projects";
 import Photography from "@/components/minimal/Photograohy/Photograohy";
 import ContactMe from "@/components/minimal/ContactMe/ContactMe";
 import SnowfallWrapper from "@/components/ui/snowfall-wrapper";
+import Services from "@/components/minimal/Services/service";
 
 const page = () => {
   return (
@@ -29,6 +30,7 @@ const page = () => {
         />
         <About />
         <TechToolls />
+        <Services />
         <GitHubActivities />
         <Experience />
         <Projects />

@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Portfolio } from "@/lib/Portfolio";
 import { Github } from "lucide-react";
 import { ActivityCalendar } from "react-activity-calendar";
+import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";
 
 type GitHubContribution = {
   date: string;
@@ -107,6 +108,15 @@ const GitHubActivities = () => {
   return (
     <>
       <section className="pt-20">
+        <AnimatedHeaderSection
+          subTitle={" Showcasing My GitHub Contributions"}
+          title={"Contributions"}
+          text={`It showcases my journey as a developer,
+            Highlighting my contributions
+            with innovative solutions.`}
+          textColor={"text-black dark:text-white "}
+          withScrollTrigger={true}
+        />
         <motion.div
           initial={{
             opacity: 0,
@@ -127,11 +137,11 @@ const GitHubActivities = () => {
             delay: 0.12,
           }}
         >
-          <div className="mx-auto max-w-6xl w-full px-6 md:px-10 mb-6">
+          {/* <div className="mx-auto max-w-6xl w-full px-6 md:px-10 mb-6">
             <h2 className="font-mono text-center font-semibold text-4xl uppercase text-neutral-900 dark:text-white">
               GitHub Contributions
             </h2>
-          </div>
+          </div> */}
 
           <div className="mx-auto max-w-6xl w-full md:px-10 overflow-x-auto md:overflow-visible ">
               <RealHeatmap username={Portfolio.socialLinks.github} />

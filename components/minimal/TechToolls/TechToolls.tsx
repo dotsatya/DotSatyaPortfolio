@@ -75,8 +75,9 @@ const TechToolls = () => {
   return (
     <>
       {Portfolio.skills.length > 0 && (
-        <section id="skills" className="pt-20  overflow-hidden">
+        <section id="skills" className="pt-30  overflow-hidden">
           {" "}
+
           <motion.div
             initial={{
               opacity: 0,
@@ -97,11 +98,11 @@ const TechToolls = () => {
               delay: 0.12,
             }}
           >
-            <div className="mx-auto max-w-6xl w-full px-6 md:px-10 mb-12">
+            {/* <div className="mx-auto max-w-6xl w-full px-6 md:px-10 mb-12">
               <h2 className="hidden lg:block  mb-8 text-center text-4xl font-semibold font-mono text-neutral-900 dark:text-white">
                 Technologies & Tools
               </h2>
-            </div>
+            </div> */}
 
             <div className="mx-auto max-w-6xl w-full">
               <div className="hidden md:block mb-8">

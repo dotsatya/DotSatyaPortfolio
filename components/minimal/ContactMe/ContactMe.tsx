@@ -8,6 +8,7 @@ import { Github } from "lucide-react";
 import { Portfolio } from "@/lib/Portfolio";
 import { MdMarkEmailRead } from "react-icons/md";
 import { LiaLinkedin } from "react-icons/lia";
+import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";
 
 // ENV VARIABLES
 const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!;
@@ -53,8 +54,8 @@ const ContactMe = () => {
     });
   };
   return (
-    <section className="section pt-20" id="contact">
-      <motion.div
+    <section className="section py-20" id="contact">
+      {/* <motion.div
         initial={{
           opacity: 0,
           x: -60,
@@ -74,14 +75,19 @@ const ContactMe = () => {
           delay: 0.12,
         }}
       >
-        {/* Title */}
         <div className="text-center mb-8">
           <h2 className="text-4xl font-semibold text-gray-900 dark:text-white">
             🛜 Let’s Connect...
           </h2>
         </div>
-      </motion.div>
-
+      </motion.div> */}
+        <AnimatedHeaderSection
+          subTitle={"You Dream It, I Code it"}
+          title={"Contact"}
+          text={`WE’D love to hear from you and discus further!`}
+          textColor={"text-black dark:text-white "}
+          withScrollTrigger={true}
+        />
       {/* Main Grid */}
       <div
         className="container mx-auto grid grid-cols-2 gap-x-16 
@@ -109,7 +115,7 @@ const ContactMe = () => {
             delay: 0.12,
           }}
         >
-          <h3 className="text-lg font-medium text-center mb-4 text-gray-800 dark:text-gray-200">
+          <h3 className="text-2xl font-medium text-center mb-4 text-gray-800 dark:text-gray-200">
             Location
           </h3>
 
@@ -224,7 +230,7 @@ const ContactMe = () => {
             delay: 0.12,
           }}
         >
-          <h3 className="text-lg font-medium text-center mb-4 text-gray-800 dark:text-gray-200">
+          <h3 className="text-2xl font-medium text-center mb-4 text-gray-800 dark:text-gray-200">
             💬 Have questions or ideas?
           </h3>
 

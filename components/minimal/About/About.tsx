@@ -9,7 +9,7 @@ import ProfileBlob from "./ProfileBlob";
 
 const About = () => {
   return (
-    <section id="about">
+    <section id="about " className="mx-auto pt-20 text-black dark:text-white ">
       <motion.div
         initial={{
           opacity: 0,
@@ -31,7 +31,7 @@ const About = () => {
         }}
       >
         <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-[0.5fr-auto] gap-10 pt-12  items-center lg:grid-cols-[120px_1fr_1fr] lg:gap-5 md:gap-14">
+          <div className="grid grid-cols-[0.5fr-auto] gap-10   items-center lg:grid-cols-[120px_1fr_1fr] lg:gap-5 md:gap-14">
             <div className="order-1 -top-10">
               <Social />
             </div>

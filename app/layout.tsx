@@ -14,6 +14,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import { Toaster } from "sonner";
 import Cursor from "@/components/ui/Cursor";
+import ReactLenis from "lenis/react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
@@ -68,13 +69,24 @@ export default function RootLayout({
         className={`${poppins.className} ${mono.className} ${inter.variable} font-sans antialiased`}
       >
         <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-          <Cursor />
-          <Toaster position="top-center" richColors />
-          <div className="min-h-screen flex flex-col bg-[#F5F5F5] dark:bg-[#080808]">
-            <Header />
-            <main className=" flex-1 ">{children}</main>
-            <Footer />
-          </div>
+          <ReactLenis
+            root
+            options={{
+              lerp: 0.1,
+              duration: 1.2,
+              smoothWheel: true,
+              wheelMultiplier: 1,
+              touchMultiplier: 1.2,
+            }}
+          >
+            <Cursor />
+            <Toaster position="top-center" richColors />
+            <div className="min-h-screen flex flex-col bg-[#F5F5F5] dark:bg-[#080808]">
+              <Header />
+              <main className=" flex-1 ">{children}</main>
+              <Footer />
+            </div>
+          </ReactLenis>
         </ThemeProvider>
       </body>
     </html>

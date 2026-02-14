@@ -3,6 +3,7 @@ import { Portfolio } from "@/lib/Portfolio";
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
+import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";
 const TimelineScrollAnimation = ({
   containerRef,
 }: {
@@ -76,10 +77,18 @@ const Experience = () => {
               delay: 0.12,
             }}
           >
+            <AnimatedHeaderSection
+              subTitle={"Moments that defined my professional journey"}
+              title={"Experience"}
+              text={`This timeline captures the experiences
+                that shaped how I build, think ...`}
+              textColor={"text-black dark:text-white "}
+              withScrollTrigger={true}
+            />
             <div className="mx-auto max-w-6xl w-full px-6 md:px-10 relative">
-              <h2 className="mb-16 block text-center font-mono text-4xl font-semibold  uppercase tracking-[0.2em] text-black dark:text-white">
+              {/* <h2 className="mb-16 block text-center font-mono text-4xl font-semibold  uppercase tracking-[0.2em] text-black dark:text-white">
                 Experience
-              </h2>
+              </h2> */}
 
               <div
                 className="relative pl-8 md:pl-12"
@@ -88,11 +97,11 @@ const Experience = () => {
                 {/* Static Line  */}
                 <div
                   className="
-    hidden md:block absolute left-9.75 md:left-[52.6px] top-2 bottom-0 w-px
-    bg-linear-to-b
-    from-black/5 via-black/8 to-transparent
-    dark:from-white/5 dark:via-white/10 dark:to-transparent
-  "
+                     hidden md:block absolute left-9.75 md:left-[52.6px] top-2 bottom-0 w-px
+                     bg-linear-to-b
+                     from-black/5 via-black/8 to-transparent
+                     dark:from-white/5 dark:via-white/10 dark:to-transparent
+                  "
                 />
 
                 {/* Animated Scroll Point with bar */}
@@ -126,11 +135,11 @@ const Experience = () => {
                           <div
                             className={cn(
                               `
-          h-4 w-4 rounded-full border-2 z-10
-          transition-transform duration-300 group-hover:scale-125
-          bg-white border-neutral-300
-          dark:bg-[#050505] dark:border-neutral-700
-          `,
+                                h-4 w-4 rounded-full border-2 z-10
+                                transition-transform duration-300 group-hover:scale-125
+                                bg-white border-neutral-300
+                                dark:bg-[#050505] dark:border-neutral-700
+                              `,
                               colorClass.split(" ")[0],
                             )}
                           />

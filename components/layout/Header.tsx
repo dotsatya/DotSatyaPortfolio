@@ -9,7 +9,7 @@ import { RiArrowDownSLine } from "react-icons/ri";
 import { Button } from "../ui/button";
 
 // 1. Centralized Configuration
-type Mode = "minimal" | "terminal" ; //| "minimal";
+type Mode = "minimal" | "terminal"; //| "minimal";
 
 interface NavItem {
   label: string;
@@ -21,7 +21,7 @@ const NAVIGATION_CONFIG: Record<Mode, { route: string; items: NavItem[] }> = {
     route: "/",
     items: [
       { label: "About", href: "#about" },
-      { label: "Skills", href: "#skills" },
+      { label: "Services", href: "#services" },
       { label: "Projects", href: "#porjects" },
       { label: "Contact", href: "#contact" },
     ],
@@ -29,10 +29,10 @@ const NAVIGATION_CONFIG: Record<Mode, { route: string; items: NavItem[] }> = {
   // minimal: {
   //   route: "/minimal",
   //   items: [
-      // { label: "About", href: "#about" },
-      // { label: "Skills", href: "#skills" },
-      // { label: "Projects", href: "#porjects" },
-      // { label: "Contact", href: "#contact" },
+  // { label: "About", href: "#about" },
+  // { label: "Skills", href: "#skills" },
+  // { label: "Projects", href: "#porjects" },
+  // { label: "Contact", href: "#contact" },
   //   ],
   // },
   terminal: {
@@ -51,10 +51,7 @@ const Header: React.FC = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Determine current mode based on route
-  const currentMode: Mode =
-    pathname === "/terminal"
-      ? "terminal"
-        : "minimal";
+  const currentMode: Mode = pathname === "/terminal" ? "terminal" : "minimal";
 
   const accordionVariants = {
     initial: { height: 0, opacity: 0 },

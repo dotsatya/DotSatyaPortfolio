@@ -314,4 +314,90 @@ export const Portfolio = {
       imageUrl: photo5,
     },
   ],
+servicesData: [
+  {
+    title: "Full-Stack Development",
+    description:
+      "I build complete web applications from frontend to backend using modern frameworks and scalable architectures.",
+
+    items: [
+      {
+        title: "Frontend Development",
+        description: "(React, Next.js, TypeScript, Tailwind CSS)",
+      },
+      {
+        title: "Backend Development",
+        description: "(Node.js, Express, REST APIs, MySQL)",
+      },
+      {
+        title: "Database Design",
+        description: "(SQL optimization, schema design, data handling)",
+      },
+    ],
+  },
+
+  {
+    title: "UI / UX & Design",
+    description:
+      "I design clean, user-friendly interfaces that focus on usability, consistency, and modern visuals.",
+
+    items: [
+      {
+        title: "UI Design",
+        description: "(Figma, Canva, responsive layouts)",
+      },
+      {
+        title: "Visual Design",
+        description: "(Photoshop, Illustrator, branding assets)",
+      },
+      {
+        title: "Motion & Media",
+        description: "(After Effects, Premiere Pro)",
+      },
+    ],
+  },
+
+  {
+    title: "Projects & Applications",
+    description:
+      "Hands-on experience building real-world projects that solve practical problems.",
+
+    items: [
+      {
+        title: "Web Music Player",
+        description: "(HTML, CSS, JavaScript)",
+      },
+      {
+        title: "Employee Management System",
+        description: "(React, Express, MySQL, Socket.io)",
+      },
+      {
+        title: "Weather & Crypto Apps",
+        description: "(React, Next.js, APIs)",
+      },
+    ],
+  },
+
+  {
+    title: "Professional Experience",
+    description:
+      "Experience gained through internships, academic projects, and independent development.",
+
+    items: [
+      {
+        title: "Web Development Intern",
+        description: "DAS SOLUTIONS (July 2025 – Nov 2025)",
+      },
+      {
+        title: "Student Developer",
+        description: "Kalyani Government Engineering College",
+      },
+      {
+        title: "Freelance / Academic Projects",
+        description: "Frontend & Full-Stack Development",
+      },
+    ],
+  },
+],
+
 };
