@@ -7,6 +7,7 @@ import Photography from "@/components/minimal/Photograohy/Photograohy";
 import ContactMe from "@/components/minimal/ContactMe/ContactMe";
 import SnowfallWrapper from "@/components/ui/snowfall-wrapper";
 import Services from "@/components/minimal/Services/service";
+import AgeTimer from "@/lib/AgeTimer/AgeTimer";
 
 const page = () => {
   return (
