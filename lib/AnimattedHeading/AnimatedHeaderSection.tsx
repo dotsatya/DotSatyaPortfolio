@@ -105,7 +105,7 @@ useGSAP(() => {
             <h1
               className={`
                 banner-text-responsive flex flex-col gap-12 uppercase 
-                md:text-8xl text-4xl 
+                text-4xl md:text-7xl lg:text-8xl
                 sm:gap-12 md:block
                 ${textColor}
               `}

@@ -52,11 +52,11 @@ const Footer = () => {
     <>
       <footer
         ref={footerRef}
-        className="relative h-[250px] w-full bg-transparent"
+        className="relative h-[110px] sm:h-[150px] md:h-[160px] lg:h-[210px] w-full bg-transparent"
       >
         <div
           ref={footerPanelRef}
-          className="fixed bottom-0 left-0 w-full h-[250px]  dark:bg-[#F5F5F5] bg-[#080808] rounded-t-3xl will-change-transform"
+          className="fixed bottom-0 left-0 w-full h-[110px] sm:h-[150px] md:h-[160px] lg:h-[210px]  dark:bg-[#F5F5F5] bg-[#080808] rounded-t-3xl will-change-transform"
           style={{ 
             clipPath: "polygon(0 0, 100% 0, 100% 100%, 0 100%)" 
           }}
@@ -64,7 +64,7 @@ const Footer = () => {
         {/* Top Border Line */}
         <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-gray-400 to-transparent opacity-50"></div>
 
-        <div className="w-[98%] mx-auto flex  items-center flex-row justify-between px-2 py-6">
+        <div className="w-[98%] mx-auto flex  items-center flex-row justify-between px-4 py-6">
           {/* Logo / Title */}
           <h1 className="text-lg font-bold hover:text-gray-600 text-white dark:text-black transition-colors hidden sm:block">
             dotsatya
@@ -117,7 +117,7 @@ const Footer = () => {
             className="
           absolute top-0 inset-x-0 text-center
           font-[helvetica] font-extrabold tracking-wide leading-none
-          text-[60px] sm:text-[100px] md:text-[140px] lg:text-[200px]
+          text-[60px] sm:text-[100px] md:text-[120px] lg:text-[180px]
           bg-clip-text text-transparent bg-linear-to-b
           dark:from-black dark:via-black/40 dark:to-72%
           from-white/90 via-white/10 to-72%
