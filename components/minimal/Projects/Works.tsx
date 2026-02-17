@@ -11,7 +11,6 @@ import { createPortal } from "react-dom";
 type OverlayRef = HTMLDivElement | null;
 
 const Works: React.FC = () => {
-
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
@@ -133,11 +132,8 @@ const Works: React.FC = () => {
 
   return (
     <section
-      id="projects"
       className="container section mx-auto  hidden lg:block " //hidden lg:block for large screen
     >
-
-
       <div className="relative flex flex-col" onMouseMove={handleMouseMove}>
         {projects.map((project, index) => (
           <div

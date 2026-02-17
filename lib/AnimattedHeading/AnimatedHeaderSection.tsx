@@ -38,21 +38,22 @@ useGSAP(() => {
         start: "top 95%",
       },
     })
-    .from(contextRef.current, {
-      y: "30vh",
-      duration: 0.8,
-      ease: "circ.out",
-    })
-    .from(
-      headerRef.current,
-      {
-        opacity: 0,
-        y: 120,
-        duration: 0.8,
-        ease: "circ.out",
-      },
-      "<+0.15"
-    );
+.from(contextRef.current, {
+  y: "15vh",
+  duration: 0.45,
+  ease: "power3.out",
+})
+.from(
+  headerRef.current,
+  {
+    opacity: 0,
+    y: 80,
+    duration: 0.45,
+    ease: "power3.out",
+  },
+  "<+0.05"
+);
+
   });
 
   mm.add("(min-width: 768px)", () => {
@@ -62,21 +63,22 @@ useGSAP(() => {
         start: "top 80%",
       },
     })
-    .from(contextRef.current, {
-      y: "50vh",
-      duration: 1,
-      ease: "circ.out",
-    })
-    .from(
-      headerRef.current,
-      {
-        opacity: 0,
-        y: 200,
-        duration: 1,
-        ease: "circ.out",
-      },
-      "<+0.2"
-    );
+.from(contextRef.current, {
+  y: "25vh",
+  duration: 0.6,
+  ease: "power3.out",
+})
+.from(
+  headerRef.current,
+  {
+    opacity: 0,
+    y: 120,
+    duration: 0.6,
+    ease: "power3.out",
+  },
+  "<+0.05"
+);
+
   });
 
   return () => mm.revert();

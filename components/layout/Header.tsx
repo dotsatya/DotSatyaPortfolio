@@ -22,7 +22,7 @@ const NAVIGATION_CONFIG: Record<Mode, { route: string; items: NavItem[] }> = {
     items: [
       { label: "About", href: "#about" },
       { label: "Services", href: "#services" },
-      { label: "Projects", href: "#porjects" },
+      { label: "Projects", href: "#projects" },
       { label: "Contact", href: "#contact" },
     ],
   },
@@ -52,6 +52,19 @@ const Header: React.FC = () => {
 
   // Determine current mode based on route
   const currentMode: Mode = pathname === "/terminal" ? "terminal" : "minimal";
+
+  ////////.....
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    el.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  ////////.....
 
   const accordionVariants = {
     initial: { height: 0, opacity: 0 },
@@ -169,13 +182,22 @@ const Header: React.FC = () => {
                   className="hidden md:flex items-center gap-4"
                 >
                   {NAVIGATION_CONFIG[currentMode].items.map((item) => (
-                    <Link
+                    // <Link
+                    //   key={item.href}
+                    //   href={item.href}
+                    //   className="text-sm font-medium hover:text-blue-500 transition-colors"
+                    // >
+                    //   {item.label}
+                    // </Link>/
+                    <button
                       key={item.href}
-                      href={item.href}
+                      onClick={() =>
+                        scrollToSection(item.href.replace("#", ""))
+                      }
                       className="text-sm font-medium hover:text-blue-500 transition-colors"
                     >
                       {item.label}
-                    </Link>
+                    </button>
                   ))}
                 </motion.nav>
               ) : (
@@ -271,14 +293,24 @@ const Header: React.FC = () => {
                     >
                       <nav className="flex flex-col py-2 gap-3">
                         {NAVIGATION_CONFIG[modeKey].items.map((sub) => (
-                          <Link
+                          // <Link
+                          //   key={sub.href}
+                          //   href={sub.href}
+                          //   onClick={() => setMobileOpen(false)}
+                          //   className="text-xl font-medium hover:text-blue-500"
+                          // >
+                          //   {sub.label}
+                          // </Link>
+                          <button
                             key={sub.href}
-                            href={sub.href}
-                            onClick={() => setMobileOpen(false)}
-                            className="text-xl font-medium hover:text-blue-500"
+                            onClick={() => {
+                              scrollToSection(sub.href.replace("#", ""));
+                              setMobileOpen(false);
+                            }}
+                            className="text-xl font-medium hover:text-blue-500 text-left"
                           >
                             {sub.label}
-                          </Link>
+                          </button>
                         ))}
                       </nav>
                     </motion.div>

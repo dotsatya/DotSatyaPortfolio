@@ -35,7 +35,16 @@ export default function Projects() {
   const projects = Portfolio.projects;
 
   return (
-    <section id="porjects" className="container section mx-auto pt-20">
+    <section id="projects" className=" section mx-auto pt-20">
+        <AnimatedHeaderSection
+          subTitle={"Logic meets Aesthetics, Seamlessly"}
+          title={"Works"}
+          text={`Featured projects that have been meticulously
+            crafted with passion to drive
+            results and impact.`}
+          textColor={"text-black dark:text-white"}
+          withScrollTrigger={true}
+        />
       {/* Section Title Bar */}
       <motion.div
         initial={{
@@ -65,15 +74,7 @@ export default function Projects() {
             🧩 Showcase My Craft
           </span>
         </div> */}
-        <AnimatedHeaderSection
-          subTitle={"Logic meets Aesthetics, Seamlessly"}
-          title={"Works"}
-          text={`Featured projects that have been meticulously
-            crafted with passion to drive
-            results and impact.`}
-          textColor={"text-black dark:text-white"}
-          withScrollTrigger={true}
-        />
+      
 
         <div className="w-full block lg:hidden  md:px-10">
           {" "}

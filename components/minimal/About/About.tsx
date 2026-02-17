@@ -9,7 +9,7 @@ import ProfileBlob from "./ProfileBlob";
 
 const About = () => {
   return (
-    <section id="about " className="mx-auto pt-20 text-black dark:text-white ">
+    <section id="about" className="mx-auto pt-20 text-black dark:text-white ">
       <motion.div
         initial={{
           opacity: 0,
