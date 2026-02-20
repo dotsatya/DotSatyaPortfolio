@@ -314,90 +314,180 @@ export const Portfolio = {
       imageUrl: photo5,
     },
   ],
-servicesData: [
-  {
-    title: "Full-Stack Development",
-    description:
-      "I build complete web applications from frontend to backend using modern frameworks and scalable architectures.",
 
-    items: [
-      {
-        title: "Frontend Development",
-        description: "(React, Next.js, TypeScript, Tailwind CSS)",
-      },
-      {
-        title: "Backend Development",
-        description: "(Node.js, Express, REST APIs, MySQL)",
-      },
-      {
-        title: "Database Design",
-        description: "(SQL optimization, schema design, data handling)",
-      },
-    ],
+  servicesData: [
+    {
+      title: "Full-Stack Development",
+      description:
+        "I build complete web applications from frontend to backend using modern frameworks and scalable architectures.",
+
+      items: [
+        {
+          title: "Frontend Development",
+          description: "(React, Next.js, TypeScript, Tailwind CSS)",
+        },
+        {
+          title: "Backend Development",
+          description: "(Node.js, Express, REST APIs, MySQL)",
+        },
+        {
+          title: "Database Design",
+          description: "(SQL optimization, schema design, data handling)",
+        },
+      ],
+    },
+
+    {
+      title: "UI / UX & Design",
+      description:
+        "I design clean, user-friendly interfaces that focus on usability, consistency, and modern visuals.",
+
+      items: [
+        {
+          title: "UI Design",
+          description: "(Figma, Canva, responsive layouts)",
+        },
+        {
+          title: "Visual Design",
+          description: "(Photoshop, Illustrator, branding assets)",
+        },
+        {
+          title: "Motion & Media",
+          description: "(After Effects, Premiere Pro)",
+        },
+      ],
+    },
+
+    {
+      title: "Projects & Applications",
+      description:
+        "Hands-on experience building real-world projects that solve practical problems.",
+
+      items: [
+        {
+          title: "Web Music Player",
+          description: "(HTML, CSS, JavaScript)",
+        },
+        {
+          title: "Employee Management System",
+          description: "(React, Express, MySQL, Socket.io)",
+        },
+        {
+          title: "Weather & Crypto Apps",
+          description: "(React, Next.js, APIs)",
+        },
+      ],
+    },
+
+    {
+      title: "Professional Experience",
+      description:
+        "Experience gained through internships, academic projects, and independent development.",
+
+      items: [
+        {
+          title: "Web Development Intern",
+          description: "DAS SOLUTIONS (July 2025 – Nov 2025)",
+        },
+        {
+          title: "Student Developer",
+          description: "Kalyani Government Engineering College",
+        },
+        {
+          title: "Freelance / Academic Projects",
+          description: "Frontend & Full-Stack Development",
+        },
+      ],
+    },
+  ],
+
+   S_ASCII_ART : `
+.
+                                   ...
+                               ,x;,;
+                          .O.           
+                    ..cX              
+                ..'Wd                 
+            dM.
+          0X
+          ,xOdc;,...
+               ..',;:clo!od::,.
+                         .:&k;lc,'.
+                             'o''j;y.
+                           ..',c..
+                        .';:..
+                  .,:ld;.'
+                .Q.
+           .:⁠-
+         '''
+`
+};
+
+
+// Mock File System Structure representing the "home" directory
+export type FileSystemNode =
+  | { type: "file"; content: string }
+  | { type: "directory"; children: { [key: string]: FileSystemNode } };
+
+export const ABOUT_TEXT = `${Portfolio.fullName}\n${Portfolio.title}\n\n${Portfolio.bio}`;
+export const SOCIALS = Portfolio.socialLinks;
+export const PROJECTS = Portfolio.projects.map((project) => ({
+  name: project.title,
+  description: project.description,
+  tech: project.tags,
+}));
+export const SKILLS = Portfolio.skills.map((section) => ({
+  category: section.partName,
+  skills: section.items.map((item) => item.subPartName),
+}));
+export const EXPERIENCE = Portfolio.experience.map((item) => ({
+  role: item.position,
+  company: item.company,
+  period: item.duration,
+  description: item.description,
+}));
+
+
+
+const slugify = (text: string) =>
+  text
+    .normalize("NFKD")               // handle emojis/unicode
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-zA-Z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "")
+    .toLowerCase();
+
+export const FILE_SYSTEM: { [key: string]: FileSystemNode } = {
+  'about.txt': { type: 'file', content: ABOUT_TEXT },
+  'contact.txt': { type: 'file', content: `Email: ${SOCIALS.email}\nGitHub: ${SOCIALS.github}\nLinkedIn: ${SOCIALS.linkedin}\nTwitter: ${SOCIALS.twitter}` },
+  'projects': {
+    type: 'directory',
+    children: PROJECTS.reduce((acc, proj) => ({
+      ...acc,
+      [slugify(proj.name) + '.txt']: {
+        type: 'file',
+        content: `Name: ${proj.name}\nDescription: ${proj.description}\nTech Stack: ${proj.tech.join(', ')}`
+      }
+    }), {} as { [key: string]: FileSystemNode })
   },
-
-  {
-    title: "UI / UX & Design",
-    description:
-      "I design clean, user-friendly interfaces that focus on usability, consistency, and modern visuals.",
-
-    items: [
-      {
-        title: "UI Design",
-        description: "(Figma, Canva, responsive layouts)",
-      },
-      {
-        title: "Visual Design",
-        description: "(Photoshop, Illustrator, branding assets)",
-      },
-      {
-        title: "Motion & Media",
-        description: "(After Effects, Premiere Pro)",
-      },
-    ],
+  'skills': {
+    type: 'directory',
+    children: SKILLS.reduce((acc, skill) => ({
+      ...acc,
+      [slugify(skill.category) + '.txt']: {
+        type: 'file',
+        content: skill.skills.join('\n')
+      }
+    }), {} as { [key: string]: FileSystemNode })
   },
-
-  {
-    title: "Projects & Applications",
-    description:
-      "Hands-on experience building real-world projects that solve practical problems.",
-
-    items: [
-      {
-        title: "Web Music Player",
-        description: "(HTML, CSS, JavaScript)",
-      },
-      {
-        title: "Employee Management System",
-        description: "(React, Express, MySQL, Socket.io)",
-      },
-      {
-        title: "Weather & Crypto Apps",
-        description: "(React, Next.js, APIs)",
-      },
-    ],
+  'experience.txt': {
+    type: 'file',
+    content: EXPERIENCE.map(e => `${e.role} @ ${e.company} (${e.period})\n${e.description}`).join('\n\n')
   },
-
-  {
-    title: "Professional Experience",
-    description:
-      "Experience gained through internships, academic projects, and independent development.",
-
-    items: [
-      {
-        title: "Web Development Intern",
-        description: "DAS SOLUTIONS (July 2025 – Nov 2025)",
-      },
-      {
-        title: "Student Developer",
-        description: "Kalyani Government Engineering College",
-      },
-      {
-        title: "Freelance / Academic Projects",
-        description: "Frontend & Full-Stack Development",
-      },
-    ],
-  },
-],
-
+  'secret': {
+    type: 'directory',
+    children: {
+        'plan.txt': { type: 'file', content: '1. Build cool things.\n2. ???\n3. Profit.' }
+    }
+  }
 };

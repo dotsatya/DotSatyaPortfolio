@@ -9,12 +9,7 @@ import {
 } from "next/font/google";
 import "kursor/dist/kursor.css";
 import "./globals.css";
-import { ThemeProvider } from "next-themes";
-import Header from "@/components/layout/Header";
-import { Toaster } from "sonner";
-import Cursor from "@/components/ui/Cursor";
-import ReactLenis from "lenis/react";
-import Footer from "@/components/layout/Footer";
+import LayoutClient from "./layout-client";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({
@@ -48,11 +43,6 @@ export const metadata: Metadata = {
     "A developer and designer from India working with web development and UI/UX design.",
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
   /*
   npm install next-themes
   npm install react-icons lucide-react
@@ -63,12 +53,17 @@ export default function RootLayout({
   // npm install @radix-ui/react-slot
   // npm install clsx tailwind-merge
 
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body
         className={`${poppins.className} ${mono.className} ${inter.variable} font-sans antialiased`}
       >
-        <ThemeProvider attribute="class" enableSystem defaultTheme="system">
+        {/* <ThemeProvider attribute="class" enableSystem defaultTheme="system">
           <ReactLenis
             root
             options={{
@@ -84,10 +79,11 @@ export default function RootLayout({
             <div className="min-h-screen flex flex-col bg-[#F5F5F5] dark:bg-[#080808]">
               <Header />
               <main className=" flex-1 ">{children}</main>
-              <Footer />
+              {isTerminal ? <TFooter /> : <Footer />}
             </div>
           </ReactLenis>
-        </ThemeProvider>
+        </ThemeProvider> */}
+        <LayoutClient>{children}</LayoutClient>
       </body>
     </html>
   );

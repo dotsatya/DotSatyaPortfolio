@@ -186,6 +186,18 @@ html {
   scroll-behavior: smooth;
 }
 
+@keyframes cursor-blink {
+  0%   { opacity: 1 }
+  45%  { opacity: 1 }
+  55%  { opacity: 0 }
+  100% { opacity: 0 }
+}
+
+.cursor-blink {
+  animation: cursor-blink 1.2s ease-in-out infinite;
+  will-change: opacity;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
@@ -236,4 +248,89 @@ div[class*='kursor'].kursor--4.kursor--down + .kursorChild {
   width: 10px !important;
   height: 10px !important;
   opacity: 0;
+}
+
+
+/* =========================
+   THEME VARIABLES
+========================= */
+:root {
+  --terminal-bg: #0a0a0a;
+  --terminal-primary: #00ff9c;
+  --terminal-secondary: #00bfff;
+  --terminal-accent: #00ffff;
+  --terminal-dim: #4b5563;
+  --terminal-text: #e5e7eb;
+  --terminal-text-dim: #9ca3af;
+}
+
+/* =========================
+   THEME TOKENS
+========================= */
+@theme {
+  --color-terminal-black: var(--terminal-bg);
+  --color-terminal-primary: var(--terminal-primary);
+  --color-terminal-green: var(--terminal-primary);
+  --color-terminal-dim: var(--terminal-dim);
+  --color-terminal-blue: var(--terminal-secondary);
+  --color-terminal-cyan: var(--terminal-accent);
+  --color-terminal-text: var(--terminal-text);
+  --color-terminal-text-dim: var(--terminal-text-dim);
+
+  --font-mono: "Fira Code", monospace, ui-monospace, SFMono-Regular;
+}
+
+/* =========================
+   KEYFRAMES
+========================= */
+@keyframes blink {
+  0%, 100% { opacity: 1 }
+  50% { opacity: 0 }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0) }
+  20% { transform: translate(-2px, 2px) }
+  40% { transform: translate(-2px, -2px) }
+  60% { transform: translate(2px, 2px) }
+  80% { transform: translate(2px, -2px) }
+  100% { transform: translate(0) }
+}
+
+@keyframes slideInRight {
+  from { transform: translateX(100%); opacity: 0 }
+  to { transform: translateX(0); opacity: 1 }
+}
+
+@keyframes slideOutRight {
+  from { transform: translateX(0); opacity: 1 }
+  to { transform: translateX(100%); opacity: 0 }
+}
+
+@keyframes slideInDown {
+  from { transform: translateY(-10px); opacity: 0 }
+  to { transform: translateY(0); opacity: 1 }
+}
+
+/* =========================
+   ANIMATIONS
+========================= */
+@utility animate-blink {
+  animation: blink 1s step-end infinite;
+}
+
+@utility animate-glitch {
+  animation: glitch 0.2s cubic-bezier(.25,.46,.45,.94) infinite;
+}
+
+@utility animate-slide-in {
+  animation: slideInRight 0.4s ease-out forwards;
+}
+
+@utility animate-slide-out {
+  animation: slideOutRight 0.4s ease-in forwards;
+}
+
+@utility animate-slide-down {
+  animation: slideInDown 0.2s ease-out forwards;
 }
