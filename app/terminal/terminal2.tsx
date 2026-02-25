@@ -170,8 +170,8 @@ const Terminal2: React.FC<TerminalProps> = ({
   const linkedinHandle = getHandleFromUrl(SOCIALS.linkedin) || profileUser;
   const twitterHandle = getHandleFromUrl(SOCIALS.twitter) || profileUser;
   const topSkills = SKILLS.flatMap((s) => s.skills)
-    .slice(0, 5)
-    .join(", ");
+    .slice(0, )
+    .join(" • ");
 
   // Ref to track the current command execution to handle cancellations
   const commandIdRef = useRef(0);
@@ -194,7 +194,7 @@ const Terminal2: React.FC<TerminalProps> = ({
         </div>
 
         <div>
-          <span className="text-[#FF8C00] font-bold">Name</span>:{" "}
+          <span className="text-[#FF8C00] font-bold">User</span>:{" "}
           <span className="text-white">{Portfolio.fullName}</span>
         </div>
         <div>
@@ -217,23 +217,23 @@ const Terminal2: React.FC<TerminalProps> = ({
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Shell</span>:{" "}
-          <span className="text-white">zsh 5.9</span>
+          <span className="text-white">dotsatyash</span>
         </div>
-        <div>
+        {/* <div>
           <span className="text-[#FF8C00] font-bold">Resolution</span>:{" "}
           <span className="text-white">
             {typeof window !== "undefined" ? window.innerWidth : 1920}x
             {typeof window !== "undefined" ? window.innerHeight : 1080}
           </span>
-        </div>
+        </div> */}
         <div>
           <span className="text-[#FF8C00] font-bold">Terminal</span>:{" "}
-          <span className="text-white">Web-tty1</span>
+          <span className="text-white">dotsatya-tty</span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">CPU</span>:{" "}
           <span className="text-white">
-            {Portfolio.fullName} (1) @ 100% Focus
+            dotsatya @ 100% Focus
           </span>
         </div>
         <div>
