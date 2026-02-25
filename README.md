@@ -2,7 +2,7 @@
 
 <div align="center">
 
-**Modern, Responsive Portfolio Website**
+**Modern, Responsive with AI powered Portfolio Website**
 
 Built with **Next.js 16** • **React 19** • **TypeScript** • **Tailwind CSS**
 

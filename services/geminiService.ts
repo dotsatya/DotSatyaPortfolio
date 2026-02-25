@@ -100,11 +100,6 @@ export const generateAIResponse = async (prompt: string): Promise<string> => {
     return response.text;
   } catch (error: unknown) {
     console.error("Gemini API Error:", error);
-
-    if (error instanceof Error) {
-      throw new Error(error.message || "Connection to neural link failed.");
-    }
-
-    throw new Error("Connection to neural link failed.");
+    throw new Error("Sorry to inform you that my free AI usage limit has been reached. Access temporarily restricted for 24 hours.\nRefer to use 'help' command for available commands.");
   }
 };
