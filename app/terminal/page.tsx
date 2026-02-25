@@ -1,5 +1,5 @@
 import React from 'react'
-import TerminalTemplate from './terminal1'
+// import TerminalTemplate from './terminal1'
 import Terminal2 from './terminal2'
 
 const page = () => {

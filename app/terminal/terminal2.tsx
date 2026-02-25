@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/set-state-in-effect */
 "use client";
 
 import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
@@ -12,6 +13,7 @@ import {
   FILE_SYSTEM,
   FileSystemNode,
 } from "@/lib/Portfolio";
+import { generateAIResponse } from "@/services/geminiService";
 
 type LineType = "input" | "output" | "system";
 interface TerminalLine {
@@ -22,12 +24,6 @@ interface TerminalLine {
 
 const CERTIFICATIONS: Array<{ name: string; issuer: string; year: string }> =
   [];
-const LEADERSHIP: Array<{
-  role: string;
-  event: string;
-  year: string;
-  description: string;
-}> = [];
 
 const getHandleFromUrl = (url?: string) => {
   if (!url) return "";
@@ -42,10 +38,6 @@ const getHandleFromUrl = (url?: string) => {
   } catch {
     return "";
   }
-};
-
-const generateAIResponse = async (input: string): Promise<string> => {
-  return `Command not found: ${input}. Type 'help' to see available commands.`;
 };
 
 const COMMANDS = [
