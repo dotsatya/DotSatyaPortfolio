@@ -255,13 +255,21 @@ div[class*='kursor'].kursor--4.kursor--down + .kursorChild {
    THEME VARIABLES
 ========================= */
 :root {
-  --terminal-bg: #0a0a0a;
+  --terminal-bg: #F5F5F5;
+  --terminal-text: #111827;
+  --terminal-primary: #008f5a;
+  --terminal-secondary: #0077cc;
+  --terminal-accent: #009999;
+  --terminal-dim: #d1d5db;
+}
+
+.dark {
+  --terminal-bg: #080808;
+  --terminal-text: #e5e7eb;
   --terminal-primary: #00ff9c;
   --terminal-secondary: #00bfff;
   --terminal-accent: #00ffff;
   --terminal-dim: #4b5563;
-  --terminal-text: #e5e7eb;
-  --terminal-text-dim: #9ca3af;
 }
 
 /* =========================

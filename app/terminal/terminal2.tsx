@@ -62,9 +62,6 @@ const COMMANDS = [
 interface TerminalProps {
   externalCommand?: string | null;
   onCommandComplete?: () => void;
-  onRestart?: () => void;
-  onPowerOff?: () => void;
-  onLogOut?: () => void;
 }
 
 // Simulated Progress Bar Component for Git Clone
@@ -128,7 +125,7 @@ const GitProgressBar: React.FC<{ onComplete: () => void }> = ({
           {emptyStr}]
         </span>
 
-        {/* Mobile Bar */}
+        {/* Mobile Bar */}  
         <span className="text-terminal-primary sm:hidden font-bold">
           [{filledMobile}
           {emptyMobile}]
@@ -190,55 +187,55 @@ const Terminal2: React.FC<TerminalProps> = ({
           <span className="text-[#FF8C00] font-bold">
             {profileUser}@{profileHost}
           </span>
-          <div className="text-white">----------------</div>
+          <div className="text-terminal-text">----------------</div>
         </div>
 
         <div>
           <span className="text-[#FF8C00] font-bold">User</span>:{" "}
-          <span className="text-white">{Portfolio.fullName}</span>
+          <span className="text-terminal-text">{Portfolio.fullName}</span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Role</span>:{" "}
-          <span className="text-white">{Portfolio.title}</span>
+          <span className="text-terminal-text">{Portfolio.title}</span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Experience</span>:{" "}
-          <span className="text-white">
+          <span className="text-terminal-text">
             {Portfolio.experience.length}+ roles
           </span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Skills</span>:{" "}
-          <span className="text-white">{topSkills}</span>
+          <span className="text-terminal-text">{topSkills}</span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Projects</span>:{" "}
-          <span className="text-white">{PROJECTS.length} Active Packages</span>
+          <span className="text-terminal-text">{PROJECTS.length} Active Packages</span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Shell</span>:{" "}
-          <span className="text-white">dotsatyash</span>
+          <span className="text-terminal-text">dotsatyash</span>
         </div>
         {/* <div>
           <span className="text-[#FF8C00] font-bold">Resolution</span>:{" "}
-          <span className="text-white">
+          <span className="text-terminal-text">
             {typeof window !== "undefined" ? window.innerWidth : 1920}x
             {typeof window !== "undefined" ? window.innerHeight : 1080}
           </span>
         </div> */}
         <div>
           <span className="text-[#FF8C00] font-bold">Terminal</span>:{" "}
-          <span className="text-white">dotsatya-tty</span>
+          <span className="text-terminal-text">dotsatya-tty</span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">CPU</span>:{" "}
-          <span className="text-white">
+          <span className="text-terminal-text">
             dotsatya @ 100% Focus
           </span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Memory</span>:{" "}
-          <span className="text-white">Infinite Learning Cap</span>
+          <span className="text-terminal-text">Infinite Learning Cap</span>
         </div>
 
         {/* Color Palette Strip - Matching the reference image style */}
