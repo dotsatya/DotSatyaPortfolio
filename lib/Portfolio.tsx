@@ -419,7 +419,7 @@ export const Portfolio = {
                     .,d;.'
                 .Q.''
            ..'.                 .                    
-         '''                      ..
+         ''                       ..
          
 `
 };
