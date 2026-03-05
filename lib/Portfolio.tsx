@@ -404,7 +404,7 @@ export const Portfolio = {
    S_ASCII_ART : `
 .
                                    ...
-                               ,x;,;
+                               ,x;''
                           .O.           
                     ..cX              
                 ..'Wd                 
@@ -416,10 +416,11 @@ export const Portfolio = {
                              'o''j;y.
                            ..',c..
                         .';:..
-                  .,:ld;.'
-                .Q.
-           .:⁠-
-         '''
+                    .,d;.'
+                .Q.''
+           ..'l.                 .                    
+         '''                      ..
+         
 `
 };
 

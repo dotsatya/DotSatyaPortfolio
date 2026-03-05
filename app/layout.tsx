@@ -2,30 +2,12 @@ import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import {
   Inter,
-  Playfair_Display,
-  Cormorant_Garamond,
-  Instrument_Serif,
   IBM_Plex_Mono,
 } from "next/font/google";
-import "kursor/dist/kursor.css";
 import "./globals.css";
 import LayoutClient from "./layout-client";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
-const playfair = Playfair_Display({
-  subsets: ["latin"],
-  variable: "--font-playfair",
-});
-const cormorant = Cormorant_Garamond({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-cormorant",
-});
-const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  variable: "--font-instrument",
-});
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -63,26 +45,6 @@ export default function RootLayout({
       <body
         className={`${poppins.className} ${mono.className} ${inter.variable} font-sans antialiased`}
       >
-        {/* <ThemeProvider attribute="class" enableSystem defaultTheme="system">
-          <ReactLenis
-            root
-            options={{
-              lerp: 0.1,
-              duration: 1.2,
-              smoothWheel: true,
-              wheelMultiplier: 1,
-              touchMultiplier: 1.2,
-            }}
-          >
-            <Cursor />
-            <Toaster position="top-center" richColors />
-            <div className="min-h-screen flex flex-col bg-[#F5F5F5] dark:bg-[#080808]">
-              <Header />
-              <main className=" flex-1 ">{children}</main>
-              {isTerminal ? <TFooter /> : <Footer />}
-            </div>
-          </ReactLenis>
-        </ThemeProvider> */}
         <LayoutClient>{children}</LayoutClient>
       </body>
     </html>

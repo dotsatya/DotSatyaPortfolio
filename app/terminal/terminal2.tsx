@@ -3,6 +3,7 @@
 
 import React, { useState, useEffect, useRef, KeyboardEvent } from "react";
 import { Typewriter } from "@/components/terminal2/typewriter/Typewriter";
+import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import {
   Portfolio,
   ABOUT_TEXT,
@@ -14,6 +15,128 @@ import {
   FileSystemNode,
 } from "@/lib/Portfolio";
 import { generateAIResponse } from "@/services/geminiService";
+import { motion, AnimatePresence } from "framer-motion";
+
+const TerminalPreloader = ({ onComplete }: { onComplete: () => void }) => {
+  const [lines, setLines] = useState<string[]>([]);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const bootText = [
+    "Initializing system core...",
+    "Loading kernel modules...",
+    "> [OK] CPU Check verified",
+    "> [OK] Memory Integrity verified",
+    "Mounting file systems...",
+    "Starting network services...",
+    "Connecting to portfolio host...",
+    "Fetching user data...",
+    "Establishing secure connection...",
+    "Access granted.",
+  ];
+
+  useEffect(() => {
+    const timeouts: NodeJS.Timeout[] = [];
+    let delay = 0;
+
+    bootText.forEach((line, index) => {
+      delay += Math.random() * 300 + 150;
+      const timeout = setTimeout(() => {
+        setLines((prev) => [...prev, line]);
+
+        if (index === bootText.length - 1) {
+          const completeTimeout = setTimeout(onComplete, 800);
+          timeouts.push(completeTimeout);
+        }
+      }, delay);
+      timeouts.push(timeout);
+    });
+
+    return () => {
+      timeouts.forEach(clearTimeout);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  useEffect(() => {
+    if (scrollRef.current) {
+      scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
+    }
+  }, [lines]);
+
+  return (
+    <div
+      className="fixed inset-0 z-[60] flex items-center justify-center 
+  bg-[#F5F5F5] dark:bg-[#080808]
+  font-mono text-sm text-[#0f172a] dark:text-[#c9d1d9]"
+    >
+      <div
+        className="
+      w-[350px] rounded-lg border
+      border-[#d0d7de] dark:border-[#30363d]
+      bg-white dark:bg-[#0d1117]
+      shadow-2xl overflow-hidden
+    "
+      >
+        {/* Terminal Header */}
+        <div
+          className="
+        flex items-center justify-between border-b
+        border-[#d0d7de] dark:border-[#30363d]
+        px-4 py-2
+        bg-[#eaeaea] dark:bg-[#161b22]
+      "
+        >
+          <span className="text-xs text-[#57606a] dark:text-[#8b949e]">
+            bash.exe
+          </span>
+
+          <div className="flex gap-1.5">
+            <div className="h-2.5 w-2.5 rounded-full bg-[#ff5f56]" />
+            <div className="h-2.5 w-2.5 rounded-full bg-[#ffbd2e]" />
+            <div className="h-2.5 w-2.5 rounded-full bg-[#27c93f]" />
+          </div>
+        </div>
+
+        {/* Terminal Body */}
+        <div
+          ref={scrollRef}
+          className="
+        h-64 overflow-y-auto p-4 space-y-1 text-xs
+        scrollbar-hide
+        text-[#0f172a] dark:text-[#c9d1d9]
+      "
+        >
+          {lines.map((line, i) => (
+            <div key={i} className="flex gap-2">
+              <span className="text-[#16a34a] dark:text-[#4ade80] shrink-0">
+                $
+              </span>
+
+              <span
+                className={
+                  line.includes("[OK]")
+                    ? "text-[#16a34a] dark:text-[#4ade80]"
+                    : ""
+                }
+              >
+                {line}
+              </span>
+            </div>
+          ))}
+
+          {/* Cursor */}
+          <motion.div
+            animate={{ opacity: [1, 0] }}
+            transition={{ duration: 0.8, repeat: Infinity }}
+            className="mt-2 block text-[#16a34a] dark:text-[#4ade80]"
+          >
+            _
+          </motion.div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 type LineType = "input" | "output" | "system";
 interface TerminalLine {
@@ -125,7 +248,7 @@ const GitProgressBar: React.FC<{ onComplete: () => void }> = ({
           {emptyStr}]
         </span>
 
-        {/* Mobile Bar */}  
+        {/* Mobile Bar */}
         <span className="text-terminal-primary sm:hidden font-bold">
           [{filledMobile}
           {emptyMobile}]
@@ -143,6 +266,8 @@ const Terminal2: React.FC<TerminalProps> = ({
   externalCommand,
   onCommandComplete,
 }) => {
+  const [loading, setLoading] = useState(true);
+
   const [lines, setLines] = useState<TerminalLine[]>([]);
   const [inputValue, setInputValue] = useState("");
   const [suggestion, setSuggestion] = useState("");
@@ -151,6 +276,9 @@ const Terminal2: React.FC<TerminalProps> = ({
 
   const [currentPath, setCurrentPath] = useState<string[]>([]); // Empty array = root (~)
   const [cursorPos, setCursorPos] = useState(0);
+
+  const [commandHistory, setCommandHistory] = useState<string[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
 
   // Scroll Button State
   const [showScrollButton, setShowScrollButton] = useState(false);
@@ -167,7 +295,7 @@ const Terminal2: React.FC<TerminalProps> = ({
   const linkedinHandle = getHandleFromUrl(SOCIALS.linkedin) || profileUser;
   const twitterHandle = getHandleFromUrl(SOCIALS.twitter) || profileUser;
   const topSkills = SKILLS.flatMap((s) => s.skills)
-    .slice(0, )
+    .slice(0, 5)
     .join(" • ");
 
   // Ref to track the current command execution to handle cancellations
@@ -210,11 +338,13 @@ const Terminal2: React.FC<TerminalProps> = ({
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Projects</span>:{" "}
-          <span className="text-terminal-text">{PROJECTS.length} Active Packages</span>
+          <span className="text-terminal-text">
+            {PROJECTS.length} Active Packages
+          </span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Shell</span>:{" "}
-          <span className="text-terminal-text">dotsatyash</span>
+          <span className="text-terminal-text">dotsatya-sh</span>
         </div>
         {/* <div>
           <span className="text-[#FF8C00] font-bold">Resolution</span>:{" "}
@@ -229,9 +359,7 @@ const Terminal2: React.FC<TerminalProps> = ({
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">CPU</span>:{" "}
-          <span className="text-terminal-text">
-            dotsatya @ 100% Focus
-          </span>
+          <span className="text-terminal-text">dotsatya @ 100% Focus</span>
         </div>
         <div>
           <span className="text-[#FF8C00] font-bold">Memory</span>:{" "}
@@ -419,6 +547,11 @@ const Terminal2: React.FC<TerminalProps> = ({
 
     // Standard Command Processing
     const rawTrimmed = rawInput.trim();
+
+    if (rawTrimmed) {
+      setCommandHistory((prev) => [rawTrimmed, ...prev]);
+    }
+    setHistoryIndex(-1);
 
     // Determine color for the command in the output log (History aesthetic)
     const cmdFirstWord = rawTrimmed.split(" ")[0].toLowerCase();
@@ -1060,6 +1193,26 @@ const Terminal2: React.FC<TerminalProps> = ({
     if (e.key === "Enter") {
       e.preventDefault();
       handleCommand(inputValue);
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      if (commandHistory.length > 0) {
+        const nextIndex = Math.min(historyIndex + 1, commandHistory.length - 1);
+        setHistoryIndex(nextIndex);
+        setInputValue(commandHistory[nextIndex]);
+        setCursorPos(commandHistory[nextIndex].length);
+      }
+    } else if (e.key === "ArrowDown") {
+      e.preventDefault();
+      if (historyIndex > 0) {
+        const nextIndex = historyIndex - 1;
+        setHistoryIndex(nextIndex);
+        setInputValue(commandHistory[nextIndex]);
+        setCursorPos(commandHistory[nextIndex].length);
+      } else if (historyIndex === 0) {
+        setHistoryIndex(-1);
+        setInputValue("");
+        setCursorPos(0);
+      }
     } else if (e.ctrlKey && e.key === "c") {
       e.preventDefault();
 
@@ -1117,31 +1270,36 @@ const Terminal2: React.FC<TerminalProps> = ({
 
   return (
     <>
-      <div
-        className="h-full flex flex-col font-mono text-base relative"
-        onClick={focusInput}
-      >
-        <div className="flex-none p-3 border-b border-terminal-dim z-20 sticky top-0 flex items-center gap-2">
-          <button
-            onClick={() => scrollShortcuts("left")}
-            className="p-2 text-terminal-text-dim hover:text-terminal-primary transition-colors focus:outline-none select-none flex-shrink-0"
-          >
-            ◀
-          </button>
+      <AnimatePresence>
+        {loading && <TerminalPreloader onComplete={() => setLoading(false)} />}
+      </AnimatePresence>
 
-          <div
-            ref={shortcutsRef}
-            className="flex-1 overflow-x-auto scrollbar-hide scroll-smooth"
-          >
-            <div className="flex items-center gap-2 px-1">
-              {COMMANDS.map((cmd) => (
-                <button
-                  key={cmd}
-                  onClick={() =>
-                    !isProcessing && !isTyping && handleCommand(cmd)
-                  }
-                  disabled={isProcessing || isTyping}
-                  className={`
+      {!loading && (
+        <div
+          className="h-full flex flex-col font-mono text-base relative"
+          onClick={focusInput}
+        >
+          <div className="flex-none p-3 border-b border-terminal-dim z-20 sticky top-0 flex items-center gap-2">
+            <button
+              onClick={() => scrollShortcuts("left")}
+              className="p-2 text-terminal-text-dim hover:text-terminal-primary transition-colors focus:outline-none select-none flex-shrink-0"
+            >
+              <GrFormPrevious />
+            </button>
+
+            <div
+              ref={shortcutsRef}
+              className="flex-1 overflow-x-auto scrollbar-hide scroll-smooth"
+            >
+              <div className="flex items-center gap-2 px-1">
+                {COMMANDS.map((cmd) => (
+                  <button
+                    key={cmd}
+                    onClick={() =>
+                      !isProcessing && !isTyping && handleCommand(cmd)
+                    }
+                    disabled={isProcessing || isTyping}
+                    className={`
                            px-3 py-1.5 
                            border border-terminal-dim 
                            rounded
@@ -1151,149 +1309,150 @@ const Terminal2: React.FC<TerminalProps> = ({
                            transition-all duration-200 
                            whitespace-nowrap select-none
                         `}
-                >
-                  {cmd}
-                </button>
-              ))}
+                  >
+                    {cmd}
+                  </button>
+                ))}
+              </div>
             </div>
+
+            <button
+              onClick={() => scrollShortcuts("right")}
+              className="p-2 text-terminal-text-dim hover:text-terminal-primary transition-colors focus:outline-none select-none flex-shrink-0"
+            >
+              <GrFormNext />
+            </button>
           </div>
 
-          <button
-            onClick={() => scrollShortcuts("right")}
-            className="p-2 text-terminal-text-dim hover:text-terminal-primary transition-colors focus:outline-none select-none flex-shrink-0"
+          <div
+            ref={scrollRef}
+            onScroll={handleScroll}
+            className="flex-grow overflow-y-auto p-4 sm:p-6 space-y-2 pb-48 scroll-smooth custom-scrollbar"
           >
-            ▶
-          </button>
-        </div>
+            {lines.map((line, idx) => {
+              const isLast = idx === lines.length - 1;
 
-        <div
-          ref={scrollRef}
-          onScroll={handleScroll}
-          className="flex-grow overflow-y-auto p-4 sm:p-6 space-y-2 pb-48 scroll-smooth custom-scrollbar"
-        >
-          {lines.map((line, idx) => {
-            const isLast = idx === lines.length - 1;
+              return (
+                <div key={idx}>
+                  {line.type === "input" ? (
+                    line.content
+                  ) : (isLast || line.isStopped) && line.type !== "system" ? (
+                    <Typewriter
+                      onComplete={() => setIsTyping(false)}
+                      onUpdate={autoScrollTerminal}
+                      isStopped={line.isStopped}
+                    >
+                      {line.content}
+                    </Typewriter>
+                  ) : isLast && line.type === "system" ? (
+                    <Typewriter
+                      onComplete={() => setIsTyping(false)}
+                      onUpdate={autoScrollTerminal}
+                      speed={1}
+                      step={5}
+                    >
+                      {line.content}
+                    </Typewriter>
+                  ) : (
+                    line.content
+                  )}
+                </div>
+              );
+            })}
 
-            return (
-              <div key={idx}>
-                {line.type === "input" ? (
-                  line.content
-                ) : (isLast || line.isStopped) && line.type !== "system" ? (
-                  <Typewriter
-                    onComplete={() => setIsTyping(false)}
-                    onUpdate={autoScrollTerminal}
-                    isStopped={line.isStopped}
-                  >
-                    {line.content}
-                  </Typewriter>
-                ) : isLast && line.type === "system" ? (
-                  <Typewriter
-                    onComplete={() => setIsTyping(false)}
-                    onUpdate={autoScrollTerminal}
-                    speed={1}
-                    step={5}
-                  >
-                    {line.content}
-                  </Typewriter>
-                ) : (
-                  line.content
-                )}
+            {isProcessing && (
+              <div className="text-terminal-text-dim animate-pulse mt-2 text-sm">
+                ... thinking ...
               </div>
-            );
-          })}
+            )}
 
-          {isProcessing && (
-            <div className="text-terminal-text-dim animate-pulse mt-2 text-sm">
-              ... thinking ...
-            </div>
-          )}
+            {!isProcessing && !isTyping && (
+              <div className="mt-4 text-terminal-blue">
+                <div className="flex items-center gap-0">
+                  <span className="text-terminal-cyan">┌──(</span>
+                  <span className="text-terminal-blue font-bold">
+                    {promptIdentity}
+                  </span>
+                  <span className="text-terminal-cyan">)-[</span>
+                  <span className="text-terminal-text font-bold">
+                    {getPathString()}
+                  </span>
+                  <span className="text-terminal-cyan">]</span>
+                </div>
 
-          {!isProcessing && !isTyping && (
-            <div className="mt-4 text-terminal-blue">
-              <div className="flex items-center gap-0">
-                <span className="text-terminal-cyan">┌──(</span>
-                <span className="text-terminal-blue font-bold">
-                  {promptIdentity}
-                </span>
-                <span className="text-terminal-cyan">)-[</span>
-                <span className="text-terminal-text font-bold">
-                  {getPathString()}
-                </span>
-                <span className="text-terminal-cyan">]</span>
-              </div>
+                <div className="flex items-start group relative">
+                  <span className="mr-2 whitespace-nowrap">
+                    <span className="text-terminal-cyan">└─$</span>
+                  </span>
 
-              <div className="flex items-start group relative">
-                <span className="mr-2 whitespace-nowrap">
-                  <span className="text-terminal-cyan">└─$</span>
-                </span>
+                  <div className="relative flex-grow">
+                    <div
+                      className={`relative z-0 whitespace-pre-wrap break-all font-normal text-base min-h-[1.5rem] ${isTypingKnownCommand ? "text-terminal-blue font-bold" : "text-terminal-text"}`}
+                      style={{ wordBreak: "break-word" }}
+                    >
+                      <span>{inputValue.slice(0, cursorPos)}</span>
+                      <span className="inline-block bg-green-500 text-black cursor-blink min-w-[10px] h-[1.2em] align-text-bottom leading-none">
+                        {inputValue[cursorPos] ?? "\u00A0"}
+                      </span>
+                      <span>{inputValue.slice(cursorPos + 1)}</span>
 
-                <div className="relative flex-grow">
-                  <div
-                    className={`relative z-0 whitespace-pre-wrap break-all font-normal text-base min-h-[1.5rem] ${isTypingKnownCommand ? "text-terminal-blue font-bold" : "text-terminal-text"}`}
-                    style={{ wordBreak: "break-word" }}
-                  >
-                    <span>{inputValue.slice(0, cursorPos)}</span>
-                    <span className="inline-block bg-green-500 text-black cursor-blink min-w-[10px] h-[1.2em] align-text-bottom leading-none">
-                      {inputValue[cursorPos] ?? "\u00A0"}
-                    </span>
-                    <span>{inputValue.slice(cursorPos + 1)}</span>
+                      {suggestion &&
+                        suggestion
+                          .toLowerCase()
+                          .startsWith(inputValue.toLowerCase()) && (
+                          <span className="text-terminal-text-dim font-normal">
+                            {suggestion.slice(inputValue.length)}
+                          </span>
+                        )}
+                    </div>
 
-                    {suggestion &&
-                      suggestion
-                        .toLowerCase()
-                        .startsWith(inputValue.toLowerCase()) && (
-                        <span className="text-terminal-text-dim font-normal">
-                          {suggestion.slice(inputValue.length)}
-                        </span>
-                      )}
+                    <textarea
+                      ref={inputRef}
+                      value={inputValue}
+                      onChange={handleInputChange}
+                      onKeyDown={handleKeyDown}
+                      onSelect={handleSelect}
+                      className="absolute inset-0 z-10 w-full h-full bg-transparent border-none outline-none text-transparent resize-none overflow-hidden font-inherit p-0 m-0"
+                      autoFocus
+                      autoComplete="off"
+                      spellCheck="false"
+                      rows={1}
+                    />
                   </div>
-
-                  <textarea
-                    ref={inputRef}
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    onKeyDown={handleKeyDown}
-                    onSelect={handleSelect}
-                    className="absolute inset-0 z-10 w-full h-full bg-transparent border-none outline-none text-transparent resize-none overflow-hidden font-inherit p-0 m-0"
-                    autoFocus
-                    autoComplete="off"
-                    spellCheck="false"
-                    rows={1}
-                  />
                 </div>
               </div>
-            </div>
-          )}
+            )}
 
-          <div className="h-16 shrink-0 w-full"></div>
-        </div>
+            <div className="h-16 shrink-0 w-full"></div>
+          </div>
 
-        {showScrollButton && (
-          <button
-            onClick={() => {
-              scrollToBottom();
-              inputRef.current?.focus();
-            }}
-            className="absolute bottom-20 right-6 z-40 p-2 bg-red-500 text-terminal-primary rounded-full hover:bg-terminal-dim hover:text-white transition-all border border-terminal-primary/30 shadow-[0_0_15px_rgba(74,246,38,0.2)] backdrop-blur-sm"
-            title="Scroll to Bottom"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
+          {showScrollButton && (
+            <button
+              onClick={() => {
+                scrollToBottom();
+                inputRef.current?.focus();
+              }}
+              className="absolute bottom-20 right-6 z-40 p-2 bg-red-500 text-terminal-primary rounded-full hover:bg-terminal-dim hover:text-white transition-all border border-terminal-primary/30 shadow-[0_0_15px_rgba(74,246,38,0.2)] backdrop-blur-sm"
+              title="Scroll to Bottom"
             >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M19 14l-7 7m0 0l-7-7m7 7V3"
-              />
-            </svg>
-          </button>
-        )}
-      </div>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                />
+              </svg>
+            </button>
+          )}
+        </div>
+      )}
     </>
   );
 };
