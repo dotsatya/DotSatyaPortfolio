@@ -418,7 +418,7 @@ export const Portfolio = {
                         .';:..
                     .,d;.'
                 .Q.''
-           ..'l.                 .                    
+           ..'.                 .                    
          '''                      ..
          
 `
