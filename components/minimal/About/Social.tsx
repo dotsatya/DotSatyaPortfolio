@@ -5,7 +5,7 @@ import { Github, Linkedin } from "lucide-react";
 import { BsBehance } from "react-icons/bs";
 import { SiGmail } from "react-icons/si";
 
-const Social = () => {
+const  Social = () => {
   return (
     <div className="flex flex-col gap-6 top-1/2 justify-center items-center">
       <a

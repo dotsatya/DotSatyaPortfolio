@@ -75,7 +75,7 @@ const TechToolls = () => {
   return (
     <>
       {Portfolio.skills.length > 0 && (
-        <section id="skills" className="pt-30  overflow-hidden">
+        <section id="skills" className="pt-16 sm:pt-30  overflow-hidden">
           {" "}
 
           <motion.div

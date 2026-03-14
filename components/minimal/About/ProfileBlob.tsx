@@ -8,14 +8,13 @@ type ProfileBlobProps = {
   };
 };
 
-
-
 export default function ProfileBlob({ profilePic }: ProfileBlobProps) {
   const controls = useAnimation();
 
   return (
     <motion.div
-      className="w-75 h-75 bg-cover bg-center justify-self-center order-1
+      className="w-55 h-55 sm:w-60 sm:h-60 md:w-72 md:h-72 lg:w-80 lg:h-80 
+      bg-cover bg-center justify-self-center object-cover
         shadow-[inset_0_0_0_8px_rgba(255,255,255,0.3)]"
       style={{ backgroundImage: `url(${profilePic.src})` }}
       animate={{

@@ -90,9 +90,8 @@ const ContactMe = () => {
       />
       {/* Main Grid */}
       <div
-        className="container mx-auto grid grid-cols-2 gap-x-16 
-                  max-[992px]:gap-x-6
-                  max-[768px]:grid-cols-1 max-[768px]:gap-y-8"
+        className="container mx-auto grid grid-cols-2 gap-x-16 overflow-x-hidden
+                  max-[992px]:gap-x-6 max-[768px]:grid-cols-1 max-[768px]:gap-y-8"
       >
         {/* Left Content */}
         <motion.div

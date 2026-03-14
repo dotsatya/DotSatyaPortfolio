@@ -91,7 +91,7 @@ useGSAP(() => {
         <div
           ref={headerRef}
           className="flex flex-col justify-center gap-2 
-          pt-16
+          sm:pt-6 md:pt-16
           sm:gap-4"
         >
           <p

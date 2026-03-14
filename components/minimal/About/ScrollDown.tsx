@@ -4,7 +4,7 @@ import {  ArrowDown } from "lucide-react";
 
 const ScrollDown= () => {
   return (
-    <div className="ml-30 mt-10">
+    <div className="ml-30 mt-10 hidden sm:block">
       <a
         href="#about"
         className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 transition-colors"

@@ -10,7 +10,7 @@ const Data = () => {
       <h1 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-gray-100 leading-tight">
         Hello, Myself
         <br />
-        <span className="inline-flex items-center  uppercase">
+        <span className="items-center  uppercase">
           {Portfolio.fullName}
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -89,29 +89,35 @@ const Data = () => {
         {Portfolio.bio}
       </p>
       <div className="flex flex-wrap items-center gap-4 mt-8">
-        {/* CTA Button */}
-        <a
-          href="#contact"
-          className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-4xl font-medium 
-      bg-gray-900 text-white dark:text-white dark:bg-[#4f4f4f]
-      hover:scale-105 transition-transform duration-200"
-        >
-          Say Hello
-          <FiSend />
-        </a>
+  {/* CTA Button */}
+  <a
+    href="#contact"
+    className="inline-flex items-center justify-center gap-2 
+    px-5 py-2.5 md:px-8 md:py-3 
+    text-sm md:text-base
+    rounded-4xl font-medium 
+    bg-gray-900 text-white dark:text-white dark:bg-[#4f4f4f]
+    hover:scale-105 transition-transform duration-200"
+  >
+    Say Hello
+    <FiSend />
+  </a>
 
-        {/* Download CV Button */}
-        <a
-          href={Portfolio.socialLinks.resume}
-          download
-          className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-tr-2xl rounded-sm font-medium 
-       bg-gray-900 text-white dark:text-white dark:bg-[#4f4f4f]
-      hover:scale-105 transition-transform duration-200"
-        >
-          Download CV
-          <FiDownloadCloud />
-        </a>
-      </div>
+  {/* Download CV Button */}
+  <a
+    href={Portfolio.socialLinks.resume}
+    download
+    className="inline-flex items-center justify-center gap-2 
+    px-4 py-2.5 md:px-6 md:py-3 
+    text-sm md:text-base
+    rounded-tr-2xl rounded-sm font-medium 
+    bg-gray-900 text-white dark:text-white dark:bg-[#4f4f4f]
+    hover:scale-105 transition-transform duration-200"
+  >
+    Download CV
+    <FiDownloadCloud />
+  </a>
+</div>
     </div>
   );
 };

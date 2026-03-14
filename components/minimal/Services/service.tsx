@@ -18,6 +18,7 @@ const Services: React.FC = () => {
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
@@ -44,7 +45,7 @@ const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="mx-auto  pt-20 text-black dark:text-white  "
+      className="mx-auto pt-6 md:pt-20 text-black dark:text-white  "
     >
       <AnimatedHeaderSection
         subTitle={"Behind the scene, Beyond the screen"}

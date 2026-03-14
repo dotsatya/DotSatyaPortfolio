@@ -9,7 +9,7 @@ import ProfileBlob from "./ProfileBlob";
 
 const About = () => {
   return (
-    <section id="about" className="mx-auto pt-20 text-black dark:text-white ">
+    <section id="about" className="mx-auto pt-6 md:pt-12 lg:pt-20 text-black dark:text-white ">
       <motion.div
         initial={{
           opacity: 0,
@@ -31,16 +31,19 @@ const About = () => {
         }}
       >
         <div className="flex flex-col gap-4">
-          <div className="grid grid-cols-[0.5fr-auto] gap-10   items-center lg:grid-cols-[120px_1fr_1fr] lg:gap-5 md:gap-14">
-            <div className="order-1 -top-10">
+          <div className="grid grid-cols-[50px_1fr] md:grid-cols-[100px_1fr] gap-6 items-center lg:grid-cols-[120px_1fr_1fr] lg:gap-5 md:gap-14">
+            <div className="mb-8 sm:mb-0">
               <Social />
             </div>
 
-            <div className="order-2 lg:order-3 justify-self-start lg:justify-self-auto">
+            <div className="w-full  h-full  lg:hidden mb-4 sm:mb-0">
               <ProfileBlob profilePic={profilePic} />
             </div>
-            <div className="col-span-2 lg:col-span-1 order-3 lg:order-2">
+            <div className="col-span-2 lg:col-span-1 ">
               <Data />
+            </div>
+            <div className="w-full  h-full hidden lg:block">
+              <ProfileBlob profilePic={profilePic} />
             </div>
           </div>
           <ScrollDown />
