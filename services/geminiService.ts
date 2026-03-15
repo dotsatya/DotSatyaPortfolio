@@ -75,7 +75,8 @@ export const generateAIResponse = async (prompt: string): Promise<string> => {
 
   if (!apiKey) {
     throw new Error(
-      "NEXT_PUBLIC_GEMINI_API_KEY is missing in environment variables",
+      // "NEXT_PUBLIC_GEMINI_API_KEY is missing in environment variables",
+      "Use proper commands to access services. Refer to use 'help' command for available commands.",
     );
   }
 
