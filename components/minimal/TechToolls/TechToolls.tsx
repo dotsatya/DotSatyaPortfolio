@@ -1,6 +1,6 @@
 "use client";
 import { motion } from "framer-motion";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import dynamic from "next/dynamic";
 import React, { ComponentType } from "react";
 import { Github, Code2, Database, FileCode, FileJson } from "lucide-react";

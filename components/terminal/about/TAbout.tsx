@@ -1,6 +1,6 @@
 import { TypeAnimation } from "react-type-animation";
 import { CommandPrompt } from "../CommandPrompt";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import {
   Github,
   Linkedin,

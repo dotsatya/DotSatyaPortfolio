@@ -1,6 +1,6 @@
 "use client";
 
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { Github, Linkedin } from "lucide-react";
 import { BsBehance } from "react-icons/bs";
 import { SiGmail } from "react-icons/si";

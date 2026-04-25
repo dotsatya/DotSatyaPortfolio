@@ -3,7 +3,7 @@ import { useRef, useState, useEffect } from "react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 import { ImArrowUpRight2 } from "react-icons/im";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import Image from "next/image";
 import { Github } from "lucide-react";
 import { createPortal } from "react-dom";

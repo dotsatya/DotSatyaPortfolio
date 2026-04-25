@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { motion } from "framer-motion";
 import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";
 

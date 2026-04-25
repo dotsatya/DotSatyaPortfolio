@@ -1,4 +1,4 @@
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { CommandPrompt } from "../CommandPrompt";
 import { motion } from "framer-motion";
 import { ExternalLink, Github } from "lucide-react";

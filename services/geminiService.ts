@@ -5,7 +5,7 @@ import {
   Portfolio,
   PROJECTS,
   SKILLS,
-} from "../lib/Portfolio";
+} from "../lib/AllDetails";
 
 const SYSTEM_INSTRUCTION = `
 You are Satya Sundar Dey (${Portfolio.userName}), a Software Engineer and web developer.

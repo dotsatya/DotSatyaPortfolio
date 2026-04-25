@@ -248,11 +248,11 @@ export const Portfolio = {
       title: "Satya // Portfolio",
       description:
         "My personal portfolio showcasing projects, skills, and contact functionality.",
-      tags: ["React", "JavaScript", "EmailJS", "CSS Modules"],
+      tags: ["Next.js", "TypeScript", "EmailJS", "CSS Modules", "Tailwind CSS"],
       featured: true,
       imageUrl: Image7,
-      githubUrl: "https://github.com/dotsatya/Formal-Portfolio",
-      liveUrl: "https://satyasundardey-portfolio.vercel.app/",
+      githubUrl: "https://github.com/dotsatya/DotSatyaPortfolio",
+      liveUrl: "https://dotsatya.vercel.app/",
     },
 
     {

@@ -1,4 +1,4 @@
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 

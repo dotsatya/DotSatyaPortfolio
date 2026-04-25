@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { CommandPrompt } from "../CommandPrompt";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";

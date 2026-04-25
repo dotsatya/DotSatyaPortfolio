@@ -1,5 +1,5 @@
 "use client";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { FiDownloadCloud, FiSend } from "react-icons/fi";
 import { TypeAnimation } from "react-type-animation";
 

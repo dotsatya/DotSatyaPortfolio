@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { CommandPrompt } from "../CommandPrompt";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 import { cn } from "@/lib/utils";

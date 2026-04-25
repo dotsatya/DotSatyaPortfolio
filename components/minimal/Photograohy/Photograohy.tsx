@@ -1,6 +1,6 @@
 "use client";
 import PhotoCard from "./PhotoCard";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { motion, easeOut } from "framer-motion";
 
 const containerVariants = {

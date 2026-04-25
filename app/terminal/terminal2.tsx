@@ -13,7 +13,7 @@ import {
   EXPERIENCE,
   FILE_SYSTEM,
   FileSystemNode,
-} from "@/lib/Portfolio";
+} from "@/lib/AllDetails";
 import { generateAIResponse } from "@/services/geminiService";
 import { motion, AnimatePresence } from "framer-motion";
 

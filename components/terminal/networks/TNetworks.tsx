@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Github, Linkedin, Mail, Globe } from "lucide-react";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { CommandPrompt } from "../CommandPrompt";
 
 const TNetworks = () => {

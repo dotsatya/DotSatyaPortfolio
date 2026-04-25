@@ -1,5 +1,5 @@
 "use client";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { motion, easeOut } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import Works from "./Works";

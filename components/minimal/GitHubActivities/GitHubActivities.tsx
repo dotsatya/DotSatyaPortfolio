@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useMemo, useState } from "react";
 import { motion } from "framer-motion";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { Github } from "lucide-react";
 import { ActivityCalendar } from "react-activity-calendar";
 import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";

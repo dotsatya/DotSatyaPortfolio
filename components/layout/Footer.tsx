@@ -1,5 +1,5 @@
 "use client";
-import { Portfolio } from "@/lib/Portfolio";
+import { Portfolio } from "@/lib/AllDetails";
 import { FaXTwitter } from "react-icons/fa6";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import AgeTimer from "@/lib/AgeTimer/AgeTimer";
