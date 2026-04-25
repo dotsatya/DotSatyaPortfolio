@@ -32,7 +32,7 @@ const TFooter = () => {
 
       <div className="w-[98%] mx-auto h-8 flex items-center justify-between px-4 text-sm select-none">
         <span className="text-terminal-green font-bold  hidden md:inline text-xs">
-          dotsatya.OS v2.5
+          dotsatya.OS v2.8
         </span>
         
         <span className="text-xs font-light text-gray-400text text-center">
