@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
-import {
-  Inter,
-  IBM_Plex_Mono,
-} from "next/font/google";
+import { Inter, IBM_Plex_Mono } from "next/font/google";
 import "./globals.css";
 import LayoutClient from "./layout-client";
 
@@ -25,15 +22,15 @@ export const metadata: Metadata = {
     "A developer and designer from India working with web development and UI/UX design.",
 };
 
-  /*
+/*
   npm install next-themes
   npm install react-icons lucide-react
   npx shadcn@latest init
   npx shadcn@latest add button
   npx shadcn@latest add skeleton
   */
-  // npm install @radix-ui/react-slot
-  // npm install clsx tailwind-merge
+// npm install @radix-ui/react-slot
+// npm install clsx tailwind-merge
 
 export default function RootLayout({
   children,
@@ -45,7 +42,7 @@ export default function RootLayout({
       <body
         className={`${poppins.className} ${mono.className} ${inter.variable} font-sans antialiased`}
       >
-        <LayoutClient>{children}</LayoutClient>
+        {children}
       </body>
     </html>
   );

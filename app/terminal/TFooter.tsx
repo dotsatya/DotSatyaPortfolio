@@ -27,7 +27,7 @@ const TFooter = () => {
   }, []);
 
   return (
-    <footer id="footer" className="relative py-2 px-6">
+    <footer id="footer" className="fixed bottom-0 left-0 w-full py-2 px-6 bg-[#F5F5F5] dark:bg-[#080808]">
       <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-gray-400 to-transparent opacity-50"></div>
 
       <div className="w-[98%] mx-auto h-8 flex items-center justify-between px-4 text-sm select-none">
