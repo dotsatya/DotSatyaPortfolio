@@ -342,3 +342,14 @@ div[class*='kursor'].kursor--4.kursor--down + .kursorChild {
 @utility animate-slide-down {
   animation: slideInDown 0.2s ease-out forwards;
 }
+
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE/Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+

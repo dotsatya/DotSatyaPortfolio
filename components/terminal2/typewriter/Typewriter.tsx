@@ -10,6 +10,23 @@ interface TypewriterProps {
   isStopped?: boolean;
 }
 
+const getTextLength = (node: React.ReactNode): number => {
+  if (typeof node === 'string') return node.length;
+  if (typeof node === 'number') return node.toString().length;
+  if (node === null || typeof node === 'boolean' || typeof node === 'undefined') return 0;
+  
+  if (React.isValidElement(node)) {
+    const props = node.props as { children?: React.ReactNode };
+    return props.children ? getTextLength(props.children) : 0;
+  }
+  
+  if (Array.isArray(node)) {
+    return node.reduce((acc, child) => acc + getTextLength(child), 0);
+  }
+  
+  return 0;
+};
+
 export const Typewriter: React.FC<TypewriterProps> = ({ 
   children, 
   speed = 5, 
@@ -20,23 +37,6 @@ export const Typewriter: React.FC<TypewriterProps> = ({
 }) => {
   const [visibleCount, setVisibleCount] = useState(0);
   const completedRef = useRef(false);
-  
-  const getTextLength = (node: React.ReactNode): number => {
-    if (typeof node === 'string') return node.length;
-    if (typeof node === 'number') return node.toString().length;
-    if (node === null || typeof node === 'boolean' || typeof node === 'undefined') return 0;
-    
-    if (React.isValidElement(node)) {
-      const props = node.props as { children?: React.ReactNode };
-      return props.children ? getTextLength(props.children) : 0;
-    }
-    
-    if (Array.isArray(node)) {
-      return node.reduce((acc, child) => acc + getTextLength(child), 0);
-    }
-    
-    return 0;
-  };
 
   const totalLength = useMemo(() => getTextLength(children), [children]);
 
@@ -104,12 +104,24 @@ export const Typewriter: React.FC<TypewriterProps> = ({
       }
 
       const children = React.Children.toArray(props.children);
-      const newChildren = children.map(child => renderChildren(child, counter));
+      const newChildren = children.map((child, idx) => {
+        const processed = renderChildren(child, counter);
+        if (React.isValidElement(processed)) {
+          return React.cloneElement(processed, { key: processed.key || `tw-child-${idx}` });
+        }
+        return processed;
+      });
       return React.cloneElement(node, { ...props, children: newChildren });
     }
 
     if (Array.isArray(node)) {
-      return node.map(child => renderChildren(child, counter));
+      return node.map((child, idx) => {
+        const rendered = renderChildren(child, counter);
+        if (React.isValidElement(rendered)) {
+          return React.cloneElement(rendered, { key: rendered.key || `tw-arr-${idx}` });
+        }
+        return rendered;
+      });
     }
 
     return node;
