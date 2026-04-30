@@ -121,7 +121,8 @@ const Header: React.FC = () => {
                 {currentMode === "terminal" ? (
                   <>
                     <span>{">_"}</span>
-                    <span>bash — dotsatya</span>
+                    <span className="hidden sm:block">bash — </span>
+                    <span> dotsatya</span>
                   </>
                 ) : (
                   "Dot Satya"

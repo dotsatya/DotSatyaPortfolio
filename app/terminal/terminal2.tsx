@@ -139,7 +139,7 @@ const Terminal2: React.FC<TerminalProps> = ({
       {
         type: "system",
         content: (
-          <div className="mb-8 font-mono text-base">
+          <div className="mb-8 font-mono text-sm">
             <div className="flex flex-col mb-4">
               <div className="flex items-center gap-0">
                 <span className="text-terminal-cyan">┌──(</span>
@@ -450,7 +450,7 @@ const Terminal2: React.FC<TerminalProps> = ({
     const inputLine: TerminalLine = {
       type: "input",
       content: (
-        <div className="mt-2 group">
+        <div className="mt-2 group text-sm">
           <div className="flex items-center gap-0">
             <span className="text-terminal-cyan">┌──(</span>
             <span className="text-terminal-blue font-bold">
@@ -891,7 +891,7 @@ const Terminal2: React.FC<TerminalProps> = ({
       const cancelledLine: TerminalLine = {
         type: "input",
         content: (
-          <div className="mt-2 group">
+          <div className="mt-2 group text-sm">
             <div className="flex items-center gap-0">
               <span className="text-terminal-cyan">┌──(</span>
               <span className="text-terminal-blue font-bold">
@@ -978,7 +978,7 @@ const Terminal2: React.FC<TerminalProps> = ({
                            px-3 py-1.5 
                            border border-terminal-dim 
                            rounded
-                           text-sm font-mono text-terminal-text
+                           text-xs md:text-sm font-mono text-terminal-text
                            hover:border-terminal-text hover:bg-white/10 hover:text-white
                            disabled:opacity-50 disabled:cursor-not-allowed
                            transition-all duration-200 
@@ -1036,13 +1036,13 @@ const Terminal2: React.FC<TerminalProps> = ({
             })}
 
             {isProcessing && !isPinging && (
-              <div className="text-terminal-text-dim animate-pulse mt-2 text-sm">
+              <div className="text-terminal-text-dim animate-pulse mt-2 text-xs sm:text-sm">
                 ... thinking ...
               </div>
             )}
 
             {!isProcessing && !isTyping && (
-              <div className="mt-4 text-terminal-blue">
+              <div className="mt-4 text-terminal-blue text-sm">
                 {interactiveMode === "none" && (
                   <div className="flex items-center gap-0">
                     <span className="text-terminal-cyan">┌──(</span>
