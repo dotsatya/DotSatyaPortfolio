@@ -97,6 +97,7 @@ const Terminal2: React.FC<TerminalProps> = ({
   const [suggestion, setSuggestion] = useState("");
   const [isProcessing, setIsProcessing] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [isPinging, setIsPinging] = useState(false);
 
   const [currentPath, setCurrentPath] = useState<string[]>([]); // Empty array = root (~)
   const [previousPath, setPreviousPath] = useState<string[]>([]);
@@ -312,6 +313,7 @@ const Terminal2: React.FC<TerminalProps> = ({
           commandIdRef.current++;
           setIsProcessing(false);
           setIsTyping(false);
+          setIsPinging(false);
 
           setLines((prev) => {
             const newLines = [...prev];
@@ -393,39 +395,27 @@ const Terminal2: React.FC<TerminalProps> = ({
       if (pingMeStep === "name") {
         setPingMeForm((f) => ({ ...f, name: rawTrimmed }));
         setPingMeStep("email");
-        setLines((prev) => [
-          ...prev,
-          {
-            type: "system",
-            content: (
-              <div className="mt-2">
-                <span className="text-terminal-cyan mr-2">?</span>
-                <span className="text-terminal-blue font-bold">
-                  input_email:
-                </span>
-              </div>
-            ),
-          },
-        ]);
       } else if (pingMeStep === "email") {
-        setPingMeForm((f) => ({ ...f, email: rawTrimmed }));
-        setPingMeStep("message");
-        setLines((prev) => [
-          ...prev,
-          {
-            type: "system",
-            content: (
-              <div className="mt-2">
-                <span className="text-terminal-cyan mr-2">?</span>
-                <span className="text-terminal-blue font-bold">
-                  type_message_here:
-                </span>
-              </div>
-            ),
-          },
-        ]);
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(rawTrimmed)) {
+          setLines((prev) => [
+            ...prev,
+            {
+              type: "system",
+              content: (
+                <div className="mt-2 text-red-500 mb-2">
+                  Invalid email address. Please enter a valid email containing &apos;@&apos; and a domain.
+                </div>
+              ),
+            },
+          ]);
+        } else {
+          setPingMeForm((f) => ({ ...f, email: rawTrimmed }));
+          setPingMeStep("message");
+        }
       } else if (pingMeStep === "message") {
         const finalForm = { ...pingMeForm, message: rawTrimmed };
+        setIsPinging(true);
         setIsProcessing(true);
         setLines((prev) => [
           ...prev,
@@ -438,6 +428,7 @@ const Terminal2: React.FC<TerminalProps> = ({
                 message={finalForm.message}
                 onComplete={() => {
                   setIsProcessing(false);
+                  setIsPinging(false);
                   setIsTyping(true);
                 }}
               />
@@ -662,13 +653,9 @@ const Terminal2: React.FC<TerminalProps> = ({
         setInteractiveMode("ping_me");
         setPingMeStep("name");
         setPingMeForm({ name: "", email: "", message: "" });
-        output = (
-          <div className="mt-2">
-            <span className="text-terminal-cyan mr-2">?</span>
-            <span className="text-terminal-blue font-bold">enter_name:</span>
-          </div>
-        );
-        break;
+        setIsProcessing(false);
+        setIsTyping(false);
+        return;
 
       case "dotsatya":
         textOutput = "Profile Information";
@@ -1048,9 +1035,9 @@ const Terminal2: React.FC<TerminalProps> = ({
               );
             })}
 
-            {isProcessing && (
+            {isProcessing && !isPinging && (
               <div className="text-terminal-text-dim animate-pulse mt-2 text-sm">
-                ... {interactiveMode === "ping_me" ? "sending" : "thinking"} ...
+                ... thinking ...
               </div>
             )}
 
@@ -1072,9 +1059,20 @@ const Terminal2: React.FC<TerminalProps> = ({
 
                 <div className="flex items-start group relative">
                   <span className="mr-2 whitespace-nowrap">
-                    <span className="text-terminal-cyan">
-                      {interactiveMode === "none" ? "└─$" : ">"}
-                    </span>
+                    {interactiveMode === "none" ? (
+                      <span className="text-terminal-cyan">└─$</span>
+                    ) : (
+                      <span className="flex items-center gap-2">
+                        <span className="text-terminal-cyan">?</span>
+                        <span className="text-terminal-blue font-bold">
+                          {pingMeStep === "name"
+                            ? "enter_name:"
+                            : pingMeStep === "email"
+                              ? "input_email:"
+                              : "type_message_here:"}
+                        </span>
+                      </span>
+                    )}
                   </span>
 
                   <div className="relative flex-grow">
