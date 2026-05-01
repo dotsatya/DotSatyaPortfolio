@@ -2,9 +2,9 @@ import React from 'react';
 import { EXPERIENCE } from "@/lib/AllDetails";
 
 export const ExperienceCmd = () => (
-  <div className="space-y-6 mt-2 text-sm">
+  <div className="grid grid-cols-1 gap-4 mt-2">
     {EXPERIENCE.map((e, i) => (
-      <div key={i}>
+      <div key={i} className='pl-4 border-l border-terminal-dim'>
         <div className="flex flex-wrap justify-between items-baseline text-terminal-green text-sm">
           <span className="font-bold mr-2">
             {e.role} @ {e.company}

@@ -451,7 +451,7 @@ const Terminal2: React.FC<TerminalProps> = ({
     const inputLine: TerminalLine = {
       type: "input",
       content: (
-        <div className="mt-2 group text-sm">
+        <div className="mt-4 group text-sm">
           <div className="flex items-center gap-0">
             <span className="text-terminal-cyan">┌──(</span>
             <span className="text-terminal-blue font-bold">
