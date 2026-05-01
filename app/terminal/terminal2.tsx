@@ -960,7 +960,7 @@ const Terminal2: React.FC<TerminalProps> = ({
           className="h-full flex flex-col font-mono text-base relative"
           onClick={focusInput}
         >
-          <div className="flex-none p-3 border-b border-terminal-dim z-20 sticky top-0 flex items-center gap-2">
+          <div className="flex-none py-2 pt-4 border-b border-terminal-dim z-20 sticky top-0 flex items-center gap-2">
             <button
               onClick={() => scrollShortcuts("left")}
               className="p-2 text-terminal-text-dim hover:text-terminal-primary transition-colors focus:outline-none select-none flex-shrink-0"
