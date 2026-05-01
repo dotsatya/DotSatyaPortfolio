@@ -33,7 +33,7 @@ import {
 import { generateAIResponse } from "@/services/geminiService";
 import { AnimatePresence } from "framer-motion";
 
-type LineType = "input" | "output" | "system";
+type LineType = "input" | "output" | "system" | "custom";
 interface TerminalLine {
   type: LineType;
   content: React.ReactNode;
@@ -56,7 +56,7 @@ const COMMANDS = [
 
   // Utility
   "clear",
-  
+
   // File system navigation
   "ls",
   "cd",
@@ -404,7 +404,8 @@ const Terminal2: React.FC<TerminalProps> = ({
               type: "system",
               content: (
                 <div className="mt-2 text-red-500 mb-2">
-                  Invalid email address. Please enter a valid email containing &apos;@&apos; and a domain.
+                  Invalid email address. Please enter a valid email containing
+                  &apos;@&apos; and a domain.
                 </div>
               ),
             },
@@ -429,7 +430,7 @@ const Terminal2: React.FC<TerminalProps> = ({
                 onComplete={() => {
                   setIsProcessing(false);
                   setIsPinging(false);
-                  setIsTyping(true);
+                  setIsTyping(false);
                 }}
               />
             ),
@@ -613,7 +614,7 @@ const Terminal2: React.FC<TerminalProps> = ({
           .reverse()
           .join("\n");
         output = (
-          <div className="text-terminal-text mt-2 whitespace-pre-wrap">
+          <div className="text-terminal-text mt-2 whitespace-pre-wrap text-sm">
             {textOutput}
           </div>
         );
@@ -639,7 +640,7 @@ const Terminal2: React.FC<TerminalProps> = ({
       case "cp":
       case "mv": {
         textOutput = `${cmd}: Permission denied: read-only file system`;
-        output = <div className="text-red-500 mt-2">{textOutput}</div>;
+        output = <div className="text-red-500 mt-2 text-sm">{textOutput}</div>;
         break;
       }
 
@@ -705,13 +706,14 @@ const Terminal2: React.FC<TerminalProps> = ({
       case "git":
         if (args[0] === "clone" && args[1]) {
           const target = args[1];
+          setIsPinging(true);
 
           setLines((prev) => [
             ...prev,
             {
               type: "output",
               content: (
-                <div className="text-terminal-text mt-2">
+                <div className="text-terminal-text mt-2 text-sm">
                   Cloning into &apos;{target === "resume" ? "resume" : "url"}
                   &apos;...
                 </div>
@@ -725,7 +727,7 @@ const Terminal2: React.FC<TerminalProps> = ({
             {
               type: "output",
               content: (
-                <div className="text-terminal-text">
+                <div className="text-terminal-text text-sm">
                   remote: Enumerating objects: 24, done.
                 </div>
               ),
@@ -737,7 +739,7 @@ const Terminal2: React.FC<TerminalProps> = ({
             {
               type: "output",
               content: (
-                <div className="text-terminal-text">
+                <div className="text-terminal-text text-sm">
                   remote: Counting objects: 100% (24/24), done.
                 </div>
               ),
@@ -749,7 +751,7 @@ const Terminal2: React.FC<TerminalProps> = ({
             {
               type: "output",
               content: (
-                <div className="text-terminal-text">
+                <div className="text-terminal-text text-sm">
                   remote: Compressing objects: 100% (18/18), done.
                 </div>
               ),
@@ -762,11 +764,13 @@ const Terminal2: React.FC<TerminalProps> = ({
             setLines((prev) => [
               ...prev,
               {
-                type: "output",
+                type: "custom",
                 content: <GitProgressBar onComplete={resolve} />,
               },
             ]);
           });
+
+          let addedOutput = false;
 
           if (target === "resume") {
             // 📄 download resume
@@ -781,6 +785,7 @@ const Terminal2: React.FC<TerminalProps> = ({
             // 🌐 open github / any link
             // window.open(target, "_blank");
           } else {
+            addedOutput = true;
             setLines((prev) => [
               ...prev,
               {
@@ -795,7 +800,8 @@ const Terminal2: React.FC<TerminalProps> = ({
           }
 
           setIsProcessing(false);
-          setIsTyping(true);
+          setIsPinging(false);
+          setIsTyping(addedOutput);
           return;
         } else {
           output = (
@@ -812,7 +818,7 @@ const Terminal2: React.FC<TerminalProps> = ({
 
           textOutput = aiResponse;
           output = (
-            <span className="text-terminal-cyan whitespace-pre-wrap mt-2 text-base block">
+            <span className="text-terminal-cyan whitespace-pre-wrap mt-2 text-sm block">
               {aiResponse}
             </span>
           );
@@ -823,7 +829,7 @@ const Terminal2: React.FC<TerminalProps> = ({
             e instanceof Error ? e.message : "Error: Neural link disconnected.";
           textOutput = errorMessage;
           output = (
-            <span className="text-red-500 mt-2 text-base block">
+            <span className="text-red-500 mt-2 text-sm block">
               {errorMessage}
             </span>
           );
@@ -1009,7 +1015,7 @@ const Terminal2: React.FC<TerminalProps> = ({
 
               return (
                 <div key={idx}>
-                  {line.type === "input" ? (
+                  {line.type === "input" || line.type === "custom" ? (
                     line.content
                   ) : (isLast || line.isStopped) && line.type !== "system" ? (
                     <Typewriter

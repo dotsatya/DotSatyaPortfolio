@@ -48,15 +48,15 @@ export const GitProgressBar: React.FC<{ onComplete: () => void }> = ({
   return (
     <div className="font-mono mt-1 w-full max-w-2xl">
       <div className="flex items-center gap-2 text-sm md:text-base flex-wrap">
-        <span className="text-terminal-text-dim whitespace-nowrap">
+        <span className="text-terminal-text-dim text-sm whitespace-nowrap">
           Receiving objects:
         </span>
-        <span className="text-terminal-text-dim min-w-[3ch] text-right">
+        <span className="text-terminal-text-dim text-sm min-w-[3ch] text-right">
           {Math.floor(percent)}%
         </span>
 
         {/* Desktop Bar */}
-        <span className="text-terminal-primary hidden sm:inline font-bold">
+        <span className="text-terminal-primary text-sm hidden sm:inline font-bold">
           [{filledStr}
           {emptyStr}]
         </span>

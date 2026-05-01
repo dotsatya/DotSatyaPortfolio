@@ -4,7 +4,7 @@ import React from 'react';
 const CERTIFICATIONS: Array<{ name: string; issuer: string; year: string }> = [];
 
 export const CertificationsCmd = () => (
-  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2">
+  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-2 text-sm">
     {CERTIFICATIONS.map((cert, i) => (
       <div
         key={i}

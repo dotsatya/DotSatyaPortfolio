@@ -10,7 +10,7 @@ export const DotSatyaCmd = () => {
     .join(" • ");
 
   return (
-    <div className="flex flex-col md:flex-row gap-12 mt-4 mb-6">
+    <div className="flex flex-col md:flex-row gap-12 mt-4 mb-6 ">
       {/* ASCII Art - Linux Kali Style with Gradient */}
       <div className="font-bold text-[10px] sm:text-xs leading-tight select-none shrink-0 whitespace-pre text-transparent bg-clip-text bg-gradient-to-br from-terminal-primary to-terminal-accent">
         {S_ASCII_ART}

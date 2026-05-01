@@ -1,7 +1,7 @@
 import React from 'react';
 
 export const HelpCmd = () => (
-  <div className="mt-2 text-terminal-text space-y-1">
+  <div className="mt-2 text-terminal-text space-y-1 text-sm">
     <div className="mb-2">Available commands:</div>
     <div className="grid grid-cols-[140px_1fr] gap-x-4 gap-y-1">
       <span>ls</span>
