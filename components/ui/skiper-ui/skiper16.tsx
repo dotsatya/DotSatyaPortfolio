@@ -56,9 +56,9 @@ const StickyCard_001 = ({
       <motion.div
         style={{
           scale,
-          top: `calc(-5vh + ${i * 20 + 250}px)`,
+          top: `calc(-5vh + ${i * 20 + 80}px)`,
         }}
-        className="rounded-4xl relative -top-1/4 flex h-[300px] origin-top flex-col overflow-hidden"
+        className="rounded-4xl relative -top-1/4 flex h-[300px] w-[300px] origin-top flex-col overflow-hidden"
       >
         <Image
           src={imageUrl}
@@ -81,15 +81,15 @@ const Skiper16 = () => {
     <ReactLenis root>
       <main
         ref={container}
-        className="relative flex w-full flex-col items-center justify-center pb-80"
+        className="relative flex w-full flex-col items-center justify-center pb-34"
       >
-        {images.map((project, i) => {
+        {images.map((image, i) => {
           const targetScale = Math.max(0.5, 1 - (images.length - i - 1) * 0.1);
           return (
             <StickyCard_001
               key={`p_${i}`}
               i={i}
-              {...project}
+              {...image}
               progress={scrollYProgress}
               range={[i * 0.25, 1]}
               targetScale={targetScale}
