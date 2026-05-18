@@ -1,3 +1,5 @@
+import logoPic from "@/public/logo.png";
+
 import Image1 from "@/public/projectImages/sunMoon.png";
 import Image2 from "@/public/projectImages/dotMusic.png";
 import Image3 from "@/public/projectImages/ems.png";
@@ -19,6 +21,7 @@ export const Portfolio = {
   title: "Software Engineer",
   tagline: "Specializing in web development and UI/UX design.",
   bio: " I’m a passionate web developer who loves building dynamic, responsive web applications and UI/UX design with a focus on user experience.",
+  logoPic: logoPic,
   skills: [
     {
       id: 1,
@@ -295,19 +298,19 @@ export const Portfolio = {
   photography: [
     {
       id: 1,
-      imageUrl: photo1,
-    },
-    {
-      id: 2,
       imageUrl: photo2,
     },
     {
-      id: 3,
+      id: 2,
       imageUrl: photo3,
     },
     {
-      id: 4,
+      id: 3,
       imageUrl: photo4,
+    },
+    {
+      id: 4,
+      imageUrl: photo1,
     },
     {
       id: 5,
