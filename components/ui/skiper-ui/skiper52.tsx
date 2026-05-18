@@ -138,7 +138,7 @@ const HoverExpand_001 = ({
                   </motion.div>
                 )}
               </AnimatePresence>
-              <img src={image.imageUrl.src} className="size-full object-cover" />
+              <Image src={image.imageUrl} alt="image" className="size-full object-cover" />
             </motion.div>
           ))}
         </div>
@@ -148,19 +148,3 @@ const HoverExpand_001 = ({
 };
 
 export { HoverExpand_001 };
-
-/**
- * Skiper 52 HoverExpand_001 — React + Framer Motion
- * Illustrations by AarzooAly - https://x.com/AarzooAly
- *
- * License & Usage:
- * - Free to use and modify in both personal and commercial projects.
- * - Attribution to Skiper UI is required when using the free version.
- * - No attribution required with Skiper UI Pro.
- *
- * Feedback and contributions are welcome.
- *
- * Author: @gurvinder-singh02
- * Website: https://gxuri.in
- * Twitter: https://x.com/Gur__vi
- */

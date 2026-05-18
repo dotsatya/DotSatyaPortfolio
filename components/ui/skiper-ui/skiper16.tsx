@@ -56,7 +56,7 @@ const StickyCard_001 = ({
       <motion.div
         style={{
           scale,
-          top: `calc(-5vh + ${i * 20 + 80}px)`,
+          top: `calc(-5vh + ${i * 20 + 50}px)`,
         }}
         className="rounded-4xl relative -top-1/4 flex h-[300px] w-[300px] origin-top flex-col overflow-hidden"
       >
@@ -81,7 +81,7 @@ const Skiper16 = () => {
     <ReactLenis root>
       <main
         ref={container}
-        className="relative flex w-full flex-col items-center justify-center pb-34"
+        className="relative flex w-full flex-col items-center justify-center pb-26"
       >
         {images.map((image, i) => {
           const targetScale = Math.max(0.5, 1 - (images.length - i - 1) * 0.1);
@@ -102,19 +102,3 @@ const Skiper16 = () => {
 };
 
 export { Skiper16, StickyCard_001 };
-
-/**
- * Skiper 16 StickyCard_001 — React + Framer Motion
- * We respect the original creators. This is an inspired rebuild with our own taste and does not claim any ownership.
- *
- * License & Usage:
- * - Free to use and modify in both personal and commercial projects.
- * - Attribution to Skiper UI is required when using the free version.
- * - No attribution required with Skiper UI Pro.
- *
- * Feedback and contributions are welcome.
- *
- * Author: @gurvinder-singh02
- * Website: https://gxuri.in
- * Twitter: https://x.com/Gur__vi
- */

@@ -70,11 +70,11 @@ const ProjectCard = ({
         "
       >
         {/* Title for Mobile */}
-        <h3 className="text-xl font-bold dark:text-white text-black mb-2 lg:hidden">
+        <h3 className="text-lg font-medium tracking-wide dark:text-white text-black mb-2 lg:hidden">
           {title}
         </h3>
 
-        <p className="text-sm mb-6 text-neutral-400 lg:text-neutral-700 lg:dark:text-neutral-300">
+        <p className="text-xs mb-6 text-neutral-400 lg:text-neutral-700 lg:dark:text-neutral-300">
           {description}
         </p>
 
@@ -104,8 +104,8 @@ const ProjectCard = ({
               inline-flex items-center gap-2
               bg-neutral-200 dark:bg-neutral-800
               text-black dark:text-white
-              px-4 py-2 rounded-md
-              font-semibold text-sm
+              px-2.5 py-1.5 rounded-md
+              tracking-wider text-sm
               transition-colors duration-200
               hover:bg-neutral-400/50 dark:hover:bg-neutral-600/50
             "
@@ -122,8 +122,8 @@ const ProjectCard = ({
               inline-flex items-center gap-2
               bg-neutral-200 dark:bg-neutral-800
               text-black dark:text-white
-              px-4 py-2 rounded-md
-              font-semibold text-sm
+              px-2.5 py-1.5 rounded-md
+              tracking-wider text-sm
               transition-colors duration-200
               hover:bg-neutral-400/50 dark:hover:bg-neutral-600/50
             "
