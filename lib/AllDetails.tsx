@@ -93,7 +93,7 @@ export const Portfolio = {
     twitter: "https://www.twitter.com/satya_sundar_dey",
     behance: "https://www.behance.net/satyasundardey",
     resume:
-      "https://drive.google.com/uc?export=download&id=1rNsjd2KM8hv2P6rd1KE1Xy6lAWYyXmY1",
+      "https://drive.google.com/uc?export=download&id=1nfPgW2tg-Hjb13Y4hUHyEdkgHnBk5Hcy",
     website: "https://dotsatya.vercel.app/",
   },
 
