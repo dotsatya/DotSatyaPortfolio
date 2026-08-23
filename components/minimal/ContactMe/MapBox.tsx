@@ -1,4 +1,5 @@
 "use client";
+import { Portfolio } from "@/lib/AllDetails";
 import { motion } from "framer-motion";
 
 const MapBox = () => {
@@ -30,7 +31,7 @@ const MapBox = () => {
       <div className="rounded-xl overflow-hidden border mt-6 border-white/10 shadow-lg">
         <iframe
           title="My location on Google Maps"
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.5!2d88.4333!3d22.9750!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8bbf0a4c1c6a9%3A0x5d3b1e7e1e1e1e1e!2sKalyani%2C%20Nadia%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1"
+          src={Portfolio.location}
           className="w-full h-[280px] md:h-[450px]"
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

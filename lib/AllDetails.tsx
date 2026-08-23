@@ -21,6 +21,11 @@ export const Portfolio = {
   title: "Software Engineer",
   tagline: "Specializing in web development and UI/UX design.",
   bio: " I’m a passionate web developer who loves building dynamic, responsive web applications and UI/UX design with a focus on user experience.",
+  //dum dum
+  // location: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3674.5!2d88.4333!3d22.6251!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89f8f4b5f7e5d%3A0x123456789abcdef0!2sDum%20Dum%2C%20Kolkata%2C%20West%20Bengal!5e0!3m2!1sen!2sin!4v1",
+  //dum dum Junction
+  location:
+    "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3682.8737979031985!2d88.39056061174563!3d22.621187431100505!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89dfaf3564501%3A0xd9f017fd844bc3c7!2sDum%20Dum%20Junction!5e0!3m2!1sen!2sin!4v1787489835095!5m2!1sen!2sin",
   logoPic: logoPic,
   skills: [
     {
@@ -404,7 +409,7 @@ export const Portfolio = {
     },
   ],
 
-   S_ASCII_ART : `
+  S_ASCII_ART: `
 .
                                    ...
                                ,x;''
@@ -424,9 +429,8 @@ export const Portfolio = {
            ..'.                 .                    
          ''                       ..
          
-`
+`,
 };
-
 
 // Mock File System Structure representing the "home" directory
 export type FileSystemNode =
@@ -451,47 +455,59 @@ export const EXPERIENCE = Portfolio.experience.map((item) => ({
   description: item.description,
 }));
 
-
-
 const slugify = (text: string) =>
   text
-    .normalize("NFKD")               // handle emojis/unicode
+    .normalize("NFKD") // handle emojis/unicode
     .replace(/[\u0300-\u036f]/g, "")
     .replace(/[^a-zA-Z0-9]+/g, "-")
     .replace(/^-+|-+$/g, "")
     .toLowerCase();
 
 export const FILE_SYSTEM: { [key: string]: FileSystemNode } = {
-  'about.txt': { type: 'file', content: ABOUT_TEXT },
-  'contact.txt': { type: 'file', content: `Email: ${SOCIALS.email}\nGitHub: ${SOCIALS.github}\nLinkedIn: ${SOCIALS.linkedin}\nTwitter: ${SOCIALS.twitter}` },
-  'projects': {
-    type: 'directory',
-    children: PROJECTS.reduce((acc, proj) => ({
-      ...acc,
-      [slugify(proj.name) + '.txt']: {
-        type: 'file',
-        content: `Name: ${proj.name}\nDescription: ${proj.description}\nTech Stack: ${proj.tech.join(', ')}`
-      }
-    }), {} as { [key: string]: FileSystemNode })
+  "about.txt": { type: "file", content: ABOUT_TEXT },
+  "contact.txt": {
+    type: "file",
+    content: `Email: ${SOCIALS.email}\nGitHub: ${SOCIALS.github}\nLinkedIn: ${SOCIALS.linkedin}\nTwitter: ${SOCIALS.twitter}`,
   },
-  'skills': {
-    type: 'directory',
-    children: SKILLS.reduce((acc, skill) => ({
-      ...acc,
-      [slugify(skill.category) + '.txt']: {
-        type: 'file',
-        content: skill.skills.join('\n')
-      }
-    }), {} as { [key: string]: FileSystemNode })
+  projects: {
+    type: "directory",
+    children: PROJECTS.reduce(
+      (acc, proj) => ({
+        ...acc,
+        [slugify(proj.name) + ".txt"]: {
+          type: "file",
+          content: `Name: ${proj.name}\nDescription: ${proj.description}\nTech Stack: ${proj.tech.join(", ")}`,
+        },
+      }),
+      {} as { [key: string]: FileSystemNode },
+    ),
   },
-  'experience.txt': {
-    type: 'file',
-    content: EXPERIENCE.map(e => `${e.role} @ ${e.company} (${e.period})\n${e.description}`).join('\n\n')
+  skills: {
+    type: "directory",
+    children: SKILLS.reduce(
+      (acc, skill) => ({
+        ...acc,
+        [slugify(skill.category) + ".txt"]: {
+          type: "file",
+          content: skill.skills.join("\n"),
+        },
+      }),
+      {} as { [key: string]: FileSystemNode },
+    ),
   },
-  'secret': {
-    type: 'directory',
+  "experience.txt": {
+    type: "file",
+    content: EXPERIENCE.map(
+      (e) => `${e.role} @ ${e.company} (${e.period})\n${e.description}`,
+    ).join("\n\n"),
+  },
+  secret: {
+    type: "directory",
     children: {
-        'plan.txt': { type: 'file', content: '1. Build cool things.\n2. ???\n3. Profit.' }
-    }
-  }
+      "plan.txt": {
+        type: "file",
+        content: "1. Build cool things.\n2. ???\n3. Profit.",
+      },
+    },
+  },
 };
