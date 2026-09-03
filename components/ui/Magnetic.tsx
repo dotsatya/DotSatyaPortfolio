@@ -13,7 +13,7 @@ const Magnetic = ({ children, className = "" }: MagneticProps) => {
   const y = useMotionValue(0);
 
   const springX = useSpring(x, {
-    stiffness: 200,
+    stiffness: 180,
     damping: 14,
     mass: 0.5,
   });
@@ -35,8 +35,8 @@ const Magnetic = ({ children, className = "" }: MagneticProps) => {
     const mouseY =
       e.clientY - (rect.top + rect.height / 2);
 
-    x.set(mouseX * 0.5);
-    y.set(mouseY * 0.5);
+    x.set(mouseX * 0.8);
+    y.set(mouseY * 0.8);
   };
 
   const handleMouseLeave = () => {

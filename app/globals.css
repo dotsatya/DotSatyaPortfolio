@@ -420,13 +420,12 @@ div[class*="kursor"].kursor--4.kursor--down + .kursorChild {
   scrollbar-width: none; /* Firefox */
 }
 
-.magnetic_navigation {
+.signature-hover {
   display: inline-block;
   cursor: pointer;
+  transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
 
-  transition:
-    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
-    color 0.3s ease;
-
-  will-change: transform;
+.signature-hover:hover {
+  transform: translate(15px, -1px);
 }

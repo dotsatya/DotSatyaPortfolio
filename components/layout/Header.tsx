@@ -78,8 +78,8 @@ const MagneticNavItem = ({
     const mouseY = e.clientY - (rect.top + rect.height / 2);
 
     // Magnetic strength
-    x.set(mouseX * 0.35);
-    y.set(mouseY * 0.35);
+    x.set(mouseX * 0.3);
+    y.set(mouseY * 0.6);
   };
 
   const handleMouseLeave = () => {
@@ -188,11 +188,9 @@ const Header: React.FC = () => {
                   </>
                 ) : (
                   // Animated Text
-                  <Magnetic>
-                    <h1 className="font-photograph-signature text-5xl leading-none font-normal">
+                    <h1 className="font-photograph-signature signature-hover text-5xl leading-none font-normal">
                       dot satya
                     </h1>
-                  </Magnetic>
                 )}
               </motion.div>
             </AnimatePresence>
