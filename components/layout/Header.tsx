@@ -2,11 +2,17 @@
 
 import React, { useState, useRef, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Link from "next/link";
-import { motion, AnimatePresence } from "framer-motion";
+// import Link from "next/link";
+import {
+  motion,
+  AnimatePresence,
+  useMotionValue,
+  useSpring,
+} from "framer-motion";
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { Button } from "../ui/button";
+import Magnetic from "../ui/Magnetic";
 
 // 1. Centralized Configuration
 type Mode = "minimal" | "terminal"; //| "minimal";
@@ -39,6 +45,62 @@ const NAVIGATION_CONFIG: Record<Mode, { route: string; items: NavItem[] }> = {
     route: "/terminal",
     items: [], // No sub-parts
   },
+};
+
+const MagneticNavItem = ({
+  item,
+  onClick,
+}: {
+  item: { label: string; href: string };
+  onClick: () => void;
+}) => {
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+
+  // Smooth spring animation
+  const springX = useSpring(x, {
+    stiffness: 180,
+    damping: 14,
+    mass: 0.5,
+  });
+
+  const springY = useSpring(y, {
+    stiffness: 180,
+    damping: 12,
+    mass: 0.5,
+  });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+
+    const mouseX = e.clientX - (rect.left + rect.width / 2);
+
+    const mouseY = e.clientY - (rect.top + rect.height / 2);
+
+    // Magnetic strength
+    x.set(mouseX * 0.35);
+    y.set(mouseY * 0.35);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.button
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      onClick={onClick}
+      style={{
+        x: springX,
+        y: springY,
+      }}
+      className="magnetic_navigation text-md font-medium hover:text-blue-500 md:hover:text-inherit"
+    >
+      {item.label}
+    </motion.button>
+  );
 };
 
 const Header: React.FC = () => {
@@ -122,16 +184,22 @@ const Header: React.FC = () => {
                   <>
                     <span>{">_"}</span>
                     <span className="hidden sm:block">bash — </span>
-                    <span> dotsatya</span>
+                    <span>dot satya</span>
                   </>
                 ) : (
-                  "Dot Satya"
+                  // Animated Text
+                  <Magnetic>
+                    <h1 className="font-photograph-signature text-5xl leading-none font-normal">
+                      dot satya
+                    </h1>
+                  </Magnetic>
                 )}
               </motion.div>
             </AnimatePresence>
           </div>
 
           {/* CENTER: Desktop Mode Switcher */}
+
           <div
             ref={dropdownRef}
             className="hidden lg:block absolute left-1/2 -translate-x-1/2"
@@ -141,33 +209,44 @@ const Header: React.FC = () => {
               className="w-32 flex items-center justify-center gap-2 px-3 py-1.5 rounded-md border border-black/10 dark:border-white/10 bg-white/5 dark:bg-white/5 hover:bg-black/5 hover:dark:bg-white/10 transition font-medium capitalize"
             >
               {currentMode}
+
               <span
-                className={`transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                className={`transition-transform duration-200 ${
+                  open ? "rotate-180" : ""
+                }`}
               >
                 <RiArrowDownSLine />
               </span>
             </button>
 
-            <AnimatePresence>
-              {open && (
-                <motion.div
-                  initial={{ opacity: 0, y: -8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  className="absolute top-11 left-0 w-full rounded-md bg-white/90 dark:bg-stone-900/90 backdrop-blur-xl border border-black/10 dark:border-white/10 overflow-hidden shadow-xl"
+            {/* Normal CSS Dropdown */}
+            <div
+              className={`absolute top-11 left-0 w-full rounded-md
+      bg-white/90 dark:bg-stone-900/90
+      backdrop-blur-xl
+      border border-black/10 dark:border-white/10
+      overflow-hidden shadow-xl
+      transition-all duration-200 ease-out
+      ${
+        open
+          ? "opacity-100 translate-y-0 visible"
+          : "opacity-0 -translate-y-2 invisible pointer-events-none"
+      }`}
+            >
+              {(Object.keys(NAVIGATION_CONFIG) as Mode[]).map((m) => (
+                <button
+                  key={m}
+                  onClick={() => handleModeChange(m)}
+                  className={`w-full text-left px-3 py-2 text-sm transition hover:bg-black/5 dark:hover:bg-white/10 ${
+                    currentMode === m
+                      ? "text-blue-500 font-bold"
+                      : "text-gray-600 dark:text-gray-300"
+                  }`}
                 >
-                  {(Object.keys(NAVIGATION_CONFIG) as Mode[]).map((m) => (
-                    <button
-                      key={m}
-                      onClick={() => handleModeChange(m)}
-                      className={`w-full text-left px-3 py-2 text-sm transition hover:bg-black/5 dark:hover:bg-white/10 ${currentMode === m ? "text-blue-500 font-bold" : "text-gray-600 dark:text-gray-300"}`}
-                    >
-                      {m.charAt(0).toUpperCase() + m.slice(1)}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
+                  {m.charAt(0).toUpperCase() + m.slice(1)}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* RIGHT: Navigation & Theme */}
@@ -190,15 +269,13 @@ const Header: React.FC = () => {
                     // >
                     //   {item.label}
                     // </Link>/
-                    <button
+                    <MagneticNavItem
                       key={item.href}
+                      item={item}
                       onClick={() =>
                         scrollToSection(item.href.replace("#", ""))
                       }
-                      className="text-sm font-medium hover:text-blue-500 transition-colors"
-                    >
-                      {item.label}
-                    </button>
+                    />
                   ))}
                 </motion.nav>
               ) : (

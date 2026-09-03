@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 import { Inter, IBM_Plex_Mono } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
 import LayoutClient from "./layout-client";
 
@@ -14,6 +15,16 @@ const poppins = Poppins({
 const mono = IBM_Plex_Mono({
   subsets: ["latin"],
   weight: ["100", "200", "300", "400", "500", "600", "700"],
+});
+
+const autography = localFont({
+  src: "../fonts/Autography.otf",
+  variable: "--font-autography",
+});
+
+const photographSignature = localFont({
+  src: "../fonts/Photograph Signature.ttf",
+  variable: "--font-photograph-signature",
 });
 
 export const metadata: Metadata = {
@@ -40,7 +51,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${poppins.className} ${mono.className} ${inter.variable} font-sans antialiased`}
+        className={`${poppins.className} ${mono.className} ${inter.variable} ${autography.variable}  ${photographSignature.variable} font-sans antialiased`}
       >
         {children}
       </body>

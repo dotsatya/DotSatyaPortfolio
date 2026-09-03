@@ -4,10 +4,12 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --font-inter: 'Inter', sans-serif;
-  --font-playfair: 'Playfair Display', serif;
-  --font-cormorant: 'Cormorant Garamond', serif;
-  --font-instrument: 'Instrument Serif', serif;
+  --font-inter: "Inter", sans-serif;
+  --font-playfair: "Playfair Display", serif;
+  --font-cormorant: "Cormorant Garamond", serif;
+  --font-instrument: "Instrument Serif", serif;
+
+  --font-autography: "Autography", cursive;--font-photograph-signature: "Photograph Signature", cursive;
 }
 
 /* Utility classes */
@@ -28,12 +30,20 @@
 }
 
 .font-mono {
-  font-family: 'IBM Plex Mono', monospace;
+  font-family: "IBM Plex Mono", monospace;
+}
+
+.font-autography {
+  font-family: var(--font-autography);
+}
+
+.font-photograph-signature {
+  font-family: var(--font-photograph-signature);
 }
 
 /* //////fot techtools//////// */
 :root {
-  --marquee-fade: #F5F5F5;
+  --marquee-fade: #f5f5f5;
 }
 .dark {
   --marquee-fade: #080808;
@@ -55,19 +65,35 @@
   width: 3rem;
   padding-left: 0.5rem;
   animation: wave 2s ease-in-out infinite;
-  transform-origin: bottom center; 
+  transform-origin: bottom center;
   display: inline-block;
 }
 
 @keyframes wave {
-  0% { transform: rotate(0deg); }
-  10% { transform: rotate(14deg); }
-  20% { transform: rotate(-8deg); }
-  30% { transform: rotate(14deg); }
-  40% { transform: rotate(-4deg); }
-  50% { transform: rotate(10deg); }
-  60% { transform: rotate(0deg); }
-  100% { transform: rotate(0deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  10% {
+    transform: rotate(14deg);
+  }
+  20% {
+    transform: rotate(-8deg);
+  }
+  30% {
+    transform: rotate(14deg);
+  }
+  40% {
+    transform: rotate(-4deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+  60% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
 }
 
 @theme inline {
@@ -187,10 +213,18 @@ html {
 }
 
 @keyframes cursor-blink {
-  0%   { opacity: 1 }
-  45%  { opacity: 1 }
-  55%  { opacity: 0 }
-  100% { opacity: 0 }
+  0% {
+    opacity: 1;
+  }
+  45% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
 }
 
 .cursor-blink {
@@ -209,16 +243,16 @@ html {
 
 /* Custom Cursor Styles */
 /* Override kursor styles */
-div[class*='kursor'].kursor--4 {
+div[class*="kursor"].kursor--4 {
   background-color: white !important; /* White filled body */
   border: none !important;
   mix-blend-mode: difference; /* Invert colors */
-  width: 40px !important;
-  height: 40px !important;
+  width: 25px !important;
+  height: 25px !important;
   /* z-index: 9999 !important; */
 }
 
-div[class*='kursor'].kursor--4 + .kursorChild {
+div[class*="kursor"].kursor--4 + .kursorChild {
   /* background-color: rgba(128, 128, 128, 1) !important; */
   background-color: white !important; /* Gray center dot */
   mix-blend-mode: difference !important; /* Keep dot normal color or maybe difference too if needed */
@@ -227,35 +261,34 @@ div[class*='kursor'].kursor--4 + .kursorChild {
 }
 
 /* Hover state for cursor */
-div[class*='kursor'].kursor--4.--hover {
+div[class*="kursor"].kursor--4.--hover {
   width: 80px !important; /* Expand on hover */
   height: 80px !important;
   background-color: white !important;
   mix-blend-mode: difference;
 }
 
-div[class*='kursor'].kursor--4.--hover + .kursorChild {
+div[class*="kursor"].kursor--4.--hover + .kursorChild {
   opacity: 0; /* Hide dot on hover if desired, or keep it */
 }
 
 /* Clicking effect */
-div[class*='kursor'].kursor--4.kursor--down {
+div[class*="kursor"].kursor--4.kursor--down {
   width: 20px !important; /* Shrink on click */
   height: 20px !important;
 }
 
-div[class*='kursor'].kursor--4.kursor--down + .kursorChild {
+div[class*="kursor"].kursor--4.kursor--down + .kursorChild {
   width: 10px !important;
   height: 10px !important;
   opacity: 0;
 }
 
-
 /* =========================
    THEME VARIABLES
 ========================= */
 :root {
-  --terminal-bg: #F5F5F5;
+  --terminal-bg: #f5f5f5;
   --terminal-text: #111827;
   --terminal-primary: #008f5a;
   --terminal-secondary: #0077cc;
@@ -292,32 +325,67 @@ div[class*='kursor'].kursor--4.kursor--down + .kursorChild {
    KEYFRAMES
 ========================= */
 @keyframes blink {
-  0%, 100% { opacity: 1 }
-  50% { opacity: 0 }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes glitch {
-  0% { transform: translate(0) }
-  20% { transform: translate(-2px, 2px) }
-  40% { transform: translate(-2px, -2px) }
-  60% { transform: translate(2px, 2px) }
-  80% { transform: translate(2px, -2px) }
-  100% { transform: translate(0) }
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+  100% {
+    transform: translate(0);
+  }
 }
 
 @keyframes slideInRight {
-  from { transform: translateX(100%); opacity: 0 }
-  to { transform: translateX(0); opacity: 1 }
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slideOutRight {
-  from { transform: translateX(0); opacity: 1 }
-  to { transform: translateX(100%); opacity: 0 }
+  from {
+    transform: translateX(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(100%);
+    opacity: 0;
+  }
 }
 
 @keyframes slideInDown {
-  from { transform: translateY(-10px); opacity: 0 }
-  to { transform: translateY(0); opacity: 1 }
+  from {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 /* =========================
@@ -328,7 +396,7 @@ div[class*='kursor'].kursor--4.kursor--down + .kursorChild {
 }
 
 @utility animate-glitch {
-  animation: glitch 0.2s cubic-bezier(.25,.46,.45,.94) infinite;
+  animation: glitch 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
 }
 
 @utility animate-slide-in {
@@ -343,13 +411,22 @@ div[class*='kursor'].kursor--4.kursor--down + .kursorChild {
   animation: slideInDown 0.2s ease-out forwards;
 }
 
-
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
 }
 
 .scrollbar-hide {
-  -ms-overflow-style: none;  /* IE/Edge */
-  scrollbar-width: none;     /* Firefox */
+  -ms-overflow-style: none; /* IE/Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
+.magnetic_navigation {
+  display: inline-block;
+  cursor: pointer;
+
+  transition:
+    transform 0.35s cubic-bezier(0.22, 1, 0.36, 1),
+    color 0.3s ease;
+
+  will-change: transform;
+}

@@ -3,6 +3,7 @@ import { Portfolio } from "@/lib/AllDetails";
 import { FaXTwitter } from "react-icons/fa6";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
 import AgeTimer from "@/lib/AgeTimer/AgeTimer";
+import Magnetic from "../ui/Magnetic";
 
 const Footer = () => {
   return (
@@ -15,9 +16,7 @@ const Footer = () => {
             h-[calc(100vh+100px)] sm:h-[calc(100vh+162px)] md:h-[calc(100vh+180px)] lg:h-[calc(100vh+220px)]
             -top-[100vh]"
       >
-        <div
-          className="sticky top-[calc(100vh-100px)] sm:top-[calc(100vh-162px)] md:top-[calc(100vh-180px)] lg:top-[calc(100vh-220px)]"
-        >
+        <div className="sticky top-[calc(100vh-100px)] sm:top-[calc(100vh-162px)] md:top-[calc(100vh-180px)] lg:top-[calc(100vh-220px)]">
           <div
             className="w-full h-[100px] sm:h-[162px] md:h-[180px] lg:h-[220px] 
           dark:bg-[#F5F5F5] bg-[#080808] rounded-t-3xl"
@@ -39,35 +38,41 @@ const Footer = () => {
 
                 {/* Social Links */}
                 <div className="flex items-center justify-center gap-4">
-                  <a
-                    href={Portfolio.socialLinks.twitter}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xl hover:text-gray-400 transition-colors hidden sm:block text-white dark:text-black"
-                    title="Twitter Profile"
-                  >
-                    <FaXTwitter size={18} />
-                  </a>
+                  <Magnetic>
+                    <a
+                      href={Portfolio.socialLinks.twitter}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xl hover:text-gray-400 transition-colors hidden sm:block text-white dark:text-black"
+                      title="Twitter Profile"
+                    >
+                      <FaXTwitter size={18} />
+                    </a>
+                  </Magnetic>
 
-                  <a
-                    href={Portfolio.socialLinks.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xl hover:text-gray-400 transition-colors text-white dark:text-black"
-                    title="GitHub Profile"
-                  >
-                    <BsGithub size={18} />
-                  </a>
+                  <Magnetic>
+                    <a
+                      href={Portfolio.socialLinks.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xl hover:text-gray-400 transition-colors text-white dark:text-black"
+                      title="GitHub Profile"
+                    >
+                      <BsGithub size={18} />
+                    </a>
+                  </Magnetic>
 
-                  <a
-                    href={Portfolio.socialLinks.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-xl hover:text-gray-400 transition-colors text-white dark:text-black"
-                    title="LinkedIn Profile"
-                  >
-                    <BsLinkedin size={18} />
-                  </a>
+                  <Magnetic>
+                    <a
+                      href={Portfolio.socialLinks.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-xl hover:text-gray-400 transition-colors text-white dark:text-black"
+                      title="LinkedIn Profile"
+                    >
+                      <BsLinkedin size={18} />
+                    </a>
+                  </Magnetic>
                 </div>
               </div>
 

@@ -7,6 +7,7 @@ import { Portfolio } from "@/lib/AllDetails";
 import Image from "next/image";
 import { Github } from "lucide-react";
 import { createPortal } from "react-dom";
+import Magnetic from "../../ui/Magnetic";
 
 type OverlayRef = HTMLDivElement | null;
 
@@ -157,20 +158,24 @@ const Works: React.FC = () => {
                 {project.title}
               </h2>
               <div className="flex flex-wrap gap-4">
-                <a
-                  href={project.githubUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <Github size={22} />
-                </a>
-                <a
-                  href={project.liveUrl || project.linkedInUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <ImArrowUpRight2 className="size-6" />
-                </a>
+                <Magnetic>
+                  <a
+                    href={project.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Github size={22} />
+                  </a>
+                </Magnetic>
+                <Magnetic>
+                  <a
+                    href={project.liveUrl || project.linkedInUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <ImArrowUpRight2 className="size-6" />
+                  </a>
+                </Magnetic>
               </div>
             </div>
 
