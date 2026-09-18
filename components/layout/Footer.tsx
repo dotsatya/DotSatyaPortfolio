@@ -1,4 +1,6 @@
 "use client";
+import packageJson from "../../package.json";
+
 import { Portfolio } from "@/lib/AllDetails";
 import { FaXTwitter } from "react-icons/fa6";
 import { BsGithub, BsLinkedin } from "react-icons/bs";
@@ -75,8 +77,13 @@ const Footer = () => {
                   </Magnetic>
                 </div>
               </div>
+              <div className="flex  items-center justify-between">
+                <AgeTimer />
 
-              <AgeTimer />
+                <p className="text-xs font-light text-gray-400 dark:text-gray-600 text-center hidden sm:block ">
+                  Version: {packageJson.version}
+                </p>
+              </div>
             </div>
 
             <div

@@ -985,7 +985,7 @@ const Terminal2: React.FC<TerminalProps> = ({
                            border border-terminal-dim 
                            rounded
                            text-xs md:text-sm font-mono text-terminal-text
-                           hover:border-terminal-text hover:bg-white/10 hover:text-white
+                           hover:border-terminal-text hover:bg-black/10 dark:hover:bg-white/10
                            disabled:opacity-50 disabled:cursor-not-allowed
                            transition-all duration-200 
                            whitespace-nowrap select-none
