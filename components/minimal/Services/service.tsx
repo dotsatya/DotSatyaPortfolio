@@ -4,9 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import { useMediaQuery } from "react-responsive";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger"; // 1. Import ScrollTrigger
 import { Portfolio } from "@/lib/AllDetails";
 import { motion } from "framer-motion";
 import AnimatedHeaderSection from "@/components/ui/AnimattedHeading/AnimatedHeaderSection";
+
+// 2. Register the plugin outside your component
+gsap.registerPlugin(ScrollTrigger);
 
 type ServiceRef = HTMLDivElement | null;
 
@@ -45,7 +49,7 @@ const Services: React.FC = () => {
   return (
     <section
       id="services"
-      className="mx-auto pt-6 md:pt-20 text-black dark:text-white  "
+      className="relative mx-auto pt-6 md:pt-20 text-black dark:text-white"
     >
       <AnimatedHeaderSection
         subTitle={
@@ -84,7 +88,6 @@ const Services: React.FC = () => {
           ref={(el) => {
             serviceRefs.current[index] = el;
           }}
-          // Adjusted: px-6 for mobile, md:px-10 for tablet/desktop
           className="sticky px-6 md:px-10 pt-6 pb-12 border-t-2
                bg-[#F5F5F5] dark:bg-[#080808] text-black border-black/30
                dark:text-white dark:border-white/30"
@@ -97,14 +100,11 @@ const Services: React.FC = () => {
           }
         >
           <div className="flex items-center justify-between gap-4">
-            {/* Adjusted: gap-4 on mobile, lg:gap-6 on desktop */}
             <div className="flex flex-col gap-4 lg:gap-6">
-              {/* Adjusted Title: text-2xl on mobile, scales up to text-4xl */}
               <h2 className="text-2xl md:text-3xl lg:text-4xl font-semibold lg:font-normal">
                 {service.title}
               </h2>
 
-              {/* Adjusted Description: text-sm on mobile, tracking-wide instead of widest to fit better */}
               <p
                 className="text-sm md:text-base lg:text-xl leading-relaxed tracking-wide lg:tracking-widest
                      text-black/60 dark:text-white/60 text-pretty"
@@ -112,7 +112,6 @@ const Services: React.FC = () => {
                 {service.description}
               </p>
 
-              {/* Adjusted List Items: text-base on mobile, scales up to text-2xl */}
               <div
                 className="flex flex-col gap-3 sm:gap-4 text-base md:text-lg lg:text-2xl
                      text-black/80 dark:text-white/80 mt-2 lg:mt-0"
@@ -120,7 +119,6 @@ const Services: React.FC = () => {
                 {service.items.map((item, itemIndex) => (
                   <div key={`item-${index}-${itemIndex}`}>
                     <h3 className="flex items-start sm:items-center">
-                      {/* Adjusted Numbers: smaller margin (mr-4) and text-sm on mobile */}
                       <span className="mr-4 md:mr-8 lg:mr-12 text-sm md:text-base lg:text-lg text-black/30 dark:text-white/30 shrink-0 mt-0.5 sm:mt-0">
                         0{itemIndex + 1}
                       </span>

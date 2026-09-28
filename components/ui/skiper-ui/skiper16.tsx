@@ -51,14 +51,14 @@ const StickyCard_001 = ({
   return (
     <div
       ref={container}
-      className="sticky top-0 flex items-center justify-center"
+      className="sticky top-30 flex items-center justify-center"
     >
       <motion.div
         style={{
           scale,
           top: `calc(-5vh + ${i * 20 + 50}px)`,
         }}
-        className="rounded-4xl relative -top-1/4 flex h-[300px] w-[300px] origin-top flex-col overflow-hidden"
+        className="rounded-4xl relative -top-1/4 flex h-[300px] w-[400px] origin-top flex-col overflow-hidden"
       >
         <Image
           src={imageUrl}
@@ -70,7 +70,7 @@ const StickyCard_001 = ({
   );
 };
 
-const Skiper16 = () => {
+const Skiper16 = ( { images }: { images: { id: number; imageUrl: StaticImageData }[] }  ) => {
   const container = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: container,

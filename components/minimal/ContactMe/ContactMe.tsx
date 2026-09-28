@@ -23,8 +23,8 @@ const ContactMe = () => {
         title={
           <>
             <span className="font-semibold text-black dark:text-white">
-              CON
-            </span>
+              LET’S
+            </span>{" "}
 
             <span
               className="
@@ -35,7 +35,7 @@ const ContactMe = () => {
           dark:[-webkit-text-stroke:1.5px_#bef264]
         "
             >
-              TACT
+              COOK
             </span>
 
             <span className="text-lime-600 dark:text-lime-300">.</span>

@@ -3,8 +3,10 @@ import { Skiper16 } from "@/components/ui/skiper-ui/skiper16";
 import { Skiper52 } from "@/components/ui/skiper-ui/skiper52";
 import AnimatedHeaderSection from "@/components/ui/AnimattedHeading/AnimatedHeaderSection";
 import { motion } from "framer-motion";
+import { Portfolio } from "@/lib/AllDetails";
 
 const PhotoGraphy = () => {
+   const images = Portfolio.photography;
   return (
     <>
       <section className="section pt-20">
@@ -20,9 +22,7 @@ const PhotoGraphy = () => {
           title={
             <>
               <span className="">PAS</span>
-
               <span className="font-semibold italic text-[#fb7185]">SION</span>
-
               <span className="text-white/30">.</span>
             </>
           }
@@ -64,10 +64,10 @@ const PhotoGraphy = () => {
           }}
         >
           <div className="hidden md:block">
-            <Skiper52 />
+            <Skiper52 images={images} />
           </div>
           <div className="block md:hidden">
-            <Skiper16 />
+            <Skiper16 images={images} />
           </div>
         </motion.div>
       </section>

@@ -1,19 +1,21 @@
 import logoPic from "@/public/logo.png";
 
-import Image1 from "@/public/projectImages/sunMoon.png";
-import Image2 from "@/public/projectImages/dotMusic.png";
-import Image3 from "@/public/projectImages/ems.png";
-import Image4 from "@/public/projectImages/dotNotes.png";
-import Image5 from "@/public/projectImages/weather.png";
-import Image6 from "@/public/projectImages/cryptoChecker.png";
-import Image7 from "@/public/projectImages/portfolio.png";
-import Image8 from "@/public/projectImages/ecomarse.png";
+import Image1 from "@/public/projectImages/sunMoon.jpg";
+import Image2 from "@/public/projectImages/dotMusic.jpg";
+import Image3 from "@/public/projectImages/ems.jpg";
+import Image4 from "@/public/projectImages/dotNotes.jpg";
+import Image5 from "@/public/projectImages/weather.jpg";
+import Image6 from "@/public/projectImages/cryptoChecker.jpg";
+import Image7 from "@/public/projectImages/portfolio.jpg";
+import Image8 from "@/public/projectImages/ecomarse.jpg";
 
-import photo1 from "@/public/photoImages/image1.png";
-import photo2 from "@/public/photoImages/image2.png";
+import photo1 from "@/public/photoImages/image1.webp";
+import photo2 from "@/public/photoImages/image2.webp";
 import photo3 from "@/public/photoImages/image3.png";
 import photo4 from "@/public/photoImages/image4.png";
 import photo5 from "@/public/photoImages/image5.png";
+import photo6 from "@/public/photoImages/image6.jpg";
+
 
 export const Portfolio = {
   fullName: "Satya Sundar Dey",
@@ -311,6 +313,10 @@ export const Portfolio = {
     {
       id: 5,
       imageUrl: photo5,
+    },
+    {
+      id: 6,
+      imageUrl: photo6,
     },
   ],
 

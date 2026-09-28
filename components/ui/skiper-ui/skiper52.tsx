@@ -11,8 +11,7 @@ import { cn } from "@/lib/utils";
 import { Portfolio } from "@/lib/AllDetails";
 import Image, { StaticImageData } from "next/image";
 
-const Skiper52 = () => {
-  const images = Portfolio.photography;
+const Skiper52 = ( { images }: { images: { id: number; imageUrl: StaticImageData }[] }) => {
 
   // const images = [
   //   {

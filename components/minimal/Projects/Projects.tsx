@@ -53,7 +53,7 @@ export default function Projects() {
         }
         title={
           <>
-            <span className="">WO</span>
+            <span className="">FL</span>
             <span
               className="  font-bold
                       italic
@@ -62,7 +62,7 @@ export default function Projects() {
                         dark:[-webkit-text-stroke:2px_#fde68a]
                           "
             >
-              RKs
+              EXES
             </span>
             <span className="text-rose-500 dark:text-rose-300">.</span>
           </>
