@@ -65,7 +65,7 @@ const TProjects = () => {
                       {project.title}
                     </h3>
 
-                    {project.featured && (
+                    {/* {project.featured && (
                       <span
                         className="
                 text-[10px] uppercase px-2 py-0.5 rounded animate-pulse
@@ -75,7 +75,7 @@ const TProjects = () => {
                       >
                         Featured
                       </span>
-                    )}
+                    )} */}
                   </div>
 
                   <p

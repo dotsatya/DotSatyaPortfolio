@@ -75,7 +75,7 @@ const TechToolls = () => {
   return (
     <>
       {Portfolio.skills.length > 0 && (
-        <section id="skills" className="pt-16 sm:pt-30  overflow-hidden">
+        <section id="skills" className=" section pt-16 sm:pt-30  overflow-hidden">
           {" "}
 
           <motion.div
@@ -104,7 +104,7 @@ const TechToolls = () => {
               </h2>
             </div> */}
 
-            <div className="mx-auto max-w-6xl w-full">
+            <div className="mx-auto  w-full">
               <div className="hidden md:block mb-8">
                 <Marquee
                   autoFill
