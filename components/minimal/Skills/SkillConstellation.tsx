@@ -168,7 +168,11 @@ export default function SkillConstellation() {
   };
 
   return (
-    <section id="skills" aria-label="Technology skills" className="section pt-20">
+    <section
+      id="skills"
+      aria-label="Technology skills"
+      className="section pt-20"
+    >
       <AnimatedHeaderSection
         subTitle={
           <>
@@ -198,7 +202,7 @@ export default function SkillConstellation() {
         withScrollTrigger={true}
       />
       <div className="container mx-auto">
-      {/* <div className="relative md:px-28 md:py"> */}
+        {/* <div className="relative md:px-28 md:py"> */}
         <motion.div
           initial={{
             opacity: 0,
@@ -505,7 +509,7 @@ export default function SkillConstellation() {
                         }}
                       />
 
-                      <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-white/35">
+                      <span className="font-mono text-[9px] uppercase tracking-[0.28em] text-black/45 dark:text-white/35">
                         {title}
                       </span>
                     </div>
@@ -529,14 +533,16 @@ export default function SkillConstellation() {
                             delay: Math.min(index * 0.035, 0.3),
                           }}
                           className="
-                        rounded-full
-                        border
-                        border-white/10
-                        bg-white/[0.025]
-                        px-3.5 py-2
-                        font-mono
-                        text-[10px]
-                      "
+                            rounded-full
+                            px-3.5 py-2
+                            font-mono text-[11px] tracking-wide
+                            border border-black/10 dark:border-white/10
+                            bg-black/5 dark:bg-white/5
+                            
+                            /* // // // The Magic Fix for Light Mode */
+                            brightness-50 saturate-500 
+                            dark:brightness-100 dark:saturate-100
+                          "
                           style={{
                             color,
                           }}

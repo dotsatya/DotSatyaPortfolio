@@ -80,7 +80,7 @@ export default function TiltedTechToolls() {
 
   return (
     /* ADDED THIS WRAPPER TO FIX THE HORIZONTAL SCROLLBAR */
-    <div className="w-full pt-20 overflow-hidden">
+    <div className="w-full md:pt-12 lg:pt-20 overflow-hidden">
       <motion.div
         // 1. Starts 50px down (y: 50) and invisible (opacity: 0)
         initial={{ opacity: 0, y: 50 }}
@@ -97,7 +97,7 @@ export default function TiltedTechToolls() {
         }}
       >
         <section
-          className="section relative w-full py-24 flex items-center overflow-hidden -rotate-3 scale-105"
+          className="section relative w-full py-20 sm:py-30 md:py-20 flex items-center overflow-hidden -rotate-3 scale-105"
           ref={container}
         >
           {/* Scrolling Icon Track */}
@@ -111,17 +111,30 @@ export default function TiltedTechToolls() {
                 return (
                   <div
                     key={index}
-                    className="flex flex-col items-center justify-center gap-2 min-w-[140px] md:min-w-[180px]"
+                    // 1. Adjusted widths to scale smoothly from mobile -> tablet -> desktop
+                    className="flex flex-col items-center justify-center gap-0 md:gap-2 min-w-[86px] sm:min-w-[106px] md:min-w-[136px] lg:min-w-[180px]"
                   >
                     <div
-                      className=" mx-0 sm:mx-4 md:mx-3   
-                    h-20 w-20 md:h-24 md:w-28 lg:h-28 lg:w-36 
-                    flex flex-col items-center justify-center gap-3 rounded-xl md:rounded-xl sm:rounded-2xl sm:border transition-all sm:bg-[#e0e0e058] sm:dark:bg-[#0e0e0e]/80"
+                      // 2. Removed 'sm:' prefixes on borders/backgrounds so mobile gets the card UI too
+                      // 3. Perfected Light/Dark mode colors using alpha transparency for a modern look
+                      className="
+                          md:mx-2
+                          flex flex-col items-center justify-center 
+                          h-16 w-16 sm:h-20 sm:w-20 md:h-24 md:w-28 lg:h-28 lg:w-36 
+                          rounded-xl sm:rounded-2xl 
+                          border border-black/5 dark:border-white/10 
+                          bg-neutral-100/60 dark:bg-neutral-900/50 
+                          shadow-sm backdrop-blur-sm 
+                          transition-transform duration-300 hover:scale-110
+                        "
                       style={{ color: skill.color }}
                     >
-                      <IconComponent size={40} className="drop-shadow-lg" />
+                      {/* 4. Removed hardcoded size={40} to make the icon responsive via Tailwind */}
+                      <IconComponent className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 drop-shadow-md" />
                     </div>
-                    <span className=" hidden lg:block  text-sm font-light  capitalize  text-neutral-700 dark:text-neutral-400  ">
+
+                    {/* 5. Kept text hidden on very small phones, but visible on tablets (md) and up */}
+                    <span className="hidden md:block text-xs lg:text-sm font-medium capitalize text-neutral-600 dark:text-neutral-400">
                       {skill.name}
                     </span>
                   </div>
