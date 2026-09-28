@@ -10,6 +10,7 @@ import Services from "@/components/minimal/Services/service";
 import PhotoGraphy from "@/components/minimal/PhotoGraphy_SK_ui/PhotoGraphy";
 import SkillConstellation from "@/components/minimal/Skills/SkillConstellation";
 import Achievements from "@/components/minimal/Achivements/Achievements";
+import TiltedTechToolls from "@/components/minimal/TechToolls/TiltedTechToolls";
 
 const page = () => {
   return (
@@ -31,7 +32,8 @@ const page = () => {
           }}
         /> */}
         <About />
-        <TechToolls />
+        {/* <TechToolls /> */}
+        <TiltedTechToolls />
         <Services />
         <Achievements />
         <GitHubActivities />
