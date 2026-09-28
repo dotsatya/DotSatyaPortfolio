@@ -3,7 +3,7 @@ import { Portfolio } from "@/lib/AllDetails";
 import { motion, easeOut } from "framer-motion";
 import ProjectCard from "./ProjectCard";
 import Works from "./Works";
-import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";
+import AnimatedHeaderSection from "@/components/ui/AnimattedHeading/AnimatedHeaderSection";
 
 const containerVariants = {
   hidden: {},
@@ -36,15 +36,55 @@ export default function Projects() {
 
   return (
     <section id="projects" className=" section mx-auto pt-20">
-        <AnimatedHeaderSection
-          subTitle={"Logic meets Aesthetics, Seamlessly"}
-          title={"Works"}
-          text={`Featured projects that have been meticulously
-            crafted with passion to drive
-            results and impact.`}
-          textColor={"text-black dark:text-white"}
-          withScrollTrigger={true}
-        />
+      <AnimatedHeaderSection
+        subTitle={
+          <>
+            <span className="text-black/60 dark:text-white/60">Logic</span>{" "}
+            <span className="font-bold text-amber-500 dark:text-[#fde68a]">
+              meets
+            </span>{" "}
+            <span className="font-semibold italic text-rose-500 dark:text-rose-300">
+              Aesthetics
+            </span>
+            <span className="text-black/30 dark:text-white/30">
+              , Seamlessly
+            </span>
+          </>
+        }
+        title={
+          <>
+            <span className="">WO</span>
+            <span
+              className="  font-bold
+                      italic
+                      text-transparent
+                      [-webkit-text-stroke:2px_#fbbf24]
+                        dark:[-webkit-text-stroke:2px_#fde68a]
+                          "
+            >
+              RKs
+            </span>
+            <span className="text-rose-500 dark:text-rose-300">.</span>
+          </>
+        }
+        text={[
+          <>
+            Designed for{" "}
+            <span className="font-semibold italic text-rose-500 dark:text-rose-300">
+              real users
+            </span>{" "}
+          </>,
+          <>
+            and{" "}
+            <span className="font-bold text-black dark:text-white">
+              built to solve
+            </span>{" "}
+            something useful
+          </>,
+        ]}
+        textColor="text-black dark:text-white"
+        withScrollTrigger={true}
+      />
       {/* Section Title Bar */}
       <motion.div
         initial={{
@@ -66,16 +106,6 @@ export default function Projects() {
           delay: 0.12,
         }}
       >
-        {/* <div className="text-center mb-8">
-          <h2 className="font-mono text-4xl font-semibold text-gray-900 dark:text-gray-100">
-            Project Portfolio
-          </h2>
-          <span className="block text-lg mt-2 text-gray-600 dark:text-gray-400">
-            🧩 Showcase My Craft
-          </span>
-        </div> */}
-      
-
         <div className="w-full block lg:hidden  md:px-10">
           {" "}
           {/*lg:hidden for midium and small screen*/}
@@ -101,7 +131,6 @@ export default function Projects() {
                     description={project.description}
                     tags={project.tags}
                     image={project.imageUrl}
-                    featured={project.featured}
                     github={project.githubUrl}
                     live={project.liveUrl}
                     linkedIn={project.linkedInUrl}

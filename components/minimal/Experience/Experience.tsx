@@ -3,7 +3,8 @@ import { Portfolio } from "@/lib/AllDetails";
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "framer-motion";
 import { cn } from "@/lib/utils";
-import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";
+import AnimatedHeaderSection from "@/components/ui/AnimattedHeading/AnimatedHeaderSection";
+
 const TimelineScrollAnimation = ({
   containerRef,
 }: {
@@ -50,9 +51,11 @@ const TimelineScrollAnimation = ({
     </>
   );
 };
+
 const Experience = () => {
   const experience = Portfolio.experience;
   const experienceContainerRef = useRef<HTMLDivElement>(null);
+  
   return (
     <>
       {experience.length > 0 && (
@@ -78,20 +81,43 @@ const Experience = () => {
             }}
           >
             <AnimatedHeaderSection
-              subTitle={"Moments that defined my professional journey"}
-              title={"Experience"}
-              text={`This timeline captures the experiences
-                that shaped how I build, think ...`}
-              textColor={"text-black dark:text-white "}
+              subTitle={
+                <>
+                  Moments that defined{" "}
+                  <span className="font-bold text-red-300">my</span>{" "}
+                  <span className="font-semibold text-orange-300">
+                    professional
+                  </span>{" "}
+                  <span className="font-bold italic text-pink-300">
+                    journey
+                  </span>
+                </>
+              }
+              title={
+                <>
+                  <span className="">EXPERI</span>
+                  <span className="text-red-300  italic">ENCE</span>
+                  <span className="text-orange-300">.</span>
+                </>
+              }
+              text={[
+                <>
+                  A journey of{" "}
+                  <span className="font-semibold text-pink-300">learning</span>{" "}
+                  building, and becoming.
+                </>,
+                <>
+                  <span className="text-white/50">Every</span> experience{" "}
+                  <span className="italic text-orange-300">left its mark</span>..
+                </>,
+              ]}
+              textColor="text-black dark:text-white"
               withScrollTrigger={true}
             />
-            <div className="mx-auto max-w-6xl w-full px-6 md:px-10 relative">
-              {/* <h2 className="mb-16 block text-center font-mono text-4xl font-semibold  uppercase tracking-[0.2em] text-black dark:text-white">
-                Experience
-              </h2> */}
 
+            <div className="mx-auto max-w-6xl w-full px-6 md:px-10 relative">
               <div
-                className="relative pl-8 md:pl-12"
+                className="relative md:pl-12"
                 ref={experienceContainerRef}
               >
                 {/* Static Line  */}
@@ -111,7 +137,7 @@ const Experience = () => {
                   />
                 </div>
 
-                <div className="space-y-12">
+                <div className=" md:space-y-12 space-y-6">
                   {experience.map((exp, i) => {
                     const colors = [
                       "border-cyan-400 text-cyan-400",
@@ -128,7 +154,18 @@ const Experience = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.1 }}
                         viewport={{ once: true, margin: "-50px" }}
-                        className="relative grid grid-cols-[1fr] md:grid-cols-[200px_1fr] md:gap-x-12 group"
+                        className="
+                          relative grid grid-cols-[1fr] md:grid-cols-[200px_1fr] md:gap-x-12 group
+                          /* --- Mobile Glass Card Styles --- */
+                          p-6 rounded-2xl 
+                          bg-white/40 dark:bg-white/5 
+                          backdrop-blur-xl 
+                          border border-black/5 dark:border-white/10 
+                          shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)]
+                          /* --- Reset styles for Desktop/Tablet --- */
+                          md:p-0 md:rounded-none md:bg-transparent md:dark:bg-transparent 
+                          md:backdrop-blur-none md:border-0 md:shadow-none
+                        "
                       >
                         {/* Timeline Dot (Absolute to line) */}
                         <div className="absolute left-2.75 md:left-1.25 -translate-x-1/2 top-[5.3px] hidden md:flex items-center justify-center">

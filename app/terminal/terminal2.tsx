@@ -960,7 +960,8 @@ const Terminal2: React.FC<TerminalProps> = ({
           className="h-full flex flex-col font-mono text-base relative"
           onClick={focusInput}
         >
-          <div className="flex-none py-2 pt-4 border-b border-terminal-dim z-20 sticky top-0 flex items-center gap-2">
+          {/* //// /// // use sticky and z-index to fix the COMMANDS div */}
+          <div className="flex-none py-1.5 pt-3.5 rounded-xl backdrop-blur-xl z-5 sticky top-17 flex items-center gap-2">
             <button
               onClick={() => scrollShortcuts("left")}
               className="p-2 text-terminal-text-dim hover:text-terminal-primary transition-colors focus:outline-none select-none flex-shrink-0"
@@ -981,15 +982,38 @@ const Terminal2: React.FC<TerminalProps> = ({
                     }
                     disabled={isProcessing || isTyping}
                     className={`
-                           px-3 py-1.5 
-                           border border-terminal-dim 
-                           rounded
-                           text-xs md:text-sm font-mono text-terminal-text
-                           hover:border-terminal-text hover:bg-black/10 dark:hover:bg-white/10
-                           disabled:opacity-50 disabled:cursor-not-allowed
-                           transition-all duration-200 
-                           whitespace-nowrap select-none
-                        `}
+                                px-3.5 py-1.5
+                                rounded-xl
+
+                                font-mono text-xs md:text-sm
+                                whitespace-nowrap select-none
+
+                                /* Glass */
+                                bg-black/5 dark:bg-white/[0.06]
+                                backdrop-blur-xl
+                                backdrop-saturate-150
+
+                                /* Border */
+                                border border-black/10 dark:border-white/10
+
+                                /* Depth */
+                                shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_4px_18px_rgba(0,0,0,0.08)]
+                                dark:shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_4px_18px_rgba(0,0,0,0.25)]
+
+                                text-terminal-text
+
+                                transition-all duration-300 ease-out
+
+                                hover:bg-black/10 dark:hover:bg-white/[0.10]
+                                hover:border-black/20 dark:hover:border-white/20
+                                hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.3),0_6px_22px_rgba(0,0,0,0.12)]
+                                dark:hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.12),0_6px_22px_rgba(0,0,0,0.35)]
+
+                                active:scale-[0.97]
+
+                                disabled:opacity-40
+                                disabled:cursor-not-allowed
+                              `}
                   >
                     {cmd}
                   </button>

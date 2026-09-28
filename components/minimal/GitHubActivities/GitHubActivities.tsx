@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import { Portfolio } from "@/lib/AllDetails";
 import { Github } from "lucide-react";
 import { ActivityCalendar } from "react-activity-calendar";
-import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";
+import AnimatedHeaderSection from "@/components/ui/AnimattedHeading/AnimatedHeaderSection";
 
 type GitHubContribution = {
   date: string;
@@ -109,12 +109,40 @@ const GitHubActivities = () => {
     <>
       <section className="pt-20">
         <AnimatedHeaderSection
-          subTitle={" Showcasing My GitHub Contributions"}
-          title={"Contributions"}
-          text={`It showcases my journey as a developer,
-            Highlighting my contributions
-            with innovative solutions.`}
-          textColor={"text-black dark:text-white "}
+          subTitle={
+            <>
+              SHOWCASING MY{" "}
+              <span className="font-bold text-yellow-300">GITHUB</span>{" "}
+              <span className="font-bold text-green-400">CONTRIBUTIONS</span>
+            </>
+          }
+          title={
+            <>
+              <span className=" textblack dark:text-white ">CONTRI</span>
+              <span
+                className="
+                    italic
+                    text-transparent
+                    [-webkit-text-stroke:1.5px_#67e8f9]
+                   "
+              >
+                BUTIONS
+              </span>
+              <span className="text-cyan-300/60">.</span>
+            </>
+          }
+          text={[
+            <>
+              It showcases my journey as a{" "}
+              <span className="font-semibold text-cyan-300">developer</span>,
+            </>,
+            <>
+              highlighting my{" "}
+              <span className="font-bold text-green-400">contributions</span>{" "}
+              with innovative solutions
+            </>,
+          ]}
+          textColor="text-black dark:text-white"
           withScrollTrigger={true}
         />
         <motion.div
@@ -144,7 +172,7 @@ const GitHubActivities = () => {
           </div> */}
 
           <div className="mx-auto max-w-6xl w-full md:px-10 overflow-x-auto md:overflow-visible ">
-              <RealHeatmap username={Portfolio.socialLinks.github} />
+            <RealHeatmap username={Portfolio.socialLinks.github} />
           </div>
         </motion.div>
       </section>

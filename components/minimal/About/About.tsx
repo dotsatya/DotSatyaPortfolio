@@ -8,8 +8,46 @@ import { motion } from "framer-motion";
 import ProfileBlob from "./ProfileBlob";
 
 const About = () => {
+  const letters = "SATYA".split("");
   return (
-    <section id="about" className="mx-auto pt-6 md:pt-12 lg:pt-20 text-black dark:text-white ">
+    // Added 'relative' and 'overflow-hidden' to contain the background text properly
+
+    <section
+      id="about"
+      className="relative overflow-hidden mx-auto pt-6 md:pt-12 lg:pt-20 text-black dark:text-white"
+    >
+      {/* Background Text */}
+      <div className="hidden lg:block absolute top-1/2 left-[44%] -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none opacity-5">
+        <h1 className="italic text-[6rem] sm:text-[10rem] md:text-[14rem] lg:text-[18rem] font-extrabold text-transparent whitespace-nowrap [-webkit-text-stroke:2px_theme(colors.gray.500)] dark:[-webkit-text-stroke:2px_theme(colors.white)]">
+          {" "}
+          {letters.map((letter, index) => (
+            <motion.span  
+              key={index}
+              initial={{
+                y: 250,
+                opacity: 0,
+              }}
+              whileInView={{
+                y: 0,
+                opacity: 1,
+              }}
+              viewport={{
+                once: true,
+                amount: 0.3,
+              }}
+              transition={{
+                duration: 0.8,
+                delay: index * 0.12,
+                ease: [0.22, 1, 0.36, 1],
+              }}
+              className="inline-block"
+            >
+              {letter}
+            </motion.span>
+          ))}
+        </h1>
+      </div>
+
       <motion.div
         initial={{
           opacity: 0,
@@ -36,13 +74,13 @@ const About = () => {
               <Social />
             </div>
 
-            <div className="w-full  h-full  lg:hidden mb-4 sm:mb-0">
+            <div className="w-full h-full lg:hidden mb-4 sm:mb-0">
               <ProfileBlob profilePic={profilePic} />
             </div>
             <div className="col-span-2 lg:col-span-1 ">
               <Data />
             </div>
-            <div className="w-full  h-full hidden lg:block">
+            <div className="w-full h-full hidden lg:block">
               <ProfileBlob profilePic={profilePic} />
             </div>
           </div>

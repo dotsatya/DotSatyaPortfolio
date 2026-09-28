@@ -1,13 +1,13 @@
 "use client";
-import { Eye, Github } from "lucide-react";
+import { Github, ArrowUpRight } from "lucide-react";
 import Image, { StaticImageData } from "next/image";
+import { motion, Variants } from "framer-motion";
 
 type ProjectCardProps = {
   title: string;
   description: string;
   tags: string[];
   image: StaticImageData;
-  featured?: boolean;
   github?: string;
   live?: string;
   linkedIn?: string;
@@ -19,121 +19,141 @@ const ProjectCard = ({
   tags,
   image,
   github,
-  featured,
   live,
   linkedIn,
 }: ProjectCardProps) => {
+  // Framer motion variants for staggering tags from left to right
+  const tagsContainer : Variants = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+      },
+    },
+  };
+
+  const tagItem : Variants = {
+    hidden: { opacity: 0, x: -15 },
+    show: { 
+      opacity: 1, 
+      x: 0,
+      transition: { type: "spring", stiffness: 100, damping: 15 }
+    },
+  };
+
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-10% 0px" }}
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
       className="
-        relative overflow-hidden rounded-2xl
-       shadow-md shadow-neutral-400 dark:shadow-black
-        transition-transform duration-300 ease-in-out
-        lg:hover:-translate-y-2
-        break-inside-avoid mb-8
-        border border-neutral-400/30 dark:border-neutral-600/30
-        group 
+        relative w-full overflow-hidden rounded-[24px] mb-8
+        bg-white dark:bg-[#0f0f0f]
+        border border-neutral-200 dark:border-neutral-800/60
+        shadow-[0_8px_30px_rgb(0,0,0,0.04)] dark:shadow-[0_8px_30px_rgb(0,0,0,0.1)]
+        flex flex-col
       "
     >
-      {/* Image */}
+      {/* Top Section: Image + Overlaid Glass Buttons */}
+      <div className="relative w-full aspect-[16/10] overflow-hidden rounded-t-[24px]">
+        <Image
+          src={image}
+          alt={title}
+          fill
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 50vw"
+        />
 
-      <Image
-        src={image}
-        alt={title}
-        className="w-full h-auto object-cover block"
-      />
-
-      {/* Title Overlay - Hidden on mobile/tablet because it's part of the main info block there */}
-      <div
-        className="
-          absolute bottom-0 left-0 right-0
-          p-5
-          bg-gradient-to-t
-          from-black/70 to-transparent
-          lg:block hidden
-        "
-      >
-        <h3 className="text-lg font-semibold text-white">{title}</h3>
+        {/* Action Buttons Container - Vertical stacking */}
+        <div className="absolute bottom-4 right-4 flex flex-row gap-3 z-10">
+          {github && (
+            <a
+              href={github}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="GitHub Repository"
+              className="
+                flex items-center justify-center h-14 w-14 rounded-full
+                /* Dark Obsidian Glass for GitHub */
+                bg-neutral-900/60 dark:bg-black/50 
+                backdrop-blur-md border border-white/20 dark:border-white/10
+                text-white
+                shadow-[0_8px_16px_rgba(0,0,0,0.2)]
+                active:scale-95 transition-transform
+              "
+            >
+              <Github size={24} strokeWidth={2} />
+            </a>
+          )}
+          
+          {(live || linkedIn) && (
+            <a
+              href={live || linkedIn}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={live ? "Live Site" : "LinkedIn Profile"}
+              className="
+                flex items-center justify-center h-14 w-14 rounded-full
+                /* Vibrant Rose Glass for Live/Link */
+                bg-rose-500/60 dark:bg-rose-500/40 
+                backdrop-blur-md border border-white/30 dark:border-white/10
+                text-white
+                shadow-[0_8px_16px_rgba(244,63,94,0.3)]
+                active:scale-95 transition-transform
+              "
+            >
+              <ArrowUpRight size={24} strokeWidth={2} />
+            </a>
+          )}
+        </div>
       </div>
 
-      {/* Content Block: Static on mobile/tablet, Hover on Desktop */}
-      <div
-        className="
-          /* Mobile/Tablet Styles (Matching your image) */
-          relative p-6 flex flex-col items-start text-left
-          
-          /* Desktop Hover Styles */
-          lg:absolute lg:inset-0 lg:bg-white/60 lg:dark:bg-black/60
-          lg:backdrop-blur-lg lg:items-center lg:justify-center lg:text-center
-          lg:opacity-0 lg:group-hover:opacity-100
-          lg:transition-opacity lg:duration-300 lg:ease-in-out
-        "
-      >
-        {/* Title for Mobile */}
-        <h3 className="text-lg font-medium tracking-wide dark:text-white text-black mb-2 lg:hidden">
+      {/* Bottom Section: Content & Animated Tags */}
+      <div className="p-5 sm:p-6 flex flex-col flex-grow">
+        <h3 className="text-[22px] font-bold tracking-tight text-neutral-900 dark:text-neutral-100 mb-2.5">
           {title}
         </h3>
 
-        <p className="text-xs mb-6 text-neutral-400 lg:text-neutral-700 lg:dark:text-neutral-300">
+        {/* Animated Description Effect with line-clamp */}
+        <motion.p 
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="text-[14px] leading-relaxed text-neutral-600 dark:text-neutral-400 mb-6 flex-grow line-clamp-3"
+        >
           {description}
-        </p>
+        </motion.p>
 
-        <div className="flex flex-wrap justify-start lg:justify-center gap-2 mb-6">
+        {/* Framer Motion Animated Tags */}
+        <motion.div
+          variants={tagsContainer}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, margin: "-50px 0px" }}
+          className="flex flex-wrap gap-2 mt-auto"
+        >
           {tags.map((tag) => (
-            <span
+            <motion.span
               key={tag}
+              variants={tagItem}
               className="
-                px-3 py-1
-                text-[10px] uppercase tracking-wide 
-                rounded-md
-                bg-neutral-800 text-orange-200/70
-                lg:bg-neutral-800  
+                px-3 py-1.5
+                text-[10px] font-bold uppercase tracking-widest
+                rounded-full
+                bg-neutral-100 dark:bg-neutral-800/60
+                border border-neutral-200/60 dark:border-neutral-700/50
+                text-neutral-600 dark:text-neutral-300
               "
             >
               {tag}
-            </span>
+            </motion.span>
           ))}
-        </div>
-
-        <div className="flex gap-4 justify-start lg:justify-center w-full">
-          <a
-            href={github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              inline-flex items-center gap-2
-              bg-neutral-200 dark:bg-neutral-800
-              text-black dark:text-white
-              px-2.5 py-1.5 rounded-md
-              tracking-wider text-sm
-              transition-colors duration-200
-              hover:bg-neutral-400/50 dark:hover:bg-neutral-600/50
-            "
-          >
-            <Github size={16} />
-            GitHub
-          </a>
-
-          <a
-            href={live || linkedIn}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="
-              inline-flex items-center gap-2
-              bg-neutral-200 dark:bg-neutral-800
-              text-black dark:text-white
-              px-2.5 py-1.5 rounded-md
-              tracking-wider text-sm
-              transition-colors duration-200
-              hover:bg-neutral-400/50 dark:hover:bg-neutral-600/50
-            "
-          >
-            <Eye size={16} />
-            {live ? "Live" : "LinkedIn"}
-          </a>
-        </div>
+        </motion.div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 

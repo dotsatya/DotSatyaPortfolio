@@ -247,8 +247,8 @@ div[class*="kursor"].kursor--4 {
   background-color: white !important; /* White filled body */
   border: none !important;
   mix-blend-mode: difference; /* Invert colors */
-  width: 25px !important;
-  height: 25px !important;
+  width: 16px !important;
+  height: 16px !important;
   /* z-index: 9999 !important; */
 }
 
@@ -429,3 +429,10 @@ div[class*="kursor"].kursor--4.kursor--down + .kursorChild {
 .signature-hover:hover {
   transform: translate(15px, -1px);
 }
+
+
+/* thin scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(130, 130, 130, 0.327); border-radius: 8px;  }
+::-webkit-scrollbar-thumb:hover { background: #8a5cff8c; }

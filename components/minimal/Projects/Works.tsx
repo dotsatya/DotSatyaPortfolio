@@ -1,7 +1,11 @@
 "use client";
-import { useRef, useState, useEffect } from "react";
-import gsap from "gsap";
-import { useGSAP } from "@gsap/react";
+import { useState, useEffect } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  AnimatePresence,
+} from "framer-motion";
 import { ImArrowUpRight2 } from "react-icons/im";
 import { Portfolio } from "@/lib/AllDetails";
 import Image from "next/image";
@@ -9,147 +13,76 @@ import { Github } from "lucide-react";
 import { createPortal } from "react-dom";
 import Magnetic from "../../ui/Magnetic";
 
-type OverlayRef = HTMLDivElement | null;
-
 const Works: React.FC = () => {
   const [mounted, setMounted] = useState(false);
+  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+
+  // Motion values for mouse tracking
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth springs to mimic GSAP's quickTo ease
+  const springConfig = { damping: 25, stiffness: 150, mass: 0.5 };
+  const springX = useSpring(mouseX, springConfig);
+  const springY = useSpring(mouseY, springConfig);
+
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
-
-  const overlayRefs = useRef<OverlayRef[]>([]);
-  const previewRef = useRef<HTMLDivElement | null>(null);
-
-  const [currentIndex, setCurrentIndex] = useState<number | null>(null);
-
-  // const text = `Featured projects that have been meticulously
-  //   crafted with passion to drive
-  //   results and impact.`;
-
-  const mouse = useRef({ x: 0, y: 0 });
-  const moveX = useRef<((value: number) => void) | null>(null);
-  const moveY = useRef<((value: number) => void) | null>(null);
-
-  useGSAP(() => {
-    if (!previewRef.current) return;
-
-    // ✅ PREVENT WHITE FLASH
-    gsap.set(previewRef.current, {
-      opacity: 0,
-      scale: 0.95,
-    });
-
-    overlayRefs.current.forEach((el) => {
-      if (!el) return;
-      gsap.set(el, {
-        clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-      });
-    });
-
-    moveX.current = gsap.quickTo(previewRef.current, "x", {
-      duration: 1.5,
-      ease: "power3.out",
-    });
-
-    moveY.current = gsap.quickTo(previewRef.current, "y", {
-      duration: 2,
-      ease: "power3.out",
-    });
-
-    gsap.from("#project", {
-      y: 100,
-      opacity: 0,
-      delay: 0.5,
-      duration: 1,
-      stagger: 0.3,
-      ease: "back.out",
-      scrollTrigger: {
-        trigger: "#project",
-      },
-    });
-  }, [mounted]);
-
-  const handleMouseEnter = (index: number) => {
-    if (window.innerWidth < 768) return;
-    setCurrentIndex(index);
-
-    const el = overlayRefs.current[index];
-    if (!el) return;
-
-    gsap.killTweensOf(el);
-    gsap.fromTo(
-      el,
-      {
-        clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-      },
-      {
-        clipPath: "polygon(0 0, 100% 0, 100% 100%, 0% 100%)",
-        duration: 0.15,
-        ease: "power2.out",
-      },
-    );
-
-    gsap.to(previewRef.current, {
-      opacity: 1,
-      scale: 1,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  };
-
-  const handleMouseLeave = (index: number) => {
-    if (window.innerWidth < 768) return;
-    setCurrentIndex(null);
-
-    const el = overlayRefs.current[index];
-    if (!el) return;
-
-    gsap.killTweensOf(el);
-    gsap.to(el, {
-      clipPath: "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
-      duration: 0.2,
-      ease: "power2.in",
-    });
-
-    gsap.to(previewRef.current, {
-      opacity: 0,
-      scale: 0.95,
-      duration: 0.3,
-      ease: "power2.out",
-    });
-  };
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (window.innerWidth < 768) return;
 
-    mouse.current.x = e.clientX + 24;
-    mouse.current.y = e.clientY + 24;
+    const previewWidth = 680; // Matches the w-[680px] class on your preview container
+    const offset = 38;
 
-    moveX.current?.(mouse.current.x);
-    moveY.current?.(mouse.current.y);
+    // Calculate normal right-side position
+    let targetX = e.clientX + offset;
+
+    // If positioning on the right causes it to overflow the screen width, flip it to the left
+    if (targetX + previewWidth > window.innerWidth) {
+      targetX = e.clientX - previewWidth - offset;
+    }
+
+    mouseX.set(targetX);
+
+    // Center it slightly on the Y axis for better visibility, or keep the default offset
+    mouseY.set(e.clientY - 100);
   };
 
   const projects = Portfolio.projects;
 
   return (
-    <section
-      className="container section mx-auto  hidden lg:block " //hidden lg:block for large screen
-    >
+    <section className="container section mx-auto hidden lg:block">
       <div className="relative flex flex-col" onMouseMove={handleMouseMove}>
         {projects.map((project, index) => (
-          <div
+          <motion.div
             key={project.id}
             id="project"
+            initial={{ y: 100, opacity: 0 }}
+            whileInView={{ y: 0, opacity: 1 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.5, delay: index * 0.1, ease: "easeOut" }}
             className="relative flex flex-col gap-1 py-5 cursor-pointer group md:gap-0"
-            onMouseEnter={() => handleMouseEnter(index)}
-            onMouseLeave={() => handleMouseLeave(index)}
+            onMouseEnter={() =>
+              window.innerWidth >= 768 && setHoveredIndex(index)
+            }
+            onMouseLeave={() =>
+              window.innerWidth >= 768 && setHoveredIndex(null)
+            }
           >
             {/* overlay */}
-            <div
-              ref={(el) => {
-                overlayRefs.current[index] = el;
+            <motion.div
+              className="absolute inset-0 hidden md:block bg-black dark:bg-white -z-10"
+              initial={false}
+              animate={{
+                clipPath:
+                  hoveredIndex === index
+                    ? "polygon(0 0, 100% 0, 100% 100%, 0% 100%)"
+                    : "polygon(0 100%, 100% 100%, 100% 100%, 0 100%)",
               }}
-              className="absolute inset-0 hidden md:block duration-200 bg-black dark:bg-white -z-10 clip-path"
+              transition={{ duration: 0.3, ease: "easeOut" }}
             />
 
             {/* title */}
@@ -157,8 +90,7 @@ const Works: React.FC = () => {
               <h2 className="lg:text-[32px] text-[26px] leading-none">
                 {project.title}
               </h2>
-              <div className="flex flex-wrap gap-4">
-                <Magnetic>
+            <div className="flex items-center gap-4 text-black dark:text-white transition-colors duration-500 md:group-hover:text-white dark:md:group-hover:text-black">    <Magnetic>
                   <a
                     href={project.githubUrl}
                     target="_blank"
@@ -183,7 +115,7 @@ const Works: React.FC = () => {
             <div className="w-full h-0.5 bg-black/80 dark:bg-white/80" />
 
             {/* framework */}
-            <div className="flex px-10 text-xs leading-loose uppercase transtion-all duration-500 md:text-sm gap-x-5 md:group-hover:px-12">
+            <div className="flex px-10 text-xs leading-loose uppercase transition-all duration-500 md:text-sm gap-x-5 md:group-hover:px-12">
               {project.tags.map((tag, idx) => (
                 <p
                   key={idx}
@@ -193,24 +125,44 @@ const Works: React.FC = () => {
                 </p>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
 
         {/* desktop floating preview image */}
         {mounted &&
           createPortal(
-            <div
-              ref={previewRef}
-              className="fixed -top-2/6 left-0 z-50 overflow-hidden border-6 border-black rounded-xl dark:border-white pointer-events-none w-[680px] md:block hidden opacity-0"
+            <motion.div
+              className="fixed top-0 left-0 z-50 overflow-hidden border-4 border-black rounded-xl dark:border-white pointer-events-none w-[680px] md:block hidden"
+              style={{
+                x: springX,
+                y: springY,
+              }}
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{
+                opacity: hoveredIndex !== null ? 1 : 0,
+                scale: hoveredIndex !== null ? 1 : 0.95,
+              }}
+              transition={{ duration: 0.3, ease: "easeOut" }}
             >
-              {currentIndex !== null && (
-                <Image
-                  src={projects[currentIndex].imageUrl}
-                  alt="preview"
-                  className="object-cover w-full h-full"
-                />
-              )}
-            </div>,
+              <AnimatePresence mode="wait">
+                {hoveredIndex !== null && (
+                  <motion.div
+                    key={hoveredIndex}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    className="w-full h-full"
+                  >
+                    <Image
+                      src={projects[hoveredIndex].imageUrl}
+                      alt="preview"
+                      className="object-cover w-full h-full"
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>,
             document.body,
           )}
       </div>

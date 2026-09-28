@@ -35,6 +35,7 @@ export const Portfolio = {
         { subPartName: "JavaScript", percentage: 70 },
         { subPartName: "React", percentage: 66 },
         { subPartName: "Next JS", percentage: 65 },
+        { subPartName: "Angular", percentage: 90 },
         { subPartName: "TypeScript", percentage: 62 },
         { subPartName: "Tailwind", percentage: 90 },
       ],
@@ -49,22 +50,20 @@ export const Portfolio = {
         { subPartName: "Socket.io", percentage: 62 },
       ],
     },
-    // {
-    //   id: 3,
-    //   partName: "Cloud & DevOps",
-    //   items: [
-    //     { subPartName: "AWS", percentage: 72 },
-    //     { subPartName: "Docker", percentage: 75 },
-    //     { subPartName: "Cloudflare Workers", percentage: 70 },
-    //   ],
-    // },
+    {
+      id: 3,
+      partName: "Cloud & DevOps",
+      items: [
+        { subPartName: "AWS", percentage: 72 },
+        { subPartName: "Docker", percentage: 75 },
+        { subPartName: "Cloudflare Workers", percentage: 70 },
+      ],
+    },
     // {
     //   id: 4,
     //   partName: "Realtime & Communication",
     //   items: [
-    //     { subPartName: "WebSockets", percentage: 60 },
     //     { subPartName: "Socket.io", percentage: 62 },
-    //     { subPartName: "WebRTC", percentage: 75 },
     //   ],
     // },
     {
@@ -169,8 +168,7 @@ export const Portfolio = {
     //   description:
     //     "An interactive visualization demonstrating the orbital motion of the Sun, Earth, and Moon using pure web technologies.",
     //   tags: ["HTML", "JavaScript", "CSS"],
-    //   featured: false,
-    //   imageUrl: Image1,
+    //       //   imageUrl: Image1,
     //   // imageWidth: 400,
     //   // imageHeight: 300,
     //   githubUrl: "https://github.com/dotsatya/Sun-Earth-Moon",
@@ -183,7 +181,6 @@ export const Portfolio = {
       description:
         "A responsive web-based music player with playlist support and smooth UI interactions.",
       tags: ["HTML", "JavaScript", "CSS"],
-      featured: true,
       imageUrl: Image2,
       githubUrl: "https://github.com/dotsatya/Music-Website",
       liveUrl: "https://dotsatya.github.io/Music-Website/",
@@ -202,7 +199,6 @@ export const Portfolio = {
         "MySQL",
         "Tailwind CSS",
       ],
-      featured: true,
       imageUrl: Image3,
       githubUrl: "https://github.com/dotsatya/Employee-Management-System",
       liveUrl: "https://dotems.vercel.app/",
@@ -214,7 +210,6 @@ export const Portfolio = {
       description:
         "A secure note-taking application with login, edit, and real-time update support.",
       tags: ["React", "JavaScript", "Express.js", "Tailwind CSS"],
-      featured: true,
       imageUrl: Image4,
       githubUrl: "https://github.com/dotsatya/DotNotesNow/",
       linkedInUrl:
@@ -233,7 +228,6 @@ export const Portfolio = {
         "Node.js",
         "Tailwind CSS",
       ],
-      featured: true,
       imageUrl: Image5,
       githubUrl: "https://github.com/dotsatya/DotSkyNow",
       liveUrl: "https://dotskynow.vercel.app/",
@@ -245,7 +239,6 @@ export const Portfolio = {
       description:
         "A Next.js cryptocurrency dashboard with live prices, market insights, and interactive coin analysis.",
       tags: ["Next.js", "TypeScript", "CoinGecko API", "Tailwind CSS"],
-      featured: false,
       imageUrl: Image6,
       githubUrl: "https://github.com/dotsatya/DotCryptoChecker",
       liveUrl: "https://dotcryptochecker.vercel.app/",
@@ -257,7 +250,6 @@ export const Portfolio = {
       description:
         "My personal portfolio showcasing projects, skills, and contact functionality.",
       tags: ["Next.js", "TypeScript", "EmailJS", "CSS Modules", "Tailwind CSS"],
-      featured: true,
       imageUrl: Image7,
       githubUrl: "https://github.com/dotsatya/DotSatyaPortfolio",
       liveUrl: "https://dotsatya.vercel.app/",
@@ -269,7 +261,6 @@ export const Portfolio = {
       description:
         "A scalable e-commerce web application built with Next.js and modern UI practices.",
       tags: ["Next.js", "JavaScript", "Node.js", "Tailwind CSS"],
-      featured: false,
       imageUrl: Image8,
       githubUrl: "https://github.com/dotsatya/E-commerce_Next",
       liveUrl: "https://dotecommerce.vercel.app/",
@@ -431,6 +422,145 @@ export const Portfolio = {
          
 `,
 };
+
+export const TECH_SKILLS = [
+  // ───────────── FRONTEND ─────────────
+  { name: "JavaScript", group: "web" },
+  { name: "TypeScript", group: "web" },
+  { name: "React", group: "web" },
+  { name: "Redux", group: "web" },
+  { name: "Next.js", group: "web" },
+  { name: "Angular", group: "web" },
+  { name: "Tailwind CSS", group: "web" },
+
+  // ───────────── BACKEND ─────────────
+  { name: "Node.js", group: "backend" },
+  { name: "Express.js", group: "backend" },
+  { name: "MySQL", group: "backend" },
+  { name: "MongoDB", group: "backend" },
+  { name: "Socket.IO", group: "backend" },
+  { name: "Redis", group: "backend" },
+
+  // ───────────── CLOUD & DEVOPS ─────────────
+  { name: "Docker", group: "devops" },
+  { name: "CI/CD", group: "devops" },
+  { name: "Nginx", group: "devops" },
+  { name: "AWS", group: "devops" },
+
+  // // ───────────── SYSTEM DESIGN ─────────────
+  // { name: "System Design", group: "system" },
+  // { name: "Scaling", group: "system" },
+  // { name: "Microservices", group: "system" },
+  // { name: "Database Replication", group: "system" },
+  // { name: "Database Sharding", group: "system" },
+
+  // // ───────────── AI ENGINEERING ─────────────
+  // { name: "AI Engineering", group: "ai" },
+  // { name: "LLM Fundamentals", group: "ai" },
+  // { name: "LangChain", group: "ai" },
+  // { name: "RAG", group: "ai" },
+  // { name: "Vector Databases", group: "ai" },
+
+  // ───────────── PROGRAMMING LANGUAGES ─────────────
+  { name: "C", group: "language" },
+  { name: "C++", group: "language" },
+  { name: "Java", group: "language" },
+  { name: "Python", group: "language" },
+
+  // ───────────── DEVELOPER TOOLS ─────────────
+  { name: "Git", group: "tools" },
+  { name: "GitHub", group: "tools" },
+
+  // ───────────── DESIGN ─────────────
+  { name: "Figma", group: "design" },
+  { name: "Canva", group: "design" },
+  { name: "Photoshop", group: "design" },
+  { name: "Illustrator", group: "design" },
+  { name: "Premiere Pro", group: "design" },
+  { name: "After Effects", group: "design" },
+];
+
+export const TECH_SKILL_LINKS: [string, string][] = [
+  // ───────────── FRONTEND ─────────────
+  ["JavaScript", "TypeScript"],
+  ["JavaScript", "React"],
+  ["JavaScript", "Next.js"],
+  ["JavaScript", "Angular"],
+  ["TypeScript", "React"],
+  ["TypeScript", "Next.js"],
+  ["TypeScript", "Angular"],
+  ["React", "Next.js"],
+  ["React", "Redux"],
+  ["React", "Tailwind CSS"],
+  ["Next.js", "Tailwind CSS"],
+
+  // ───────────── FRONTEND → BACKEND ─────────────
+  ["Next.js", "Node.js"],
+  ["Angular", "Node.js"],
+
+  // ───────────── BACKEND ─────────────
+  ["Node.js", "Express.js"],
+  ["Express.js", "MySQL"],
+  ["Express.js", "MongoDB"],
+  ["Node.js", "Socket.IO"],
+  ["Node.js", "Redis"],
+
+  // ───────────── BACKEND → DEVOPS ─────────────
+  ["Node.js", "Docker"],
+  ["Express.js", "Docker"],
+
+  // ───────────── DEVOPS ─────────────
+  ["Docker", "AWS"],
+  ["Docker", "CI/CD"],
+  ["Nginx", "AWS"],
+
+  // ───────────── DEVELOPMENT WORKFLOW ─────────────
+  ["Git", "GitHub"],
+  ["GitHub", "CI/CD"],
+
+  // ───────────── PROGRAMMING ─────────────
+  ["Python", "Git"],
+  ["C++", "Git"],
+  ["Java", "C"],
+  ["C++", "C"],
+
+  // ───────────── DESIGN → DEVELOPMENT ─────────────
+  ["Figma", "React"],
+  ["Figma", "Tailwind CSS"],
+
+  // ───────────── CREATIVE STACK ─────────────
+  ["Photoshop", "Illustrator"],
+  ["Canva", "Photoshop"],
+  ["Canva", "Illustrator"],
+  ["Premiere Pro", "After Effects"],
+];
+
+export const ACHIEVEMENTS = [
+  {
+    value: 2603,
+    suffix: "",
+    label: "WBJEE 2022",
+    note: "Top tier finish · Claimed my spot at KGEC IT",
+  },
+  {
+    value: 7,
+    suffix: "+",
+    label: "Live Platforms",
+    note: "Architecting solutions at Satsang ITWing",
+  },
+  {
+    value: 1240,
+    suffix: "+",
+    label: "Network Strength",
+    note: "Cultivating a high-value professional network",
+  },
+  {
+    value: 1,
+    suffix: "M+",
+    label: "Eyeballs",
+    note: "Organic reach, PR, and undeniable footprint",
+  },
+];
 
 // Mock File System Structure representing the "home" directory
 export type FileSystemNode =

@@ -1,19 +1,46 @@
-'use client';
+"use client";
 import { Skiper16 } from "@/components/ui/skiper-ui/skiper16";
 import { Skiper52 } from "@/components/ui/skiper-ui/skiper52";
-import AnimatedHeaderSection from "@/lib/AnimattedHeading/AnimatedHeaderSection";
+import AnimatedHeaderSection from "@/components/ui/AnimattedHeading/AnimatedHeaderSection";
 import { motion } from "framer-motion";
 
 const PhotoGraphy = () => {
   return (
     <>
-      <section className="pt-20">
+      <section className="section pt-20">
         <AnimatedHeaderSection
-          subTitle={" My Passion Beyond Code"}
-          title={"Passion"}
-          text={`Capturing stories, emotions, and 
-            moments through My Lens.`}
-          textColor={"text-black dark:text-white "}
+          subTitle={
+            <>
+              <span className="text-white/60">My</span>{" "}
+              <span className="font-semibold text-rose-300">Passion</span>{" "}
+              <span className=" text-orange-300">Beyond</span>{" "}
+              <span className="text-white/50">Code</span>
+            </>
+          }
+          title={
+            <>
+              <span className="">PAS</span>
+
+              <span className="font-semibold italic text-[#fb7185]">SION</span>
+
+              <span className="text-white/30">.</span>
+            </>
+          }
+          text={[
+            <>
+              Capturing{" "}
+              <span className="font-semibold text-rose-300">stories</span>,
+              emotions, and
+            </>,
+            <>
+              moments <span className=" text-gray-500">through </span>
+              <span className="italic font-semibold text-orange-300">
+                My Lens
+              </span>
+              .
+            </>,
+          ]}
+          textColor="text-black dark:text-white"
           withScrollTrigger={true}
         />
         <motion.div
@@ -39,7 +66,7 @@ const PhotoGraphy = () => {
           <div className="hidden md:block">
             <Skiper52 />
           </div>
-         <div className="block md:hidden">
+          <div className="block md:hidden">
             <Skiper16 />
           </div>
         </motion.div>

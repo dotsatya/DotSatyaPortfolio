@@ -8,6 +8,8 @@ import ContactMe from "@/components/minimal/ContactMe/ContactMe";
 import SnowfallWrapper from "@/components/ui/snowfall-wrapper";
 import Services from "@/components/minimal/Services/service";
 import PhotoGraphy from "@/components/minimal/PhotoGraphy_SK_ui/PhotoGraphy";
+import SkillConstellation from "@/components/minimal/Skills/SkillConstellation";
+import Achievements from "@/components/minimal/Achivements/Achievements";
 
 const page = () => {
   return (
@@ -31,9 +33,11 @@ const page = () => {
         <About />
         <TechToolls />
         <Services />
+        <Achievements />
         <GitHubActivities />
         <Experience />
         <Projects />
+        <SkillConstellation />
         {/* <Photography /> */}
         <PhotoGraphy />
         <ContactMe />
