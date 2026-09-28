@@ -467,7 +467,7 @@ export default function SkillConstellation() {
 
               <div className="absolute bottom-4 left-5">
                 <p className="font-mono text-[9px] uppercase tracking-[0.32em] text-black/40 dark:text-white/30">
-                  FIG.05 — TECH CONSTELLATION
+                  EXPLORE THE DEVELOPMENT STACK · TRACE THE CONNECTIONS
                 </p>
               </div>
 
