@@ -8,7 +8,7 @@ const Data = () => {
   return (
     <div className="  ">
       {/* Title */}
-      <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 dark:text-gray-100 leading-tight break-words">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold sm:font-semibold text-gray-900 dark:text-gray-100 leading-tight break-words">
         <span className="block text-gray-600 dark:text-gray-400 font-medium text-xl sm:text-2xl md:text-3xl mb-1">
           Hello, Myself
         </span>
