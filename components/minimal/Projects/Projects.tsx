@@ -35,7 +35,7 @@ export default function Projects() {
   const projects = Portfolio.projects;
 
   return (
-    <section id="projects" className=" section mx-auto pt-20">
+    <section id="projects" className="mx-auto pt-20">
       <AnimatedHeaderSection
         subTitle={
           <>

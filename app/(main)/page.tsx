@@ -1,11 +1,9 @@
+import SnowfallWrapper from "@/components/ui/snowfall-wrapper";
 import About from "@/components/minimal/About/About";
 import Experience from "@/components/minimal/Experience/Experience";
-import TechToolls from "@/components/minimal/TechToolls/TechToolls";
 import GitHubActivities from "@/components/minimal/GitHubActivities/GitHubActivities";
 import Projects from "@/components/minimal/Projects/Projects";
-// import Photography from "@/components/minimal/Photograohy/Photograohy";
 import ContactMe from "@/components/minimal/ContactMe/ContactMe";
-import SnowfallWrapper from "@/components/ui/snowfall-wrapper";
 import Services from "@/components/minimal/Services/service";
 import PhotoGraphy from "@/components/minimal/PhotoGraphy_SK_ui/PhotoGraphy";
 import SkillConstellation from "@/components/minimal/Skills/SkillConstellation";
@@ -15,7 +13,7 @@ import TiltedTechToolls from "@/components/minimal/TechToolls/TiltedTechToolls";
 const page = () => {
   return (
     <>
-      <div className="p-10 font-[poppins]">
+      <div className="p-4 sm:p-6 md:p-8 lg:p-10 font-[poppins]">
         {/* <SnowfallWrapper
           snowflakeCount={80}
           radius={[1, 2]}
@@ -32,7 +30,6 @@ const page = () => {
           }}
         /> */}
         <About />
-        {/* <TechToolls /> */}
         <TiltedTechToolls />
         <Services />
         <Achievements />
@@ -40,7 +37,6 @@ const page = () => {
         <Experience />
         <Projects />
         <SkillConstellation />
-        {/* <Photography /> */}
         <PhotoGraphy />
         <ContactMe />
       </div>

@@ -11,7 +11,7 @@ const ICONS = [Trophy, Cpu, Users, Megaphone];
 
 export default function Achievements() {
   return (
-    <section aria-label="Achievements" className=" section pt-20 ">
+    <section aria-label="Achievements" className="pt-20 ">
       <AnimatedHeaderSection
         subTitle={
           <>

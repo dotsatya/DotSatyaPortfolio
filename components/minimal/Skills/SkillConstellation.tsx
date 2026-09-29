@@ -171,7 +171,7 @@ export default function SkillConstellation() {
     <section
       id="skills"
       aria-label="Technology skills"
-      className="section pt-20"
+      className="pt-20"
     >
       <AnimatedHeaderSection
         subTitle={

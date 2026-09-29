@@ -5,7 +5,7 @@ import MessageBox from "./MessageBox";
 
 const ContactMe = () => {
   return (
-    <section className="section pt-20 md:pb-10 overflow-x-hidden" id="contact">
+    <section className="pt-20 md:pb-10 overflow-x-hidden" id="contact">
       <AnimatedHeaderSection
         subTitle={
           <>

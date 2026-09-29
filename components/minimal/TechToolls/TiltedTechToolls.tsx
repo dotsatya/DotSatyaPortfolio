@@ -97,11 +97,17 @@ export default function TiltedTechToolls() {
         }}
       >
         <section
-          className="section relative w-full py-20 sm:py-30 md:py-20 flex items-center overflow-hidden -rotate-3 scale-105"
+          className="relative w-full py-20 sm:py-30 md:py-20 flex items-center overflow-hidden -rotate-3 scale-105"
           ref={container}
         >
           {/* Scrolling Icon Track */}
-          <div className="relative w-full flex overflow-hidden [mask-image:_linear-gradient(to_right,transparent_0,_black_128px,_black_calc(100%-128px),transparent_100%)]">
+          {/* Outer Wrapper */}
+          <div className="relative w-full overflow-hidden">
+            {/* LEFT FADE OVERLAY - Fades into #F5F5F5 on light mode, #080808 on dark mode */}
+            <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-20 w-24 sm:w-48 bg-gradient-to-r from-[#F5F5F5] via-[#F5F5F5]/80 to-transparent dark:from-[#080808] dark:via-[#080808]/80" />
+
+            {/* RIGHT FADE OVERLAY - Fades into #F5F5F5 on light mode, #080808 on dark mode */}
+            <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-20 w-24 sm:w-48 bg-gradient-to-l from-[#F5F5F5] via-[#F5F5F5]/80 to-transparent dark:from-[#080808] dark:via-[#080808]/80" />
             <motion.div
               className="flex items-center w-max px-[5vw] z-10 var(--marquee-fade)"
               style={{ x: trackPosition, skew: skewFactor }}
@@ -111,12 +117,9 @@ export default function TiltedTechToolls() {
                 return (
                   <div
                     key={index}
-                    // 1. Adjusted widths to scale smoothly from mobile -> tablet -> desktop
                     className="flex flex-col items-center justify-center gap-0 md:gap-2 min-w-[86px] sm:min-w-[106px] md:min-w-[136px] lg:min-w-[180px]"
                   >
                     <div
-                      // 2. Removed 'sm:' prefixes on borders/backgrounds so mobile gets the card UI too
-                      // 3. Perfected Light/Dark mode colors using alpha transparency for a modern look
                       className="
                           md:mx-2
                           flex flex-col items-center justify-center 
@@ -129,11 +132,9 @@ export default function TiltedTechToolls() {
                         "
                       style={{ color: skill.color }}
                     >
-                      {/* 4. Removed hardcoded size={40} to make the icon responsive via Tailwind */}
                       <IconComponent className="w-8 h-8 md:w-10 md:h-10 lg:w-12 lg:h-12 drop-shadow-md" />
                     </div>
 
-                    {/* 5. Kept text hidden on very small phones, but visible on tablets (md) and up */}
                     <span className="hidden md:block text-xs lg:text-sm font-medium capitalize text-neutral-600 dark:text-neutral-400">
                       {skill.name}
                     </span>

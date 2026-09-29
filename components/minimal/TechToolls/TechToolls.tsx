@@ -1,3 +1,4 @@
+// // previous vertion // infinite animation code of TechToolls
 "use client";
 import { motion } from "framer-motion";
 import { Portfolio } from "@/lib/AllDetails";

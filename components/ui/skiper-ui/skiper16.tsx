@@ -58,7 +58,7 @@ const StickyCard_001 = ({
           scale,
           top: `calc(-5vh + ${i * 20 + 50}px)`,
         }}
-        className="rounded-4xl relative -top-1/4 flex h-[300px] w-[400px] origin-top flex-col overflow-hidden"
+        className="rounded-4xl relative -top-1/4 flex w-[350px] h-[260px] sm:w-[440px] sm:h-[320px] origin-top flex-col overflow-hidden"
       >
         <Image
           src={imageUrl}

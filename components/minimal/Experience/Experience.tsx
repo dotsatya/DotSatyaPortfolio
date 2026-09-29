@@ -115,7 +115,7 @@ const Experience = () => {
               withScrollTrigger={true}
             />
 
-            <div className="mx-auto max-w-6xl w-full px-6 md:px-10 relative">
+            <div className="mx-auto max-w-6xl w-full md:px-10 relative">
               <div
                 className="relative md:pl-12"
                 ref={experienceContainerRef}

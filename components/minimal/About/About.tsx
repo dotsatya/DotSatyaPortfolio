@@ -17,7 +17,7 @@ const About = () => {
       className="relative overflow-hidden mx-auto pt-6 md:pt-12 lg:pt-20 text-black dark:text-white"
     >
       {/* Background Text */}
-      <div className="hidden lg:block absolute top-1/2 left-[44%] -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none opacity-5">
+      <div className="hidden lg:block absolute top-1/2 left-[44%] -translate-x-1/2 -translate-y-1/2 pointer-events-none select-none opacity-8 dark:opacity-6">
         <h1 className="italic text-[6rem] sm:text-[10rem] md:text-[14rem] lg:text-[18rem] font-extrabold text-transparent whitespace-nowrap [-webkit-text-stroke:2px_theme(colors.gray.500)] dark:[-webkit-text-stroke:2px_theme(colors.white)]">
           {" "}
           {letters.map((letter, index) => (
@@ -37,7 +37,7 @@ const About = () => {
               }}
               transition={{
                 duration: 0.8,
-                delay: index * 0.12,
+                delay: index * 0.2,
                 ease: [0.22, 1, 0.36, 1],
               }}
               className="inline-block"

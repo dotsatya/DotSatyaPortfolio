@@ -311,10 +311,6 @@ export const Portfolio = {
       imageUrl: photo1,
     },
     {
-      id: 5,
-      imageUrl: photo5,
-    },
-    {
       id: 6,
       imageUrl: photo6,
     },

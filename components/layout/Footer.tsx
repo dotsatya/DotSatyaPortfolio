@@ -94,7 +94,7 @@ const Footer = () => {
             >
               <h1
                 className="
-            absolute top-2 sm:top-4 md:top-0 inset-x-0  text-center
+            absolute top-3 sm:top-4 md:top-0 inset-x-0  text-center
             font-[helvetica] font-extrabold tracking-wide leading-none
             text-[60px] sm:text-[100px] md:text-[120px] lg:text-[180px]
             bg-clip-text text-transparent bg-linear-to-b
