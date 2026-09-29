@@ -8,8 +8,8 @@ const Data = () => {
   return (
     <div className="  ">
       {/* Title */}
-      <h1 className="text-2xl sm:text-4xl md:text-5xl font-semibold text-gray-900 dark:text-gray-100 leading-tight break-words">
-        <span className="block text-gray-600 dark:text-gray-400 font-medium text-lg sm:text-2xl md:text-3xl mb-1">
+      <h1 className="text-3xl sm:text-4xl md:text-5xl font-semibold text-gray-900 dark:text-gray-100 leading-tight break-words">
+        <span className="block text-gray-600 dark:text-gray-400 font-medium text-xl sm:text-2xl md:text-3xl mb-1">
           Hello, Myself
         </span>
         <span className="block uppercase">
@@ -19,7 +19,7 @@ const Data = () => {
       </h1>
 
       {/* Animated Subtitle */}
-      <h3 className="italic mt-1 sm:mt-2 md:mt-4 font-mono font-medium text-lg md:text-2xl opacity-40 text-black dark:text-white relative pl-[2.5rem] lg:pl-[5.4rem]  mb-4 before:content-[''] before:absolute before:left-0 before:top-4 before:w-[30px] lg:before:w-[70px] before:h-[2px] before:bg-gray-700 dark:before:bg-gray-300">
+      <h3 className="italic mt-2 md:mt-4 font-mono font-medium text-xl md:text-2xl opacity-40 text-black dark:text-white relative pl-[2.5rem] lg:pl-[5.4rem]  mb-4 before:content-[''] before:absolute before:left-0 before:top-4 before:w-[30px] lg:before:w-[70px] before:h-[2px] before:bg-gray-700 dark:before:bg-gray-300">
         <TypeAnimation
           sequence={[
             "Web Developer",
