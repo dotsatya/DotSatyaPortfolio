@@ -1,4 +1,4 @@
-# 🚀 DotSatya's Portfolio Website
+# 🚀 Official portfolio of Satya Sundar Dey (dotsatya)
 
 <div align="center">
 
@@ -24,6 +24,8 @@ Hi! I'm **Satya Sundar Dey**, a passionate **Software Engineer** specializing in
 
 ## 🛠️ Tech Stack
 
+The following technologies were used to build this portfolio project:
+
 ### Frontend
 - **Next.js 16** - React framework with server-side rendering
 - **React 19** - UI library
@@ -43,39 +45,6 @@ Hi! I'm **Satya Sundar Dey**, a passionate **Software Engineer** specializing in
 - **emailjs** - Email functionality
 - **sonner** - Toast notifications
 
----
-
-## 📦 Featured Projects
-
-### 🎵 Web Music Player
-A responsive music player with playlist support and smooth UI interactions.
-- **Tech**: HTML, JavaScript, CSS
-- **[GitHub](https://github.com/dotsatya/Music-Website)** • **[Live Demo](https://dotsatya.github.io/Music-Website/)**
-
-### 🌤️ DotSkyNow
-Modern weather app with real-time forecasts, geolocation, and animated theme transitions.
-- **Tech**: React, TypeScript, OpenWeather API, Tailwind CSS
-- **[GitHub](https://github.com/dotsatya/DotSkyNow)** • **[Live Demo](https://dotskynow.vercel.app/)**
-
-### 📈 DotCryptoChecker
-Cryptocurrency dashboard with live prices, market insights, and coin analysis.
-- **Tech**: Next.js, TypeScript, CoinGecko API, Tailwind CSS
-- **[GitHub](https://github.com/dotsatya/DotCryptoChecker)** • **[Live Demo](https://dotcryptochecker.vercel.app/)**
-
-### 👥 Employee Management System
-Full-stack system with real-time updates and role-based data handling.
-- **Tech**: React, Express.js, Socket.io, MySQL, Tailwind CSS
-- **[GitHub](https://github.com/dotsatya/Employee-Management-System)** • **[Live Demo](https://dotems.vercel.app/)**
-
-### 📝 DotNotesNow
-Secure note-taking app with login, edit, and real-time updates.
-- **Tech**: React, JavaScript, Express.js, Tailwind CSS
-- **[GitHub](https://github.com/dotsatya/DotNotesNow/)**
-
-### 🪐 Sun-Earth-Moon Simulation
-Interactive visualization of orbital motion using web technologies.
-- **Tech**: HTML, JavaScript, CSS
-- **[GitHub](https://github.com/dotsatya/Sun-Earth-Moon)** • **[Live Demo](https://dotsatya.github.io/Sun-Earth-Moon/)**
 
 ---
 
@@ -101,7 +70,7 @@ Interactive visualization of orbital motion using web technologies.
 - Smooth scroll animations and transitions
 
 ### Terminal Mode
-- Unique terminal-style interface (Easter egg!)
+- Unique terminal-style interface 
 
 ---
 
@@ -116,25 +85,11 @@ Interactive visualization of orbital motion using web technologies.
 
 ---
 
-## 📚 Learn More
 
-- [Next.js Documentation](https://nextjs.org/docs) - Next.js features and API
-- [React Documentation](https://react.dev) - React concepts and hooks
-- [Tailwind CSS](https://tailwindcss.com) - Utility-first CSS
-- [TypeScript](https://www.typescriptlang.org/) - Type safety
-- [Framer Motion](https://www.framer.com/motion/) - Animation library
+## 🔒 Personal Project
 
----
-
-## 📝 License
-
-This project is open source and available under the MIT License.
-
----
-
-## 🤝 Contributing
-
-Found a bug or have an idea? Feel free to open an issue or submit a pull request!
+This is a personal project intended for my own use only and is not open for direct code contributions. 
+However, if you have any suggestions or feedback for improving and optimizing the portfolio, you are more than welcome to share them! Feel free to reach out to me via email, the contact form on my portfolio, or through any of my social links above.
 
 ---
 
