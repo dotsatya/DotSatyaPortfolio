@@ -2,13 +2,17 @@
 
 import { ThemeProvider } from "next-themes";
 import { usePathname } from "next/navigation";
-import ReactLenis from "lenis/react";
+import ReactLenis, { useLenis } from "lenis/react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import TFooter from "./terminal/TFooter";
 import Cursor from "@/components/ui/Cursor";
 import { Toaster } from "sonner";
 import "kursor/dist/kursor.css";
+
+gsap.registerPlugin(ScrollTrigger);
 
 export default function LayoutClient({
   children,
@@ -17,6 +21,10 @@ export default function LayoutClient({
 }) {
   const pathname = usePathname();
   const isTerminal = pathname.startsWith("/terminal");
+
+  useLenis(() => {
+    ScrollTrigger.update();
+  });
 
   return (
     <ThemeProvider attribute="class" enableSystem defaultTheme="system">

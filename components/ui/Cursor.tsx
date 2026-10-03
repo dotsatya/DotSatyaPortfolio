@@ -1,24 +1,28 @@
 "use client";
 
 import { useEffect } from "react";
-import { usePathname } from "next/navigation";
 
 const Cursor = () => {
-  const pathname = usePathname();
-
   useEffect(() => {
-    // Dynamically import kursor
-    import("kursor").then((KursorModule) => {
-      const Kursor = KursorModule.default;
+    let cancelled = false;
 
-      // Check if device has a fine pointer (mouse/trackpad) and screen is wide enough
+    const initCursor = async () => {
       const isDesktop =
         window.matchMedia("(pointer: fine)").matches &&
         window.innerWidth >= 768;
 
-      if (!isDesktop) return;
+      if (!isDesktop || cancelled) return;
 
-      // Check if kursor is already initialized to avoid duplicates
+      const { default: Kursor } = await import("kursor");
+
+      if (cancelled) return;
+
+      // Add hover class to headings once
+      document.querySelectorAll("h1, h2").forEach((element) => {
+        element.classList.add("k-hover");
+      });
+
+      // Initialize Kursor
       if (!document.querySelector(".kursor")) {
         new Kursor({
           type: 4,
@@ -26,38 +30,14 @@ const Cursor = () => {
           color: "#fff",
         });
       }
-    });
-
-    // Function to add hover classes
-    const addHoverClasses = () => {
-      const hoverTargets = document.querySelectorAll(
-        // "h1, a, button, .hover-target, input, textarea, select, [role='button']",
-        "h1 , h2 ",
-      );
-      hoverTargets.forEach((el) => {
-        el.classList.add("k-hover");
-      });
     };
 
-    // Initial run
-    addHoverClasses();
-
-    // Observer for dynamic content changes
-    const observer = new MutationObserver((mutations) => {
-      addHoverClasses();
-    });
-
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-    });
+    initCursor();
 
     return () => {
-      observer.disconnect();
-      // We don't remove the cursor instance itself because it's global,
-      // but we ensure we don't create duplicates.
+      cancelled = true;
     };
-  }, [pathname]); // Re-run on route change
+  }, []);
 
   return null;
 };

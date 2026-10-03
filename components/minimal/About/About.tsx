@@ -21,7 +21,7 @@ const About = () => {
         <h1 className="italic text-[6rem] sm:text-[10rem] md:text-[14rem] lg:text-[18rem] font-extrabold text-transparent whitespace-nowrap [-webkit-text-stroke:2px_theme(colors.gray.500)] dark:[-webkit-text-stroke:2px_theme(colors.white)]">
           {" "}
           {letters.map((letter, index) => (
-            <motion.span  
+            <motion.span
               key={index}
               initial={{
                 y: 250,

@@ -30,7 +30,7 @@ const page = () => {
           }}
         /> */}
         <About />
-        {/* <TiltedTechToolls /> */}
+        <TiltedTechToolls />
         <Services />
         <Achievements />
         <GitHubActivities />

@@ -6,7 +6,6 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger"; // 1. Import ScrollTrigger
 import { Portfolio } from "@/lib/AllDetails";
-import { motion } from "framer-motion";
 import AnimatedHeaderSection from "@/components/ui/AnimattedHeading/AnimatedHeaderSection";
 
 // 2. Register the plugin outside your component
