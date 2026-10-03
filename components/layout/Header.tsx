@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState} from "react";
 import { usePathname, useRouter } from "next/navigation";
-// import Link from "next/link";
 import {
   motion,
   AnimatePresence,
@@ -12,10 +11,9 @@ import {
 import ThemeToggle from "../ThemeToggle/ThemeToggle";
 import { RiArrowDownSLine } from "react-icons/ri";
 import { Button } from "../ui/button";
-import Magnetic from "../ui/Magnetic";
 
 // 1. Centralized Configuration
-type Mode = "minimal" | "terminal"; //| "minimal";
+type Mode = "minimal" | "terminal";
 
 interface NavItem {
   label: string;
@@ -32,15 +30,6 @@ const NAVIGATION_CONFIG: Record<Mode, { route: string; items: NavItem[] }> = {
       { label: "Contact", href: "#contact" },
     ],
   },
-  // minimal: {
-  //   route: "/minimal",
-  //   items: [
-  // { label: "About", href: "#about" },
-  // { label: "Skills", href: "#skills" },
-  // { label: "Projects", href: "#porjects" },
-  // { label: "Contact", href: "#contact" },
-  //   ],
-  // },
   terminal: {
     route: "/terminal",
     items: [], // No sub-parts
@@ -72,9 +61,7 @@ const MagneticNavItem = ({
 
   const handleMouseMove = (e: React.MouseEvent<HTMLButtonElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
-
     const mouseX = e.clientX - (rect.left + rect.width / 2);
-
     const mouseY = e.clientY - (rect.top + rect.height / 2);
 
     // Magnetic strength
@@ -109,13 +96,10 @@ const Header: React.FC = () => {
 
   const [mobileOpen, setMobileOpen] = useState(false);
   const [expandedMode, setExpandedMode] = useState<Mode | null>(null);
-  const [open, setOpen] = useState(false);
-  const dropdownRef = useRef<HTMLDivElement>(null);
 
   // Determine current mode based on route
   const currentMode: Mode = pathname === "/terminal" ? "terminal" : "minimal";
 
-  ////////.....
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (!el) return;
@@ -125,8 +109,6 @@ const Header: React.FC = () => {
       block: "start",
     });
   };
-
-  ////////.....
 
   const accordionVariants = {
     initial: { height: 0, opacity: 0 },
@@ -140,16 +122,7 @@ const Header: React.FC = () => {
     exit: { opacity: 0, y: 8, filter: "blur(6px)" },
   };
 
-  useEffect(() => {
-    const handler = (e: MouseEvent) => {
-      if (!dropdownRef.current?.contains(e.target as Node)) setOpen(false);
-    };
-    document.addEventListener("mousedown", handler);
-    return () => document.removeEventListener("mousedown", handler);
-  }, []);
-
   const handleModeChange = (newMode: Mode) => {
-    setOpen(false);
     router.push(NAVIGATION_CONFIG[newMode].route);
   };
 
@@ -187,64 +160,46 @@ const Header: React.FC = () => {
                     <span>dot satya</span>
                   </>
                 ) : (
-                  // Animated Text
-                    <h1 className="font-photograph-signature signature-hover text-5xl leading-none font-normal">
+                  <div className="flex items-center overflow-visible">
+                    <h1 className=" font-photograph-signature signature-hover text-[40px] md:text-[44px] lg:text-5xl leading-[0.6] font-normal pl-2 -translate-y-1 whitespace-nowrap ">
                       dot satya
                     </h1>
+                  </div>
                 )}
               </motion.div>
             </AnimatePresence>
           </div>
 
-          {/* CENTER: Desktop Mode Switcher */}
-
-          <div
-            ref={dropdownRef}
-            className="hidden lg:block absolute left-1/2 -translate-x-1/2"
-          >
-            <button
-              onClick={() => setOpen(!open)}
-              className="w-32 flex items-center justify-center gap-2 px-3 py-1.5 rounded-md border border-black/10 dark:border-white/10 bg-white/5 dark:bg-white/5 hover:bg-black/5 hover:dark:bg-white/10 transition font-medium capitalize"
-            >
-              {currentMode}
-
-              <span
-                className={`transition-transform duration-200 ${
-                  open ? "rotate-180" : ""
-                }`}
-              >
-                <RiArrowDownSLine />
-              </span>
-            </button>
-
-            {/* Normal CSS Dropdown */}
-            <div
-              className={`absolute top-11 left-0 w-full rounded-md
-      bg-white/90 dark:bg-stone-900/90
-      backdrop-blur-xl
-      border border-black/10 dark:border-white/10
-      overflow-hidden shadow-xl
-      transition-all duration-200 ease-out
-      ${
-        open
-          ? "opacity-100 translate-y-0 visible"
-          : "opacity-0 -translate-y-2 invisible pointer-events-none"
-      }`}
-            >
-              {(Object.keys(NAVIGATION_CONFIG) as Mode[]).map((m) => (
+          {/* CENTER: Desktop Mode Switcher (Apple Glass Effect) */}
+          <div className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center p-1 rounded-full bg-black/5 dark:bg-white/5 border border-black/5 dark:border-white/5 shadow-inner">
+            {(Object.keys(NAVIGATION_CONFIG) as Mode[]).map((m) => {
+              const isActive = currentMode === m;
+              return (
                 <button
                   key={m}
                   onClick={() => handleModeChange(m)}
-                  className={`w-full text-left px-3 py-2 text-sm transition hover:bg-black/5 dark:hover:bg-white/10 ${
-                    currentMode === m
-                      ? "text-blue-500 font-bold"
-                      : "text-gray-600 dark:text-gray-300"
+                  className={`relative px-5 py-1.5 text-sm font-medium capitalize rounded-full transition-colors z-10 ${
+                    isActive
+                      ? "text-black dark:text-white"
+                      : "text-gray-600 dark:text-gray-400 hover:text-black dark:hover:text-white"
                   }`}
                 >
-                  {m.charAt(0).toUpperCase() + m.slice(1)}
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeModeBackground"
+                      className="absolute inset-0 bg-white/90 dark:bg-[#2a2a2a]/60 rounded-full shadow-sm border border-black/5 dark:border-white/10 backdrop-blur-md"
+                      initial={false}
+                      transition={{
+                        type: "spring",
+                        stiffness: 400,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                  <span className="relative z-20">{m}</span>
                 </button>
-              ))}
-            </div>
+              );
+            })}
           </div>
 
           {/* RIGHT: Navigation & Theme */}
@@ -260,13 +215,6 @@ const Header: React.FC = () => {
                   className="hidden md:flex items-center gap-4"
                 >
                   {NAVIGATION_CONFIG[currentMode].items.map((item) => (
-                    // <Link
-                    //   key={item.href}
-                    //   href={item.href}
-                    //   className="text-sm font-medium hover:text-blue-500 transition-colors"
-                    // >
-                    //   {item.label}
-                    // </Link>/
                     <MagneticNavItem
                       key={item.href}
                       item={item}
@@ -369,14 +317,6 @@ const Header: React.FC = () => {
                     >
                       <nav className="flex flex-col py-2 gap-3">
                         {NAVIGATION_CONFIG[modeKey].items.map((sub) => (
-                          // <Link
-                          //   key={sub.href}
-                          //   href={sub.href}
-                          //   onClick={() => setMobileOpen(false)}
-                          //   className="text-xl font-medium hover:text-blue-500"
-                          // >
-                          //   {sub.label}
-                          // </Link>
                           <button
                             key={sub.href}
                             onClick={() => {

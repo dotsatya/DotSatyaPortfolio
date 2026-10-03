@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
 
   description:
-    "Official portfolio of Satya Sundar Dey, also known as DotSatya — Software Engineer, Full-Stack Developer, and UI/UX Designer specializing in modern web applications and digital experiences.",
+    "Official portfolio of Satya Sundar Dey (dotsatya), a Full-Stack Developer, Software Engineer, and UI/UX Designer building modern web applications and thoughtful digital experiences.",
 
   keywords: [
     "Satya Sundar Dey",
@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     title: "Satya Sundar Dey (dotsatya) | Software Engineer & UI/UX Designer",
 
     description:
-      "Official portfolio of Satya Sundar Dey, also known as dotsatya — Software Engineer, Full-Stack Developer, and UI/UX Designer.",
+      "Official portfolio of Satya Sundar Dey (dotsatya), a Full-Stack Developer, Software Engineer, and UI/UX Designer building modern web applications and thoughtful digital experiences.",
 
     url: "https://dotsatya.vercel.app",
 
